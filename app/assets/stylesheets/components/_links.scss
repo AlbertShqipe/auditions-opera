@@ -1,0 +1,24 @@
+.link {
+  position: relative;
+  align-self: center;
+  color: rgb(255, 255, 255);
+  transition: color 0.3s;
+  text-decoration: none; // Remove default underline
+}
+
+.link::after {
+  position: absolute;
+  bottom: -2px; // Slightly below the text for better visibility
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(255, 255, 255);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left; // Start scaling from the left
+  transition: transform 0.3s ease-in-out;
+}
+
+.link:hover::after {
+  transform: scaleX(1); // Expand the underline from left to right
+}

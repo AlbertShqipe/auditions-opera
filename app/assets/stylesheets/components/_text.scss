@@ -1,0 +1,45 @@
+.text-h1 {
+  font-size: 5rem;
+  font-size: calc(2.5rem,1.6197183099rem + 3.7558685446vw,5rem);
+  font-weight: 700;
+  line-height: 1.1
+}
+
+.text-h4 {
+  font-size: 1.5rem;
+  font-size: calc(1.125rem,.9929577465rem + .5633802817vw,1.5rem);
+  font-weight: 700;
+  line-height: 1.2083333333
+}
+
+.body_p {
+  margin-bottom: 2.625rem;
+  font-weight: 400;
+  text-indent: calc(2.5rem,-.3168335901rem + 12.0184899846vw,7.375rem)
+}
+
+
+.title_R {
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+.title_R:not(:first-child) {
+  margin-top: 1.5rem
+}
+
+@media(min-width: 768px) {
+  .body_p {
+      padding-right:calc(8.33333% - var(--gutter)*5/12 + var(--gutter))
+  }
+}
+
+@media(min-width: 1024px) {
+  .body_p {
+      padding-right:calc(16.66667% - var(--gutter)*5/6 + var(--gutter))
+  }
+}
+
+.body_p:not(:first-child) {
+  margin-top: 1.5rem
+}

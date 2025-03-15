@@ -1,7 +1,10 @@
 <% if user_signed_in? %>
   <div class="container mt-3">
-    <h1 class="text-center">Audition Applications</h1>
-    <p>Please make sure to fill app the form following the link below, you will be notified by mail as soon as we can. <br>Best of luck for your endeavors</p>
+    <h1 class="text-center text-h1 title_R">Audition Applications</h1>
+    <div class="body_p text-h4">
+
+      <p>Please make sure to fill app the form following the link below, you will be notified by mail as soon as we can. <br>Best of luck for your endeavors</p>
+    </div>
     <%= link_to 'Apply for the audition', new_audition_application_path, style:"font-size:32px; text-decoration:none"%>
     <div class="d-flex justify-content-center" style="margin-top: 20px; width: 100%">
 
@@ -9,10 +12,16 @@
     </div>
   </div>
 <%else%>
-  <div class="container text-center  mt-3">
-    <h1>Template for the Ballet de l'Opéra de Lyon</h1>
-    <p>Welcome, please make sure to subscribe if you don't have an account before signing in</p>
-    <img src="https://api.opera-lyon.com/assets/q90-w1280/a3e60aea/bloc_galerie_full_width_ballet.jpg" alt="Ballet de l'Opera de Lyon Studio" style="width: 50%;">
-    <p>Sign up here: <%= link_to "Sign up", new_user_registration_path %></p>
+  <div class="container text-center mt-3 rounded-top">
+    <img class="" src="https://www.dansesaveclaplume.com/wordpress/wp-content/gallery/soiree-jiri-kylian-ballet-de-lopera-de-lyon/b-bella-figura_1.jpg" alt="Ballet de l'Opera de Lyon Studio">
+    <h1 class="text-h1 title_R">Ballet de l'Opéra de Lyon Audition</h1>
+    <div class="body_p text-h4">
+      <p>Welcome, please make sure to subscribe if you don't have an account before signing in</p>
+      <p>
+        <%= link_to new_user_registration_path, class: "button" do %>
+          <span>Sign up</span>
+        <% end %>
+      </p>
+    </div>
   </div>
 <% end %>

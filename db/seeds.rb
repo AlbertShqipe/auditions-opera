@@ -7,11 +7,21 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-admin_user = User.create!(
-  email: 'cedric@gmail.com',
-  password: 'testtest',   # Use a secure password
-  password_confirmation: 'testtest',
-  role: 'admin'           # Set the role to admin
-)
+# Remove an existing admin safely
+User.where(role: :admin).destroy_all
 
-puts "Admin user created with email: #{admin_user.email}"
+unless User.where(role: :admin).exists?
+  admin_emails = ['cedric@gmail.com', 'marco@gmail.com', 'raul@gmail.com']
+
+  admin_emails.each do |email|
+    user = User.create!(
+      email: email,
+      password: 'testtest',
+      password_confirmation: 'testtest',
+      role: :admin
+    )
+    puts "Admin user created with email: #{user.email}"
+  end
+else
+  puts "Admin users already exist. Skipping creation."
+end
