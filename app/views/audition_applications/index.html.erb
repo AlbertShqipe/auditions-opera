@@ -1,0 +1,27 @@
+<div class="container">
+<h1 class="text-center">Audition Applications</h1>
+  <section class="tiles">
+    <% @applications.each do |application| %>
+    <article class="style1">
+      <% if application.profile_image.present? %>
+        <span class="image">
+          <%= image_tag(application.profile_image) %>
+        </span>
+      <% else %>
+        <span class="image">
+          <%= cl_image_tag application.photo.key %>
+        </span>
+      <% end %>
+      <a href="/audition_applications/<%= application.id %>">
+        <h3 id="text-tiles"><%= application.first_name %> <%= application.last_name %></h3>
+        <br>
+        <h5><%= application.height%>m</h5>
+        <div class="content">
+        <h5><%= application.nationality %></h5>
+        </div>
+      </a>
+    </article>
+    <% end %>
+  </section>
+</div>
+<a href="https://www.albertnikolli.com">albi</a>

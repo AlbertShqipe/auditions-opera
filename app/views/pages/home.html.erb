@@ -1,2 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% if user_signed_in? %>
+  <div class="container mt-3">
+    <h1 class="text-center">Audition Applications</h1>
+    <p>Please make sure to fill app the form following the link below, you will be notified by mail as soon as we can. <br>Best of luck for your endeavors</p>
+    <%= link_to 'Apply for the audition', new_audition_application_path, style:"font-size:32px; text-decoration:none"%>
+    <div class="d-flex justify-content-center" style="margin-top: 20px; width: 100%">
+
+      <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA",style:"width:50%" %>
+    </div>
+  </div>
+<%else%>
+  <div class="container text-center  mt-3">
+    <h1>Template for the Ballet de l'Opéra de Lyon</h1>
+    <p>Welcome, please make sure to subscribe if you don't have an account before signing in</p>
+    <img src="https://api.opera-lyon.com/assets/q90-w1280/a3e60aea/bloc_galerie_full_width_ballet.jpg" alt="Ballet de l'Opera de Lyon Studio" style="width: 50%;">
+    <p>Sign up here: <%= link_to "Sign up", new_user_registration_path %></p>
+  </div>
+<% end %>

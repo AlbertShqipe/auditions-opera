@@ -1,0 +1,42 @@
+<div class="container mt-5 mb-5">
+  <div class="d-flex justify-content-between">
+
+    <div>
+      <h1><%= @application.first_name %> <%= @application.last_name %></h1>
+      <% if @application.profile_image.attached? %>
+        <%= image_tag @application.profile_image, width: 150 %>
+      <% end %>
+
+      <p><strong>Date of Birth:</strong> <%= @application.date_of_birth %></p>
+      <p><strong>Nationality:</strong> <%= @application.nationality %></p>
+      <p><strong>Height:</strong> <%= @application.height %> cm</p>
+      <p><strong>Gender:</strong> <%= @application.gender.humanize %></p>
+      <p><strong>Status:</strong> <%= @application.status.humanize %></p>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center flex-column">
+      <% if @application.video_link.present? %>
+        <iframe width="560" height="315" src="<%= youtube_embed_url(@application.video_link) %>" frameborder="0" allowfullscreen></iframe>
+      <% end %>
+    </div>
+  </div>
+
+
+
+  <% if @application.cv.attached? %>
+    <% if @application.cv.attached? %>
+      <%= link_to "View CV", rails_blob_path(@application.cv, disposition: "inline") %>
+    <% else %>
+      <p>No CV uploaded</p>
+    <% end %>
+  <% end %>
+
+
+  <!-- Change Status with Buttons -->
+  <div class="status-buttons d-flex justify-content-around">
+    <%= button_to 'Accepted', update_status_audition_application_path(@application, status: 'accepted'), method: :patch, class: 'btn btn-success' %>
+    <%= button_to 'Pending', update_status_audition_application_path(@application, status: 'pending'), method: :patch, class: 'btn btn-warning' %>
+    <%= button_to 'Rejected', update_status_audition_application_path(@application, status: 'rejected'), method: :patch, class: 'btn btn-danger' %>
+  </div>
+  <%= link_to "Retour", audition_applications_path %>
+</div>

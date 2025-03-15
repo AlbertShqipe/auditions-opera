@@ -3,4 +3,19 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def index
+    # Your code here
+
+  end
+
+  def show
+    # Your code here
+  end
+
+  private
+
+  def check_admin
+    redirect_to root_path, alert: "Access denied!" unless current_user.admin?
+  end
 end
