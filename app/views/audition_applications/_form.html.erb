@@ -1,4 +1,4 @@
-<div class="container mt-3 mb-3" style="width:70%">
+<div class="container mt-3 mb-3" style="width:70%; ">
   <h2>Fill up this application form</h2>
   <%= simple_form_for(@audition_application || AuditionApplication.new) do |f| %>
     <%= f.input :first_name, label: "Prénom", required: true %>
@@ -8,10 +8,55 @@
     <%= f.input :height, label: "Taille", required: true %>
     <%= f.input :gender, collection: ["male", "female", "non-binary", "other"], label: "Sexe", required: true %>
     <%= f.input :video_link, label: "Lien vers la vidéo", required: true %>
-    <%= f.input :cv, as: :file, label: "CV", required: true %>
-    <%= f.input :profile_image, as: :file, label: "Photo de profil", required: true %>
+
+    <div class="d-flex justify-content-around mb-3">
+
+      <div class="custom-file">
+        <label for="cv-upload" class="custom-file-label">Upload CV</label>
+        <span id="cv-file-name">No file chosen</span>
+        <%= f.input :cv, as: :file, required: true,
+                      input_html: { class: "custom-file-input", id: "cv-upload", onchange: "updateFileName(this, 'cv-file-name')" },
+                      accept: "application/pdf",
+                      label: false %>
+      </div>
+
+      <div class="custom-file">
+        <label for="profile-image-upload" class="custom-file-label">Upload Photo</label>
+        <span id="profile-image-file-name">No file chosen</span>
+        <%= f.input :profile_image, as: :file, required: true,
+                      input_html: { class: "custom-file-input", id: "profile-image-upload", onchange: "updateFileName(this, 'profile-image-file-name')" },
+                      accept: "image/png, image/jpeg, image/gif",
+                      label: false %>
+      </div>
+    </div>
 
 
     <%= f.button :submit, f.object.persisted? ? 'Modifier' : 'Soumettre la candidature', class:"submit-button" %>
   <% end %>
 </div>
+<script>
+  function updateFileName(input, labelId) {
+    const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
+    document.getElementById(labelId).textContent = fileName;
+  }
+  function updateFileName(input, labelId) {
+    const allowedCVTypes = ["application/pdf"];
+    const allowedImageTypes = ["image/png", "image/jpeg", "image/gif"];
+
+    const file = input.files[0];
+    if (file) {
+      const fileType = file.type;
+      const isCV = input.id === "cv-upload";
+
+      if ((isCV && !allowedCVTypes.includes(fileType)) ||
+          (!isCV && !allowedImageTypes.includes(fileType))) {
+        alert("Invalid file type! Please upload a " + (isCV ? "PDF." : "JPG, PNG, or GIF."));
+        input.value = ""; // Reset file input
+        document.getElementById(labelId).textContent = "No file chosen";
+        return;
+      }
+
+      document.getElementById(labelId).textContent = file.name;
+    }
+  }
+</script>
