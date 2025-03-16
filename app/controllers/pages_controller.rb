@@ -6,7 +6,6 @@ class PagesController < ApplicationController
 
   def index
     # Your code here
-
   end
 
   def show

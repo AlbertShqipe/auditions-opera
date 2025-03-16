@@ -6,11 +6,12 @@
   font-weight: bold;
   color: rgb(0, 0, 0);
   background-color: white;
-  border: 2px solid white;
+  border: 2px solid rgb(0, 0, 0); /* Changed border color to black */
   text-transform: uppercase;
   overflow: hidden;
   transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
   text-decoration: none; /* Remove default underline */
+  cursor: pointer;
 }
 
 .button::before {
@@ -29,7 +30,7 @@
 
 .button:hover {
   color: rgb(255, 255, 255);
-  border-color: white;
+  border-color: rgb(255, 255, 255); /* Make the border white on hover */
 }
 
 .button:hover::before {
@@ -44,5 +45,5 @@
 
 .button span {
   position: relative;
-  z-index: 1; // Keep text above the background effect
+  z-index: 1; /* Keep text above the background effect */
 }

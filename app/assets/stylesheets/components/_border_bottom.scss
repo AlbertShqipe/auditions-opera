@@ -1,0 +1,15 @@
+.border-bottom {
+  position: relative;
+  display: inline-block; /* Adjust based on use case */
+}
+
+.border-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -5px; /* Adjust distance from text */
+  left: 50%;
+  width: 60%; /* Adjust width */
+  height: 2px; /* Thickness */
+  background-color: black;
+  transform: translateX(-50%);
+}

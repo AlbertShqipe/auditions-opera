@@ -5,9 +5,19 @@
   padding: 0 40px;
   // justify-content: space-between;
   background: rgb(0, 0, 0);
-  border-bottom: 1px solid rgba(1, 1, 1, .2);
+  // border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
 }
 
+.navbar-lewagon::after {
+content: "";
+  position: absolute;
+  bottom: 0;
+  left: 40px; /* Same as padding */
+  width: calc(100% - 80px); /* Reduces border width */
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;

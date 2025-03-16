@@ -9,9 +9,9 @@
     <%= f.input :gender, collection: ["male", "female", "non-binary", "other"], label: "Sexe", required: true %>
     <%= f.input :video_link, label: "Lien vers la vidéo", required: true %>
     <%= f.input :cv, as: :file, label: "CV", required: true %>
-    <%= f.input :profile_image, as: :file, label: "Photo de profil" %>
+    <%= f.input :profile_image, as: :file, label: "Photo de profil", required: true %>
 
 
-    <%= f.button :submit, f.object.persisted? ? 'Modifier' : 'Soumettre la candidature', style:"border:1px solid black" %>
+    <%= f.button :submit, f.object.persisted? ? 'Modifier' : 'Soumettre la candidature', class:"submit-button" %>
   <% end %>
 </div>
