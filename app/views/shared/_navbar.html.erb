@@ -20,7 +20,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <svg viewBox="0 0 24 28" width="24" height="28" class=""><use xlink:href="/_nuxt/image/sprite.4d903e25.svg#logo-min--sprite"></use></svg>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
@@ -32,8 +31,11 @@
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if current_user.email == "albert@gmail.com" %>
-              <%= image_tag "https://api.opera-lyon.com/assets/q80-w960-c447x576/d0443496/albert_1.jpg.webp", class: "avatar", alt: "dropdown menu" %>
+            <% if current_user.email != "cedric@gmail.com" %>
+              <svg viewBox="0 0 24 24" fill="none" id="account--sprite">
+                <path d="M15.7692 9C17.6983 10.3817 18.983 12.7898 19 15.5233V21H5V15.5233C5 12.7758 6.27406 10.3766 8.2021 9" stroke="currentColor" stroke-width="3"></path>
+                <path d="M17 7C17 9.76142 14.7614 12 12 12C9.23858 12 7 9.76142 7 7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7Z" stroke="currentColor" stroke-width="3"></path>
+              </svg>
             <% else %>
               <%= image_tag "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAFwAXAMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAGBwMFAQIECAD/xAA7EAACAQIFAQUFBgMJAQAAAAABAgMEEQAFBhIhMRNBUWFxByIygaEUM1KRscFCYtEWIyVykqLC4fAV/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AKXT5ZdV11zwNw+mK/VhZsmytmtx2nT1wxc2pMkokhqaVqdJ5ULOwcXbjApqnKoJfZjl+bxSL20dYY2F77lO4W9eAflgF5lqGSqhUEcuOuGPk8CtLUIahQofuUc8Yr/Y5pqh1Dn1QuZqzw0tP2gjV9u5iwAvbm3X6Yd9Lo7T9Ju7HLYxc3N3Y/qcAqs0zvL9OU++YvJO/wB3CirdvPpwPPAZT6sR84SrqY5YlG4XjbcVuetuMdOu6CTM9fZtT0UarDBMIEUdFCqBb89x+eJF0A60xaR2Mlr+70GAM6XdXU0dXQZ0ZYHF7g9fkeh8jivr5quGthvX7rBtpa3W3pga0fVSaS1JCczi7TLZW2VAce7tPG71HX5Yf9RpPIKsq8uWQtbkFbj9DgPMmrnmlzVpKhgZCouVx06bF4owOT9qT9Rgq9tWm6PJ8zpZcsh7KGWL3k3lrNc+PPTFR7NaaKpzBI52VQJN3vG2AIqqmmTN6z3CFeAsD48YVlSLVEoPUOf1x6ymyOgqI4ZDEhdVA3A9Rjy5qiOKHUuaxQW7JKuVUse4McAz9Q1OURZJR1DU8F5IwqoFHFxgSz3N8nfQFLlNNF/iCV5lZrWCpZhf15AxpOVkoaJGBIEQPIvziiz6wMYUAcdwwGNNBJs6pIajMZsvglfbJUwuVZBbxHmBh15LoinrYpKyk1xqViSVMi1drgeowiMsj7Wtp4+u6QD649B6Lyl4qKoWMAJvNgScAvYad8nzjM46YvmMqVL2mk5aUk33MfHnk+N8EcE2eVeWTEwx01YpCopt0IP9MUZr3yzUdbECrP27oYw3w2tb0vjoOoax8wliouzkgkKmRhEWZSOth6YDt/8Aj18lJIc7WnLFSNw778c8Ytcv0Rl1TkaZhJrPUdPDMjB91aEW6+6RYryBtI9BinzHNDIoBeXsb7SJV2te3HXuxZQS5frTSu7LGtUUcTLUUTna0ZINjweQfH97jABvbZZW+yfMqitrBPnkeYL2cs0haZlugFrknbt3eWOH2Zpl9RmhizJQ4N+CbXHriipYBJpytlsCUdTe/OIMgm7GrdrX9wgYD1JS1GVfYIZKZYjEWEa26A48y63mWbV2bsiIqLVOihFsLKbD9MG8GaRw6JohFUOKlawXUHphZ1rtJWTuxuzSMT6k4Br5xpVoMho6qkLPIQi7B4HAXrPJamkrMvplQvJUxjaP5iQAPrhjyapoZKGhhbsLTFRDDva972GLCahhrNTZXSVVBA9asRmgkMjWjCkfnyRgAT2kZBHpnMdOU9MQXFNd2C295WFybeuN8z9oWYU+XTUGTOYRKx7SqAs4Hgv4T59fC3XFP7QNU1Gps+kkm2LDS7qeFEFrgHlvmRf0t53GnqQ63m3E9O0Xkn/MO/16+vcH1FUTJXhkkbfITdiSST1ufHnBnkuf0cVOgrd5lVuQCQPp1wDj3WWeF1fYd11vxbxB5GCGGry+dBMXCkjlbc3wFpnmcDNZ5HjQxwU6FmJHxjuH54EcmzCsyueOqoamSCdV2742sSD1B8QfA4sc4zSH7G1HRWPakGR/LwxTwg3A7z0HjgGJoTOdOrp2v05nwemWsZmjrGQNGhIAG49RY836eYwH6UoZKjMZIbDeiG9jfnHKWEX3tg46RA8k/wA34R68+Xfi+0NmdNSZq0c9LHK86ELKXZSlgSRx1Bt9MBdf2flp9KQVRcl5KoFUJ4wvKoMKmUNbcHN7eN8Omqq4WyGib7JE9K0nuRiVrqfG+F5U5ppn7RLv0+S+87iKl+Tf1wFRNUSLLAe0Y9i3Fx05vgwzTXNQc3y3NaSPbLRQlCG/j3CxH6H5Y410fW1NNBVCa6SklV28gXxJm+j6ugyqrrZ5FEcUW4Lbk4AHBI4Ykk95PJONd1iQcZbkYjbzPPjgMMhVtyXBHQg2ON2G6zgfF1A7j/7n54z1GPgP7uTys3zuB/ywGTtjUMVDMei3sPU417WR73OxPwpwD6+PzxsyGysR8QuMYb3VwGFsBsWwA8MdmXTdjWRyjou63zUj98cSi/JPHhjpo4zLVwRJwXkVF9SbfvgCmkzuobL6OlPwxMWFx5YEpm3Sux6licF5yeSkpIJJWYMWZbEWHTAbJ8beuAcWWwZ9TJR0sdfAUZtiiSK+3n1x3e0KgzmDTteKqvpZIFptzqkBVj7yiw58TjohjBqKNufvBcD1xN7VZwMizFeOaYL8t6n9sAgyLG4xHJa2JN7t8CC3niOUtsO5QPMHAfKbjEg+6l81A/3A/tiCM4mY2gN/4nFvkP8AsYCcsj0dMR8Sb42/1bh9H+mOWVvdONom/uZB+FwR8wf6DELm/AwE6j3Ri001TPWaiyynibY71Udmt8Nje/0xVKXsLbR5E4vdC18VBrDKamtFolnKlgL2LKyg/mwwDd1Do+Z8ogMmZzMzNyNq2GFjNpRBK4Dt1Pfh/Z4f8FiC97gc4V08Y7Z+/wB44A2hy95qOOW1hG9r4HPa5UNTaencQtIs2yFm7kub7j5cW9SMHsLE5WV6AdLYrZkWVtkoDqeCrC4IwHmmMk8t8hiVlVxY41zJ7ZnVhFVF+0SWVRYKNx4A8MRliDa+A+an2KWDXt3WxlklkCiNCVRLkngdNx6+X6YkRjbBzpLSdBnGStmVXNUiaMyxKqldoG0C9ip594nr1AwC/wCzlhSRpEZQygAkcE3GMU8ZkbdY7R34aOk9IZIaYiqo1q2qJpIy85O5FRiBtK2t069cBWe0cOXZvXUdKCIYJ3RATcgAkDnAVhjRRyL/ADxa6QyObPdQ0tNCG7FHElS/csYPN/M9B6+RxUOxN74aHsX2nL8yOxQ3bqC46kbRYHyHP54Bt5gxfKIlIWzsOR4YXdRTDt5LXtuNsHVQ5NDAhPF8CkqgSMB44D//2Q==", class: "avatar", alt: "dropdown menu" %>
             <% end %>
@@ -41,7 +43,7 @@
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%# <%= link_to "Action", "#", class: "dropdown-item" %>
               <%# <%= link_to "Another action", "#", class: "dropdown-item"   %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item link" %>
             </div>
           </li>
         <% else %>

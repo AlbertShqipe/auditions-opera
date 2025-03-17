@@ -8,8 +8,14 @@
       <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA",style:"width:25%" %>
     </div>
     <div class="text-center mt-5">
-      <%= link_to new_audition_application_path, class:"button" do%>
-        <span>Apply for the audition</span>
+      <% if current_user.audition_applications.present? %>
+        <%= link_to audition_application_path(current_user.audition_applications.first), class:"button" do%>
+          <span>Check my application</span>
+        <% end %>
+      <% else %>
+        <%= link_to new_audition_application_path, class:"button" do%>
+          <span>Apply for the audition</span>
+        <% end %>
       <% end %>
     </div>
   </div>

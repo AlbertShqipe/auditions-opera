@@ -3,4 +3,24 @@
   bottom: 16px;
   right: 16px;
   z-index: 1000;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+
+  .btn-close {
+    filter: invert(1); // Makes the default black icon white
+    opacity: 1;
+    transition: filter 0.3s ease, background-color 0.3s ease;
+  }
+
+  .btn-close:hover {
+    filter: invert(0.6); // Change color on hover
+  }
+
+  .btn-close:focus,
+  .btn-close:active {
+    filter: invert(1) sepia(1) saturate(1) hue-rotate(1deg); // Change color on click
+    background-color: rgba(255, 0, 0, 0.2); // Add background on click
+    outline: none; // Remove focus outline
+  }
 }

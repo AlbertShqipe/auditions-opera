@@ -7,9 +7,15 @@
 .tiles {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5em; /* Adjust spacing */
+  gap: 1.5em;
   justify-content: center;
+  gap: 1.5em;
+}
 
+.tile {
+  flex-basis: calc(16.66% - 1.5em); /* 5 elements per row */
+  box-sizing: border-box; /* Ensures padding and gaps are included in the width calculation */
+  margin-bottom: 2em;
 }
 
 .tiles article {

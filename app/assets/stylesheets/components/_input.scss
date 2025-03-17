@@ -13,8 +13,8 @@
 
 .custom-file-label {
   display: inline-block;
-  background-color: #000000; /* Change to any color */
-  color: #fff;
+  background-color: #ffffff; /* Change to any color */
+  color: #000000;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
@@ -24,6 +24,13 @@
 
 .custom-file-label:hover {
   background-color: #333;
+  color: #fff;
+}
+
+.custom-file-label:focus,
+.custom-file-label:active {
+  background-color: #000000;
+  color: #fff;
 }
 
 #cv-file-name, #profile-image-file-name {

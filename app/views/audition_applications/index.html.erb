@@ -1,8 +1,8 @@
-<div class="container">
-  <h1 class="text-center">Audition Applications</h1>
-  <section class="tiles">
+<div class="container mt-5">
+  <h1 class="text-center text-h1">Audition Applications</h1>
+  <section class="tiles mt-5">
     <% @applications.each do |application| %>
-    <article class="style1">
+    <article class="style1 tile">
       <% if application.profile_image.present? %>
         <span class="image">
           <%= image_tag(application.profile_image) %>
@@ -24,4 +24,3 @@
     <% end %>
   </section>
 </div>
-<a href="https://www.albertnikolli.com">albi</a>

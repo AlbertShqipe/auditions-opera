@@ -59,4 +59,21 @@
       document.getElementById(labelId).textContent = file.name;
     }
   }
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form"); // Select the form
+    form.addEventListener("submit", function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault(); // Prevent form submission
+        event.stopPropagation();
+
+        // Show custom alert (Bootstrap example)
+        let alertDiv = document.createElement("div");
+        alertDiv.className = "alert alert-danger mt-2";
+        alertDiv.innerHTML = "Veuillez remplir tous les champs obligatoires.";
+        form.prepend(alertDiv); // Insert alert at the top of the form
+      }
+
+      form.classList.add("was-validated"); // Add Bootstrap validation class
+    });
+  });
 </script>

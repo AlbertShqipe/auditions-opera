@@ -7,10 +7,27 @@
   background: rgb(0, 0, 0);
   // border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
+
+  .dropdown-menu {
+    background: rgb(0, 0, 0);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+
+    a {
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      transition: background 0.3s;
+
+      &:hover {
+        background: transparent ;
+      }
+    }
+  }
 }
 
 .navbar-lewagon::after {
-content: "";
+  content: "";
   position: absolute;
   bottom: 0;
   left: 40px; /* Same as padding */
@@ -21,6 +38,7 @@ content: "";
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+
   .nav-item {
     display: flex;
     align-items: center;

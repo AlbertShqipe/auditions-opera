@@ -1,6 +1,6 @@
 class AuditionApplicationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_admin, only: [:index, :show, :destroy]
+  before_action :check_admin, only: [:index, :destroy]
   before_action :set_application, only: [:show, :update_status]
 
   def update_status
@@ -42,13 +42,17 @@ class AuditionApplicationsController < ApplicationController
     end
   end
 
+  def edit
+    @application = AuditionApplication.find(params[:id])
+  end
+
   def update
     @application = AuditionApplication.find(params[:id])
 
     if @application.update(application_params) # This will handle updating the status along with other attributes
-      redirect_to audition_applications_path, notice: "Application updated!"
+      redirect_to root_path, notice: "Application updated!"
     else
-      redirect_to audition_applications_path, alert: "Failed to update the application."
+      redirect_to root_path, alert: "Failed to update the application. Contact support."
     end
   end
 
