@@ -38,10 +38,15 @@
   </div>
   <% if current_user.admin?%>
     <!-- Change Status with Buttons -->
-    <div class="status-buttons d-flex justify-content-around mt-5">
-      <%= button_to 'Accepted', update_status_audition_application_path(@application, status: 'accepted'), method: :patch, class: 'btn btn-success' %>
-      <%= button_to 'Pending', update_status_audition_application_path(@application, status: 'pending'), method: :patch, class: 'btn btn-warning' %>
-      <%= button_to 'Rejected', update_status_audition_application_path(@application, status: 'rejected'), method: :patch, class: 'btn btn-danger' %>
+    <div class="status-buttons d-flex justify-content-around mt-5" data-controller="confirmation">
+      <%= button_to 'Accepted', update_status_audition_application_path(@application, status: 'accepted'),
+          method: :patch, class: 'btn btn-success', data: { action: "confirmation#confirm", confirm_message: "Are you sure you want to accept this application?" } %>
+
+      <%= button_to 'Pending', update_status_audition_application_path(@application, status: 'pending'),
+          method: :patch, class: 'btn btn-warning' %>
+
+      <%= button_to 'Rejected', update_status_audition_application_path(@application, status: 'rejected'),
+          method: :patch, class: 'btn btn-danger', data: { action: "confirmation#confirm", confirm_message: "Are you sure you want to reject this application?" } %>
     </div>
   <% else %>
     <div>

@@ -57,6 +57,11 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
 
+## This gem is used to set set a test environment for the email
+group :development do
+  gem 'letter_opener'
+end
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
