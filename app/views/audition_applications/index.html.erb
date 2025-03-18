@@ -1,7 +1,13 @@
 <div class="container mt-5">
   <h1 class="text-center text-h1">Audition Applications</h1>
+  <div>
+    <%= form_with url: audition_applications_path, method: :get, local: true do %>
+      <label for="status_filter">Filter by Status:</label>
+      <%= select_tag :status, options_for_select(@statuses.map { |status| [status.humanize.capitalize, status] }, @selected_status), include_blank: "All", onchange: "this.form.submit();" %>
+    <% end %>
+  </div>
   <section class="tiles mt-5">
-    <% @applications.each do |application| %>
+    <% @audition_applications.each do |application| %>
     <article class="style1 tile">
       <% if application.profile_image.present? %>
         <span class="image">
@@ -12,7 +18,7 @@
           <%= cl_image_tag application.photo.key %>
         </span>
       <% end %>
-      <a href="/audition_applications/<%= application.id %>">
+      <a href="<%= audition_application_path(application) %>">
         <h3 id="text-tiles"><%= application.first_name %> <%= application.last_name %></h3>
         <br>
         <h5><%= application.height%>m</h5>

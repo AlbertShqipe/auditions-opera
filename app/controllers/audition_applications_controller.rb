@@ -15,7 +15,14 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def index
-    @applications = AuditionApplication.where.not(status: "rejected")
+    @applications = AuditionApplication.all
+    @statuses = AuditionApplication.statuses.keys
+    @selected_status = params[:status]
+    @audition_applications = if @selected_status.present?
+                              AuditionApplication.where(status: @selected_status)
+                            else
+                              AuditionApplication.all
+                            end
   end
 
   def show
