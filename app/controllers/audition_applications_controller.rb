@@ -48,6 +48,7 @@ class AuditionApplicationsController < ApplicationController
 
   def update
     @application = AuditionApplication.find(params[:id])
+    previous_status = @application.status # Store the previous status
 
     if @application.update(application_params) # This will handle updating the status along with other attributes
       redirect_to root_path, notice: "Application updated!"
