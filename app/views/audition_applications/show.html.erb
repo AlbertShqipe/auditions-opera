@@ -5,7 +5,9 @@
       <div class="show-text">
         <div class="show-image">
           <% if @application.profile_image.attached? %>
-            <%= image_tag @application.profile_image, width: 150 %>
+            <a href="<%= rails_blob_path(@application.profile_image, disposition: 'inline') %>" target="_blank">
+              <%= image_tag @application.profile_image, width: 150 %>
+            </a>
           <% end %>
         </div>
         <div class="main-info">
