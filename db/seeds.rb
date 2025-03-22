@@ -22,6 +22,13 @@ unless User.where(role: :admin).exists?
     )
     puts "Admin user created with email: #{user.email}"
   end
-else
-  puts "Admin users already exist. Skipping creation."
+  else
+    puts "Admin users already exist. Skipping creation."
 end
+
+User.create!(
+  email: "alex@gmail.com",
+  password: 'testtest',
+  password_confirmation: 'testtest',
+  role: :guest
+)

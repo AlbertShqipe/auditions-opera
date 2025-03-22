@@ -5,11 +5,12 @@
     <%= f.input :first_name, label: "Prénom", required: true %>
     <%= f.input :last_name, label: "Nom de famille", required: true %>
     <%= f.input :date_of_birth, as: :date, label: "Date de naissance", required: true, start_year: 1900, end_year: Date.today.year %>
+    <%= f.input :address, label: "Address", required: true %>
     <%= f.input :nationality, label: "Nationalité", required: true %>
     <%= f.input :height, label: "Taille", required: true %>
-    <%= f.input :gender, collection: ["male", "female", "non-binary", "other"], label: "Sexe", required: true %>
+    <%= f.input :gender, collection: ["male", "female", "non-binary", "other"], selected: @application.gender %>
+    <%= f.hidden_field :status, value: @application.status %>
     <%= f.input :video_link, label: "Lien vers la vidéo", required: true %>
-
     <div class="d-flex justify-content-around mb-3">
       <div class="custom-file">
         <label for="cv-upload" class="custom-file-label">Upload CV</label>

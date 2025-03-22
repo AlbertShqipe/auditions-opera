@@ -9,13 +9,16 @@
   flex-wrap: wrap;
   gap: 1.5em;
   justify-content: center;
-  gap: 1.5em;
 }
 
 .tile {
   flex-basis: calc(16.66% - 1.5em); /* 5 elements per row */
   box-sizing: border-box; /* Ensures padding and gaps are included in the width calculation */
   margin-bottom: 2em;
+
+  @media(max-width: 760px) {
+    flex-basis: 33%;
+  }
 }
 
 .tiles article {
@@ -24,7 +27,7 @@
   -ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
   transition: transform 0.5s ease, opacity 0.5s ease;
   position: relative;
-  width: calc(15% - 2.5em);
+  width: calc(15%);
   // margin: 2.5em 0 0 2.5em;
 }
 
@@ -33,7 +36,6 @@
   -webkit-transition: -webkit-transform 0.5s ease;
   -ms-transition: -ms-transform 0.5s ease;
   transition: transform 0.5s ease;
-
   position: relative;
   width: 100%;
   display: flex;

@@ -1,6 +1,6 @@
 <div class="show-container">
   <h1 class="text-h1"><%= @application.first_name %> <%= @application.last_name %></h1>
-  <div class="d-flex justify-content-around align-items-center">
+  <div class="show-content">
     <div class="show-info">
       <div class="show-text">
         <div class="show-image">
@@ -13,6 +13,7 @@
         <div class="main-info">
           <p class="text-p"><strong>Date of Birth:</strong> <%= @application.date_of_birth %></p>
           <p class="text-p"><strong>Nationality:</strong> <%= @application.nationality %></p>
+          <p class="text-p"><strong>Address:</strong> <%= @application.address.present? ? @application.address : " "  %></p>
           <p class="text-p"><strong>Height:</strong> <%= @application.height %> cm</p>
           <p class="text-p"><strong>Gender:</strong> <%= @application.gender.humanize %></p>
           <p class="text-p"><strong>Status:</strong> <%= @application.status.humanize %></p>
@@ -24,7 +25,6 @@
         <% end %>
       </div>
     </div>
-
   </div>
 
   <div class="cv">
@@ -40,15 +40,42 @@
   </div>
   <% if current_user.admin?%>
     <!-- Change Status with Buttons -->
-    <div class="status-buttons d-flex justify-content-around mt-5" data-controller="confirmation">
-      <%= button_to 'Accepted', update_status_audition_application_path(@application, status: 'accepted'),
-          method: :patch, class: 'btn btn-success', data: { action: "confirmation#confirm", confirm_message: "Are you sure you want to accept this application?" } %>
+    <div class="votes-show">
+      <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
+        <%= hidden_field_tag :value, "yes" %>
+        <%= button_tag type: :submit, class: "btn-vote btn-yes", title: "Yes" do %>
+          <span class="material-symbols-outlined">
+            check
+          </span>
+        <% end %>
+      <% end %>
 
-      <%= button_to 'Pending', update_status_audition_application_path(@application, status: 'pending'),
-          method: :patch, class: 'btn btn-warning' %>
+      <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
+        <%= hidden_field_tag :value, "maybe" %>
+        <%= button_tag type: :submit, class: "btn-vote btn-maybe", title: "Maybe" do %>
+          <span style="font-size: 1.5rem;font-weight: 300;">
+            ?
+          </span>
+        <% end %>
+      <% end %>
 
-      <%= button_to 'Rejected', update_status_audition_application_path(@application, status: 'rejected'),
-          method: :patch, class: 'btn btn-danger', data: { action: "confirmation#confirm", confirm_message: "Are you sure you want to reject this application?" } %>
+      <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
+        <%= hidden_field_tag :value, "no" %>
+        <%= button_tag type: :submit, class: "btn-vote btn-no", title: "No" do %>
+          <span class="material-symbols-outlined">
+            close
+          </span>
+        <% end %>
+      <% end %>
+
+      <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
+        <%= hidden_field_tag :value, "star" %>
+        <%= button_tag type: :submit, class: "btn-vote btn-star", title: "Star" do %>
+          <span class="material-symbols-outlined">
+            star
+          </span>
+        <% end %>
+      <% end %>
     </div>
   <% else %>
     <div>
@@ -58,4 +85,9 @@
     </div>
   <% end %>
   <%= link_to "Back", audition_applications_path, class:"link text-h3" %>
+  <% if current_user.role === 'admin'%>
+    <div>
+      <a href="mailto:<%=@application.user.email%>" class="link">Contact user</a>
+    </div>
+  <% end %>
 </div>

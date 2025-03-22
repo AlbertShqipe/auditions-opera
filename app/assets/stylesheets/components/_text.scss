@@ -1,15 +1,21 @@
 .text-h1 {
   font-size: 5rem;
-  font-size: calc(2.5rem,1.6197183099rem + 3.7558685446vw,5rem);
   font-weight: 700;
-  line-height: 1.1
+  line-height: 1.1;
+
+  @media (max-width: 760px){
+    font-size: 4rem;
+  }
 }
 
 .text-h2 {
   font-size: 4rem;
-  font-size: calc(1.75rem,1.6197183099rem + 2.6283185841vw,3.5rem);
   font-weight: 700;
-  line-height: 1.1428571429
+  line-height: 1.1428571429;
+
+  @media (max-width:760px) {
+    font-size:3rem;
+  }
 }
 
 .text-h4 {
@@ -22,7 +28,12 @@
 .body_p {
   margin-bottom: 2.625rem;
   font-weight: 300;
-  text-indent: calc(2.5rem,-.3168335901rem + 12.0184899846vw,7.375rem)
+  text-indent: calc(2.5rem,-.3168335901rem + 12.0184899846vw,7.375rem);
+
+  @media (max-width:760px) {
+    font-size:1.3rem;
+    margin-bottom: 20px;
+  }
 }
 
 

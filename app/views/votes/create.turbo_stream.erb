@@ -1,0 +1,5 @@
+<turbo-stream action="replace" target="vote_<%= @application.id %>">
+  <template>
+    <%= render partial: "votes/vote_status", locals: { application: @application, vote: @vote, votes: @votes } %>
+  </template>
+</turbo-stream>

@@ -1,0 +1,157 @@
+.cedric {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  z-index: 4;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.raul {
+  position: absolute;
+  top: -10px;
+  left: 10%;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 50%;
+  z-index: 4;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.marco {
+  position: absolute;
+  top: -10px;
+  right: 10%;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 50%;
+  z-index: 4;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.green {
+  background-color: rgba(0, 128, 0, 0.9);
+  color: white;
+}
+
+.orange {
+  background-color: rgba(255, 166, 0, 0.9);
+  color: white;
+}
+
+.red {
+  background-color: rgba(255, 0, 0, 0.9);
+  color: white;
+}
+
+.blue {
+  background-color: rgba(0, 13, 255, 0.9);
+  color: white;
+}
+
+.votes {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 4;
+
+  @media (max-width: 760px) {
+    display: none;
+  }
+}
+
+.votes-show {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 4;
+
+  .btn-vote {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    border: none; /* Remove border if you want */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    color: white;
+    cursor: pointer;
+  }
+
+}
+
+.btn-vote {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  border: none; /* Remove border if you want */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-yes {
+  background-color: rgba(0, 128, 0, 0.7);
+
+  &:hover {
+    background-color: darkgreen;
+    scale: 1.1;
+  }
+}
+
+.btn-maybe {
+  background-color: rgba(255, 166, 0, 0.7);
+
+  &:hover {
+    background-color: darkorange;
+    scale: 1.1;
+  }
+}
+
+.btn-no {
+  background-color: rgba(255, 0, 0, 0.7);
+
+  &:hover {
+    background-color: darkred;
+    scale: 1.1;
+  }
+}
+
+.btn-star {
+  background-color: rgba(0, 4, 255, 0.7);
+
+  &:hover {
+    background-color: darkblue;
+    scale: 1.1;
+  }
+}

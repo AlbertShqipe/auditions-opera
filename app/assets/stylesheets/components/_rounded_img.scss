@@ -3,6 +3,10 @@
     width: 25%;
     border-radius: 50% 50% 0 0/39% 39% 0 0;
     border: 0.1px solid rgba(255, 255, 255, 0.2);
+
+    @media (max-width:760px){
+      width: 50%;
+    }
   }
 
 }

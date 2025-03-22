@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       patch :update_status
     end
+    resources :votes, only: [:create]
   end
   # Defines the root path route ("/")
   # root "posts#index"

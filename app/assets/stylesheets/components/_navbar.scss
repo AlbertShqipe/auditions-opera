@@ -24,6 +24,10 @@
       }
     }
   }
+
+  @media (max-width:760px) {
+    padding:0;
+  }
 }
 
 .navbar-lewagon::after {
@@ -34,6 +38,11 @@
   width: calc(100% - 80px); /* Reduces border width */
   height: 1px;
   background: rgba(255, 255, 255, 0.2);
+
+  @media (max-width:760px) {
+    width:100%;
+    left:0;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
