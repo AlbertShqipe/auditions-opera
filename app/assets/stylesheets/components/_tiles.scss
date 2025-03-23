@@ -7,8 +7,12 @@
 .tiles {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5em;
+  gap: 2em;
   justify-content: center;
+
+  @media(max-width: 760px) {
+    gap: 3.5em;
+  }
 }
 
 .tile {
@@ -29,6 +33,10 @@
   position: relative;
   width: calc(15%);
   // margin: 2.5em 0 0 2.5em;
+
+  @media(max-width: 760px) {
+    width: 100%;
+  }
 }
 
 .tiles article > .image {
@@ -51,6 +59,7 @@
   width: 100%;
   height: 100%;
   border-radius: 30px;
+
 }
 
 .tiles article > .image:before {

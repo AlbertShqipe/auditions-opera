@@ -1,41 +1,29 @@
 <div id="vote_<%= application.id %>">
-  <div class="cedric
-    <%if @votes[application.id]["cedric@gmail.com"] == "yes" %>
-      <%= "green" %>
-    <% elsif @votes[application.id]["cedric@gmail.com"] == "maybe"  %>
-      <%= "orange" %>
-    <% elsif @votes[application.id]["cedric@gmail.com"] == "no" %>
-      <%= "red" %>
-    <% elsif @votes[application.id]["cedric@gmail.com"] == "star" %>
-      <%= "blue" %>
-    <% end %>" id="cedric" data-vote-value="<%= @votes[application.id]["cedric@gmail.com"] %>">
-    CA
-  </div>
+  <% if @votes[application.id] %>
+    <div class="cedric <%= "green" if @votes[application.id]["cedric@gmail.com"] == "yes" %>
+                        <%= "orange" if @votes[application.id]["cedric@gmail.com"] == "maybe" %>
+                        <%= "red" if @votes[application.id]["cedric@gmail.com"] == "no" %>
+                        <%= "blue" if @votes[application.id]["cedric@gmail.com"] == "star" %>"
+         id="cedric" data-vote-value="<%= @votes[application.id]["cedric@gmail.com"] %>">
+      CA
+    </div>
 
-  <div class="raul
-    <%if @votes[application.id]["raul@gmail.com"] == "yes" %>
-      <%= "green" %>
-    <% elsif @votes[application.id]["raul@gmail.com"] == "maybe"  %>
-      <%= "orange" %>
-    <% elsif @votes[application.id]["raul@gmail.com"] == "no" %>
-      <%= "red" %>
-    <% elsif @votes[application.id]["raul@gmail.com"] == "star" %>
-        <%= "blue" %>
-    <% end %>" id="raul" data-vote-value="<%= @votes[application.id]["raul@gmail.com"] %>">
-    RS
-  </div>
+    <div class="raul <%= "green" if @votes[application.id]["raul@gmail.com"] == "yes" %>
+                        <%= "orange" if @votes[application.id]["raul@gmail.com"] == "maybe" %>
+                        <%= "red" if @votes[application.id]["raul@gmail.com"] == "no" %>
+                        <%= "blue" if @votes[application.id]["raul@gmail.com"] == "star" %>"
+         id="raul" data-vote-value="<%= @votes[application.id]["raul@gmail.com"] %>">
+      RS
+    </div>
 
-
-  <div class="marco
-    <%if @votes[application.id]["marco@gmail.com"] == "yes" %>
-      <%= "green" %>
-    <% elsif @votes[application.id]["marco@gmail.com"] == "maybe"  %>
-      <%= "orange" %>
-    <% elsif @votes[application.id]["marco@gmail.com"] == "no" %>
-      <%= "red" %>
-    <% elsif @votes[application.id]["marco@gmail.com"] == "star" %>
-        <%= "blue" %>
-    <% end %>" id="marco" data-vote-value="<%= @votes[application.id]["marco@gmail.com"] %>">
-    MM
-  </div>
+    <div class="marco <%= "green" if @votes[application.id]["marco@gmail.com"] == "yes" %>
+                        <%= "orange" if @votes[application.id]["marco@gmail.com"] == "maybe" %>
+                        <%= "red" if @votes[application.id]["marco@gmail.com"] == "no" %>
+                        <%= "blue" if @votes[application.id]["marco@gmail.com"] == "star" %>"
+         id="marco" data-vote-value="<%= @votes[application.id]["marco@gmail.com"] %>">
+      MM
+    </div>
+  <% else %>
+    <p>No votes available.</p>
+  <% end %>
 </div>

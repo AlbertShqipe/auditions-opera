@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <% if current_user.role != "admin" %>
+  <% if current_user.role != "admin" && current_user.role != "director" %>
     <div class="container mt-5">
       <h1 class="text-center text-h1 title_R">Audition Applications</h1>
       <div class="body_p text-p text-center">

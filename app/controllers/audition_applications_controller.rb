@@ -15,37 +15,56 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def index
-    @applications = AuditionApplication.all
+    # Search logic (if query is provided)
+    if params[:query].present?
+      @applications = AuditionApplication.search_by_first_name_and_last_name(params[:query])
+    else
+      @applications = AuditionApplication.all
+    end
+
+    # Status, gender, and vote filter params
     @statuses = AuditionApplication.statuses.keys
     @selected_status = params[:status]
-    @audition_applications = if @selected_status.present?
-                              AuditionApplication.where(status: @selected_status)
-                            else
-                              AuditionApplication.all
-                            end
+    @selected_gender = params[:gender]
+    @selected_age = params[:age]
+    @selected_vote = params[:vote]
 
+    # Initialize filtered applications based on search results or all applications if no search
+    @audition_applications = @applications
 
-    @admins = User.where(role: :admin)
+    # Apply status filter if selected
+    @audition_applications = @audition_applications.where(status: @selected_status) if @selected_status.present?
 
+    # Apply gender filter if selected
+    @audition_applications = @audition_applications.where(gender: @selected_gender) if @selected_gender.present?
 
+    # Fetch all admins
+    @admins = User.where(role: [:admin, :director])
 
-    # Fetch all votes from admins in one query
-    votes = Vote.where(user_id: @admins.pluck(:id), audition_application_id: @applications.pluck(:id))
+    # Filter by votes if selected
+    if @selected_vote.present?
+      # Fetch votes based on the current user's ID and selected vote status
+      @audition_applications = @audition_applications.joins(:votes)
+                                                   .where(votes: { user_id: current_user.id, vote_value: @selected_vote })
+    end
 
-    # Transform votes into a lookup hash: { [audition_application_id, user_id] => vote_value }
+    # Fetch votes related to the filtered applications and admins
+    votes = Vote.where(user_id: @admins.pluck(:id), audition_application_id: @audition_applications.pluck(:id))
+
+    # Create a lookup hash for votes: { [audition_application_id, user_id] => vote_value }
     votes_lookup = votes.index_by { |v| [v.audition_application_id, v.user_id] }
 
-    # Create a structured hash: { audition_application_id => { admin_email => vote_value } }
+    # Structure the votes data: { audition_application_id => { admin_email => vote_value } }
     @votes = @audition_applications.each_with_object({}) do |application, hash|
       hash[application.id] = @admins.each_with_object({}) do |admin, inner_hash|
         inner_hash[admin.email] = votes_lookup[[application.id, admin.id]]&.vote_value || "not_set"
       end
     end
-
   end
 
   def show
     @application = AuditionApplication.find(params[:id])
+    # raise
   end
 
   def new
@@ -58,7 +77,7 @@ class AuditionApplicationsController < ApplicationController
     @application.status = "pending"
 
     if @application.save
-      if current_user.admin?
+      if current_user.admin? || current_user.director?
         redirect_to audition_applications_path, notice: "Application submitted successfully!"
       else
         redirect_to root_path, notice: "Application submitted successfully!"
@@ -101,6 +120,6 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def check_admin
-    redirect_to root_path, alert: "Access denied!" unless current_user&.admin?
+    redirect_to root_path, alert: "Access denied!" unless current_user&.admin? || current_user&.director?
   end
 end

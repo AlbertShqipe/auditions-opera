@@ -8,13 +8,15 @@ class VotesController < ApplicationController
 
     @application = AuditionApplication.find(params[:audition_application_id])
     @applications = AuditionApplication.all
-    @admin = current_user # Assuming the current user is an admin
+    @admin = current_user if current_user&.admin? || current_user&.director?
     @audition_applications = AuditionApplication.all
-    @admins = User.where(role: :admin)
+
+    # Fetch all admins
+    @admins = User.where(role: [:admin, :director])
 
 
     # Ensure only admin can vote
-    unless @admin.admin?
+    unless @admin.admin? || @admin.director?
       redirect_to audition_applications_path, alert: "You are not authorized to vote." and return
     end
 
@@ -51,6 +53,6 @@ class VotesController < ApplicationController
   private
 
   def check_admin
-    redirect_to root_path, alert: "Access denied!" unless current_user.admin?
+    redirect_to root_path, alert: "Access denied!" unless current_user&.admin? || current_user&.director?
   end
 end

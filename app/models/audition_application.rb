@@ -13,6 +13,10 @@ class AuditionApplication < ApplicationRecord
   validates :height, numericality: { greater_than: 0 }, allow_nil: true
   validates :video_link, format: { with: /\Ahttps?:\/\/.+\z/, message: "must be a valid URL" }, allow_blank: true
 
+  include PgSearch::Model
+  pg_search_scope :search_by_first_name_and_last_name,
+  against: [:first_name, :last_name],
+  using: { trigram: { threshold: 0.001 } }
 
   private
 

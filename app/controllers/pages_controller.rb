@@ -15,6 +15,6 @@ class PagesController < ApplicationController
   private
 
   def check_admin
-    redirect_to root_path, alert: "Access denied!" unless current_user.admin?
+    redirect_to root_path, alert: "Access denied!" unless current_user&.admin? || current_user&.director?
   end
 end

@@ -1,52 +1,107 @@
-<div class="container mt-5">
+<div class="container mt-5" data-controller="toggle-filters">
   <h1 class="text-center text-h1">Audition Applications</h1>
-  <div>
-    <%= form_with url: audition_applications_path, method: :get, local: true do %>
-      <label for="status_filter">Filter by Status:</label>
-      <%= select_tag :status, options_for_select(@statuses.map { |status| [status.humanize.capitalize, status] }, @selected_status), include_blank: "All", onchange: "this.form.submit();" %>
-    <% end %>
-  </div>
-  <section class="tiles mt-5" data-controller="votes">
-    <% @audition_applications.each do |application| %>
-      <article class="style1 tile"  id="votes_<%= application.id %>">
-          <%= render "votes/vote_status", application: application %>
-        <% if application.profile_image.present? %>
-          <span class="image">
-            <%= image_tag(application.profile_image) %>
-          </span>
-        <% else %>
-          <span class="image">
-            <%= cl_image_tag application.photo.key %>
-          </span>
+    <button id="btn-filter" class="submit-button">Filters</button>
+
+
+    <!-- Filter and Search Form -->
+    <div class="main-filters hidden">
+
+      <!-- Filtering Form -->
+      <div>
+        <%= form_with url: audition_applications_path, method: :get, local: true do |form| %>
+          <h3 class="text-h3  text-center">Filter Auditions</h3>
+          <!-- Status Filter -->
+          <div class="filter-show">
+            <div class="first">
+              <%= form.label :status, 'Select Status' %> <br>
+              <%= form.select :status, options_for_select(['', 'accepted', 'pending', 'rejected'], @selected_status) %>
+            </div>
+
+            <!-- Gender Filter -->
+            <div class="second">
+              <%= form.label :gender, 'Select Gender' %> <br>
+              <%= form.select :gender, options_for_select(['', 'male', 'female', 'other'], @selected_gender) %>
+            </div>
+
+            <!-- Vote Filter -->
+            <div class="third">
+              <%= form.label :vote, 'Select Vote Status' %> <br>
+              <%= form.select :vote, options_for_select(['', 'yes', 'maybe', 'star', 'no'], @selected_vote) %>
+            </div>
+
+            <!-- Filter Submit Button -->
+          </div>
+            <div class="mt-3">
+              <%= form.submit 'Apply Filters' %>
+            </div>
+
         <% end %>
+      </div>
+
+      <!-- Search Form -->
+      <div>
+        <%= form_with url: audition_applications_path, method: :get, local: true do |form| %>
+          <h3 class="text-h3 text-center">Search by Name</h3>
+          <!-- Search Field -->
+          <div class="mt-5">
+            <%= form.text_field :query, placeholder: "Search by name", value: params[:query] %>
+          </div>
+
+          <!-- Search Submit Button -->
+          <div class="mt-4">
+            <%= form.submit 'Search' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Clear Search Button -->
+    <div class="text-center btn-clear hidden">
+      <%= link_to 'Clear Search', audition_applications_path, class: 'btn btn-secondary' %>
+    </div>
+
+
+  <!-- Applications List -->
+  <section class="tiles my-4" data-controller="votes">
+    <% @audition_applications.each do |application| %>
+      <article class="style1 tile" id="votes_<%= application.id %>">
+        <%= render "votes/vote_status", application: application %>
+
+        <!-- Profile Image -->
+        <span class="image">
+          <% if application.profile_image.present? %>
+            <%= image_tag(application.profile_image) %>
+          <% else %>
+            <%= cl_image_tag application.photo.key %>
+          <% end %>
+        </span>
+
+        <!-- Application Details -->
         <a href="<%= audition_application_path(application) %>">
           <h3 id="text-tiles"><%= application.first_name %> <%= application.last_name %></h3>
           <br>
-          <h5><%= application.height%>m</h5>
+          <h5><%= application.height %>m</h5>
           <div class="content">
-          <h5><%= application.nationality %></h5>
+            <h5><%= application.nationality %></h5>
           </div>
         </a>
-        <% if current_user.admin? %>
+
+        <!-- Admin Voting Section -->
+        <% if current_user.admin? || current_user.director? %>
           <div class="votes">
-            <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
-              <%= hidden_field_tag :value, "yes" %>
-              <%= submit_tag "", class: "btn-vote btn-yes", title: "Yes" %>
+            <% ['yes', 'maybe', 'no'].each do |vote| %>
+              <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
+                <%= hidden_field_tag :value, vote %>
+                <%= submit_tag "", class: "btn-vote btn-#{vote}", title: vote.capitalize %>
+              <% end %>
             <% end %>
 
-            <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
-              <%= hidden_field_tag :value, "maybe" %>
-              <%= submit_tag "", class: "btn-vote btn-maybe", title: "Maybe" %>
-            <% end %>
-
-            <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
-              <%= hidden_field_tag :value, "no" %>
-              <%= submit_tag "", class: "btn-vote btn-no", title: "No" %>
-            <% end %>
-
-            <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
-              <%= hidden_field_tag :value, "star" %>
-              <%= submit_tag "", class: "btn-vote btn-star", title: "Star" %>
+            <% if current_user.director? %>
+              <!-- Only director can vote "star" -->
+              <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
+                <%= hidden_field_tag :value, 'star' %>
+                <%= submit_tag "", class: "btn-vote btn-star", title: "Star" %>
+              <% end %>
             <% end %>
           </div>
         <% end %>

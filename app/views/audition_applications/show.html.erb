@@ -38,9 +38,19 @@
       <% end %>
     <% end %>
   </div>
-  <% if current_user.admin?%>
+  <% if current_user.admin? || current_user.director?%>
     <!-- Change Status with Buttons -->
     <div class="votes-show">
+      <% if current_user.director? %>
+        <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
+          <%= hidden_field_tag :value, "star" %>
+          <%= button_tag type: :submit, class: "btn-vote btn-star", title: "Star" do %>
+            <span class="material-symbols-outlined">
+              star
+            </span>
+          <% end %>
+        <% end %>
+      <% end %>
       <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
         <%= hidden_field_tag :value, "yes" %>
         <%= button_tag type: :submit, class: "btn-vote btn-yes", title: "Yes" do %>
@@ -68,14 +78,6 @@
         <% end %>
       <% end %>
 
-      <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
-        <%= hidden_field_tag :value, "star" %>
-        <%= button_tag type: :submit, class: "btn-vote btn-star", title: "Star" do %>
-          <span class="material-symbols-outlined">
-            star
-          </span>
-        <% end %>
-      <% end %>
     </div>
   <% else %>
     <div>

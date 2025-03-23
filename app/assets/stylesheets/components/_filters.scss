@@ -1,0 +1,37 @@
+
+.filter-show {
+  display: flex;
+  justify-content: space-between;
+
+  .second {
+    margin:16px 32px;
+
+    @media (max-width: 760px) {
+      margin:0;
+    }
+  }
+  .first, .second, .third {
+    margin-top: 16px;
+  }
+
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+  }
+
+}
+.main-filters {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 48px 0;
+
+  @media (max-width: 760px) {
+    margin: 16px 0;
+  }
+
+
+}
+
+.hidden {
+  display: none;
+}

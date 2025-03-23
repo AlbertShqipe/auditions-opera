@@ -18,6 +18,16 @@
   }
 }
 
+.text-h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1428571429;
+
+  @media (max-width:760px) {
+    font-size:1.2rem;
+  }
+}
+
 .text-h4 {
   font-size: 1.5rem;
   font-size: calc(1.125rem,.9929577465rem + .5633802817vw,1.5rem);

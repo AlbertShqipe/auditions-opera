@@ -1,5 +1,12 @@
-<p>Hello <%= @application.user.email %>,</p>
+<% if @application.status == "accepted" %>
+  <p>Hello <%= @application.first_name %> <%= @application.last_name %>,</p>
 
-<p>Your audition application status has been updated to: <strong><%= @application.status.capitalize %></strong>.</p>
+  <p>Your audition application status has been updated to: <strong><%= @application.status.capitalize %></strong>.</p>
 
-<p>Best regards,<br>Audition Team</p>
+  <p>Best regards,<br>Audition Team</p>
+
+
+  <h1>Albert é un Cazzo di GENIOOOOOOOOOO!!!! 🤣</h1>
+<% else %>
+  <h1>FUCK</h1>
+<% end %>
