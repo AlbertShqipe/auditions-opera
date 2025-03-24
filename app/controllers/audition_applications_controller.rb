@@ -64,6 +64,7 @@ class AuditionApplicationsController < ApplicationController
 
   def show
     @application = AuditionApplication.find(params[:id])
+    @ethnicities = Ethnicity.all
     # raise
   end
 
@@ -96,9 +97,9 @@ class AuditionApplicationsController < ApplicationController
     previous_status = @application.status # Store the previous status
 
     if @application.update(application_params) # This will handle updating the status along with other attributes
-      redirect_to root_path, notice: "Application updated!"
+      redirect_to audition_application_path, notice: "Application updated!"
     else
-      redirect_to root_path, alert: "Failed to update the application. Contact support."
+      redirect_to audition_application_path, alert: "Failed to update the application. Contact support."
     end
   end
 
@@ -106,6 +107,14 @@ class AuditionApplicationsController < ApplicationController
     @application = AuditionApplication.find(params[:id])
     @application.destroy
     redirect_to audition_applications_path, notice: "Application deleted."
+  end
+
+  def update_ethnicity
+    if @application.update(ethnicity_params)
+      redirect_to @application, notice: "Ethnicity updated successfully."
+    else
+      redirect_to @application, alert: "Failed to update ethnicity."
+    end
   end
 
   private
@@ -116,8 +125,13 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def application_params
-    params.require(:audition_application).permit(:first_name, :last_name, :date_of_birth, :height, :gender, :address, :nationality,:video_link, :cv, :profile_image, :status)
+    params.require(:audition_application).permit(:first_name, :last_name, :date_of_birth, :height, :gender, :address, :nationality,:video_link, :cv, :profile_image, :status, :ethnicity_id)
   end
+
+  def ethnicity_params
+    params.require(:audition_application).permit(:ethnicity_id)
+  end
+
 
   def check_admin
     redirect_to root_path, alert: "Access denied!" unless current_user&.admin? || current_user&.director?
