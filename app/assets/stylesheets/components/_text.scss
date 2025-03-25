@@ -46,10 +46,21 @@
   }
 }
 
+.body_p_show {
+  // margin-bottom: 2.625rem;
+  font-weight: 300;
+  text-indent: calc(2.5rem,-.3168335901rem + 12.0184899846vw,7.375rem);
 
-.title_R {
-  -ms-hyphens: auto;
-  -webkit-hyphens: auto;
+  @media (max-width: 760px) {
+    font-size:1.3rem;
+    margin-top: 10px;
+  }
+}
+
+.text-p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .title_R:not(:first-child) {

@@ -2,8 +2,14 @@
   <% if current_user.role != "admin" && current_user.role != "director" %>
     <div class="container mt-5">
       <h1 class="text-center text-h1 title_R">Audition Applications</h1>
-      <div class="body_p text-p text-center">
-        <p>Please make sure to fill app the form following the link below, you will be notified by mail as soon as we can. <br>Best of luck and thanks for your application</p>
+      <div class="body_p text-center">
+
+        <% if current_user.audition_applications.present? %>
+          <p class="text-p">Thanks for for submitting your form, now is time for us to go through the applications, we well come back to you as soon as possible.</p>
+        <% else %>
+          <p class="text-p">Please make sure to fill app the form following the link below, you will be notified by mail as soon as we can. <br>Best of luck and thanks for your application</p>
+        <% end %>
+
       </div>
       <div class="d-flex justify-content-center" style="margin-top: 20px; width: 100%">
         <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA",style:"width:25%" %>
@@ -27,7 +33,7 @@
       </div>
       <div class="text-center mt-5">
       <div class="d-flex justify-content-center" style=" width: 50%; margin: 10px auto">
-        <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA",style:"width:25%" %>
+        <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA", class:"logo-home" %>
       </div>
         <%= link_to audition_applications_path, class:"button" do %>
           <span>Back to Applications</span>
@@ -39,7 +45,7 @@
     <img class="" src="https://www.dansesaveclaplume.com/wordpress/wp-content/gallery/soiree-jiri-kylian-ballet-de-lopera-de-lyon/b-bella-figura_1.jpg" alt="Ballet de l'Opera de Lyon Studio">
     <h1 class="text-h2 title_R">Ballet de l'Opéra de Lyon Audition</h1>
     <div class=" text-h4 d-flex justify-content-center flex-column align-items-center">
-      <p class="body_p">Saison 2024 - 2025</p>
+      <p class="body_p">Saison 2025 - 2026</p>
       <p>
         <%= link_to new_user_registration_path, class: "button" do %>
           <span>Sign up</span>

@@ -11,15 +11,15 @@
           <% end %>
         </div>
         <div class="main-info">
-          <p class="text-p"><strong>Date of Birth:</strong> <%= @application.date_of_birth %></p>
-          <p class="text-p"><strong>Nationality:</strong> <%= @application.nationality %></p>
-          <p class="text-p"><strong>Address:</strong> <%= @application.address.present? ? @application.address : " "  %></p>
-          <p class="text-p"><strong>Height:</strong> <%= @application.height %> cm</p>
-          <p class="text-p"><strong>Gender:</strong> <%= @application.gender.humanize %></p>
-          <p class="text-p"><strong>Status:</strong> <%= @application.status.humanize %></p>
+          <p class="body_p_show"><strong>Date of Birth:</strong> <%= @application.date_of_birth %></p>
+          <p class="body_p_show"><strong>Nationality:</strong> <%= @application.nationality %></p>
+          <p class="body_p_show"><strong>Address:</strong> <%= @application.address.present? ? @application.address : " "  %></p>
+          <p class="body_p_show"><strong>Height:</strong> <%= @application.height %> cm</p>
+          <p class="body_p_show"><strong>Gender:</strong> <%= @application.gender.humanize %></p>
+          <p class="body_p_show"><strong>Status:</strong> <%= @application.status.humanize %></p>
 
           <% if current_user.admin? || current_user.director? %>
-            <p class="text-p"><strong>Ethnicity:</strong> <%= @application.ethnicity ? @application.ethnicity.name : "Unset" %></p>
+            <p class="body_p_show"><strong>Ethnicity:</strong> <%= @application.ethnicity ? @application.ethnicity.name : "Unset" %></p>
           <% end %>
 
         </div>

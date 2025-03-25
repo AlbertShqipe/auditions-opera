@@ -1,0 +1,37 @@
+.slideshow {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+  z-index: 1000;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideshow a {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 18px;
+  opacity: 0; /* Initially hidden */
+  color: #ffffff;
+
+  transition: opacity 0.3s ease-in-out 0.2s; /* Delay fade-in */
+
+}
+
+.slideshow.open {
+  width: 100%;
+}
+
+.slideshow.open a {
+  opacity: 1; /* Fade in links */
+}

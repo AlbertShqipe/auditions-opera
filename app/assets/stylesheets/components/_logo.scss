@@ -1,0 +1,9 @@
+.logo-home {
+  width: 30%;
+
+  @media (max-width: 760px) {
+    width: 65%;
+    margin-bottom: 20px;
+
+  }
+}
