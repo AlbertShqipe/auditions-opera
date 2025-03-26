@@ -29,7 +29,7 @@ unless User.where(role: :admin).exists?
 end
 
 User.create!(
-  email: "cedric@gmail.com,",
+  email: "cedric@gmail.com",
   password: 'testtest',
   password_confirmation: 'testtest',
   role: :director
