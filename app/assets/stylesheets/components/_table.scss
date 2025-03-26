@@ -1,0 +1,32 @@
+.styled-table {
+  width: 90%;
+  border-collapse: collapse; /* Ensures no space between table cells */
+}
+
+.styled-table th,
+.styled-table td {
+  // padding: 12px;            /* Padding inside table cells */
+  text-align: left;         /* Align text to the left */
+  border: 1px solid #ddd;   /* Light gray border around cells */
+}
+
+.styled-table th {
+  background-color: #e2e2e232; /* Light gray background for headers */
+  font-weight: bold;         /* Make header text bold */
+}
+
+.styled-table tr:hover {
+  background-color: #e2e2e232; /* Highlight row when hovered */
+}
+
+.styled-table td {
+  font-size: 12px; /* Set font size for the table cells */
+
+  &:hover {
+    background-color: #e2e2e264; /* Highlight cell when hovered */
+  }
+}
+
+.styled-table th {
+  font-size: 14px;           /* Set font size for table headers */
+}

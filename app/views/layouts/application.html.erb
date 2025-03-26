@@ -13,7 +13,7 @@
   </head>
 
   <body class="<%= "#{controller_name}-#{action_name}" %>">
-    <%= render "shared/navbar" %>
+    <%= render "shared/navbar" unless controller_name == 'dashboard' && action_name == 'index'%>
     <%= render "shared/flashes" %>
 
     <%= yield %>

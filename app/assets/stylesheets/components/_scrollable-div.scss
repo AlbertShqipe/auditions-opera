@@ -1,0 +1,40 @@
+.div-index {
+  height: 100%;
+
+  .scrollable-div {
+    width: 95%;        /* Set the desired width */
+    height: 90%;        /* Set the desired height */
+    margin: auto;
+    overflow-y: auto;     /* Enables vertical scrolling when content exceeds height */
+    // border: 1px solid #ccc; /* Optional: add border for visual effect */
+    // padding: 10px;        /* Optional: add padding */
+    table {
+      width: 95%;
+      border-collapse: collapse; /* Ensures no space between table cells */
+    }
+  }
+}
+
+.dataTables_filter {
+  margin-top: 10px;
+  margin-bottom: 10px !important;
+}
+
+.description {
+  font-size: 12px;
+  color: gray;
+  font-style: italic;
+
+  table {
+    border-collapse: collapse;
+    width: 30%;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+
+    @media (max-width: 760px) {
+      width: 90%;
+
+    }
+  }
+}
