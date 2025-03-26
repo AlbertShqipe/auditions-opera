@@ -13,7 +13,7 @@
 User.destroy_all
 
 unless User.where(role: :admin).exists?
-  admin_emails = ['cedric@gmail.com', 'marco@gmail.com', 'raul@gmail.com']
+  admin_emails = [ 'marco@gmail.com', 'raul@gmail.com']
 
   admin_emails.each do |email|
     user = User.create!(
@@ -25,8 +25,17 @@ unless User.where(role: :admin).exists?
     puts "Admin user created with email: #{user.email}"
   end
   else
-    puts "Admin users already exist. Skipping creation."
+  puts "Admin users already exist. Skipping creation."
 end
+
+User.create!(
+  email: "'cedric@gmail.com',",
+  password: 'testtest',
+  password_confirmation: 'testtest',
+  role: :director
+)
+
+puts "Director user created."
 
 User.create!(
   email: "alex@gmail.com",
