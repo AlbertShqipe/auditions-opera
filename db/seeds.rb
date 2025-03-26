@@ -32,3 +32,12 @@ User.create!(
   password_confirmation: 'testtest',
   role: :guest
 )
+
+Ethnicity.find_or_create_by(name: "Caucasian")
+Ethnicity.find_or_create_by(name: "Asian")
+Ethnicity.find_or_create_by(name: "Black")
+Ethnicity.find_or_create_by(name: "Hispanic")
+Ethnicity.find_or_create_by(name: "Middle Eastern")
+Ethnicity.find_or_create_by(name: "Native American")
+Ethnicity.find_or_create_by(name: "Mixed")
+Ethnicity.find_or_create_by(name: "Other")
