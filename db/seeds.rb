@@ -8,7 +8,9 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 # Remove an existing admin safely
-User.where(role: :admin).destroy_all
+
+# User Setup
+User.destroy_all
 
 unless User.where(role: :admin).exists?
   admin_emails = ['cedric@gmail.com', 'marco@gmail.com', 'raul@gmail.com']
@@ -33,11 +35,8 @@ User.create!(
   role: :guest
 )
 
-Ethnicity.find_or_create_by(name: "Caucasian")
-Ethnicity.find_or_create_by(name: "Asian")
-Ethnicity.find_or_create_by(name: "Black")
-Ethnicity.find_or_create_by(name: "Hispanic")
-Ethnicity.find_or_create_by(name: "Middle Eastern")
-Ethnicity.find_or_create_by(name: "Native American")
-Ethnicity.find_or_create_by(name: "Mixed")
-Ethnicity.find_or_create_by(name: "Other")
+# Ethnicity Setup
+Ethnicity.destroy_all
+%w[Caucasian Asian Black Hispanic Middle Eastern Native American Mixed Other].each do |ethnicity|
+  Ethnicity.find_or_create_by(name: ethnicity)
+end
