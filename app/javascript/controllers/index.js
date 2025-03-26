@@ -4,4 +4,4 @@ import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 // import DashboardController from "./dashboard_controller"
 eagerLoadControllersFrom("controllers", application)
 
-application.register("dashboard", DashboardController)
+// application.register("dashboard", DashboardController)
