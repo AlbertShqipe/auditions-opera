@@ -35,8 +35,12 @@ User.create!(
   role: :guest
 )
 
+puts "Guest user created."
+
 # Ethnicity Setup
 Ethnicity.destroy_all
 %w[Caucasian Asian Black Hispanic Middle Eastern Native American Mixed Other].each do |ethnicity|
   Ethnicity.find_or_create_by(name: ethnicity)
 end
+
+puts "Ethnicity choices created."
