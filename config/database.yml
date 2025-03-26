@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: auditions_opera_production
-  username: auditions_opera
-  password: <%= ENV["AUDITIONS_OPERA_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
