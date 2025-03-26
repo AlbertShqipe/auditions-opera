@@ -1,4 +1,28 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" data-controller="slideshow">
+  <div class="burger" data-slideshow-target="burger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="slideshow" data-slideshow-target="slideshow">
+        <svg viewBox="0 0 24 28" fill="none" id="logo-min--sprite" width="30" height="34" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:20px">
+          <title>Opéra de Lyon</title>
+          <path d="M0 11.7824V16.576H5.5V11.7824C5.54545 8.288 8.40909 5.4656 12 5.4656C15.5909 5.4656 18.4545 8.288 18.5 11.7824V22.3552H14.8182H5.54546V28H24V11.7824C23.9545 5.2864 18.5909 0 12 0C5.36364 0 0 5.2416 0 11.7824Z" fill="currentColor"></path>
+          <path d="M0 16.576V11.7824C0 5.2416 5.36364 0 12 0C18.5909 0 23.9545 5.2864 24 11.7824V28H5.54546V22.3552H14.8182H18.5V11.7824C18.4545 8.288 15.5909 5.4656 12 5.4656C8.40909 5.4656 5.54545 8.288 5.5 11.7824V16.576H0Z" fill="currentColor"></path>
+        </svg>
+
+        <% if user_signed_in? %>
+          <% if current_user.admin? || current_user.director? || current_user.guest? %>
+            <%= link_to "Home", root_path, class: "link-nav text-h4" %>
+            <%= link_to "Applications", audition_applications_path, class: "link-nav text-h4" %>
+            <%= link_to "Dashboard", dashboard_path, class: "link-nav text-h4" %>
+          <% end %>
+          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "link-nav text-h4" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "link-nav text-h4" %>
+          <%= link_to "Sign Up", new_user_registration_path, class:"link-nav text-h4" %>
+        <% end %>
+      </div>
   <div class="container-fluid">
     <% if user_signed_in? && current_user.email == "cedric@gmail.com"%>
       <%= link_to "/audition_applications", class: "navbar-brand" do %>
@@ -15,32 +39,5 @@
         </svg>
       <% end %>
     <% end %>
-
-    <div data-controller="slideshow">
-      <div class="burger" data-slideshow-target="burger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-
-      <div class="slideshow" data-slideshow-target="slideshow">
-        <svg viewBox="0 0 24 28" fill="none" id="logo-min--sprite" width="30" height="34" xmlns="http://www.w3.org/2000/svg" margin-bottom="20px">
-          <title>Opéra de Lyon</title>
-          <path d="M0 11.7824V16.576H5.5V11.7824C5.54545 8.288 8.40909 5.4656 12 5.4656C15.5909 5.4656 18.4545 8.288 18.5 11.7824V22.3552H14.8182H5.54546V28H24V11.7824C23.9545 5.2864 18.5909 0 12 0C5.36364 0 0 5.2416 0 11.7824Z" fill="currentColor"></path>
-          <path d="M0 16.576V11.7824C0 5.2416 5.36364 0 12 0C18.5909 0 23.9545 5.2864 24 11.7824V28H5.54546V22.3552H14.8182H18.5V11.7824C18.4545 8.288 15.5909 5.4656 12 5.4656C8.40909 5.4656 5.54545 8.288 5.5 11.7824V16.576H0Z" fill="currentColor"></path>
-        </svg>
-
-        <% if user_signed_in? %>
-          <% if current_user.admin? || current_user.director? || current_user.guest? %>
-            <%= link_to "Home", root_path, class: "link-nav text-h4" %>
-            <%= link_to "Applications", audition_applications_path, class: "link-nav text-h4" %>
-            <%= link_to "Dashboard", dashboard_path, class: "link-nav text-h4" %>
-          <% end %>
-          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "link-nav text-h4" %>
-        <% else %>
-          <%= link_to "Login", new_user_session_path, class: "link-nav text-h4" %>
-        <% end %>
-      </div>
-    </div>
   </div>
 </div>
