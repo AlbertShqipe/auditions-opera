@@ -43,7 +43,7 @@
   }
   function updateFileName(input, labelId) {
     const allowedCVTypes = ["application/pdf"];
-    const allowedImageTypes = ["image/png", "image/jpeg", "image/gif, image/jpg", "image/webp"];
+    const allowedImageTypes = ["image/png", "image/jpeg", "image/gif," "image/jpg", "image/webp"];
 
     const file = input.files[0];
     if (file) {
@@ -61,7 +61,6 @@
       document.getElementById(labelId).textContent = file.name;
     }
   }
-
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form"); // Select the form
     form.addEventListener("submit", function (event) {
