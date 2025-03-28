@@ -5,8 +5,8 @@
       <div class="show-text">
         <div class="show-image">
           <% if @application.profile_image.attached? %>
-            <a href="<%= url_for(@application.profile_image) %>" target="_blank">
-              <%= image_tag url_for(@application.profile_image), width: 150 %>
+            <a href="<%= @application.profile_image.url %>" target="_blank">
+              <%= cl_image_tag @application.profile_image.key, width: 150 %>
             </a>
           <% end %>
         </div>
