@@ -17,9 +17,14 @@
         <label for="cv-upload" class="custom-file-label">Upload CV</label>
         <span id="cv-file-name">No file chosen</span>
         <%= f.input :cv, as: :file, required: true,
-                      input_html: { class: "custom-file-input", id: "cv-upload", onchange: "updateFileName(this, 'cv-file-name')" },
-                      accept: "application/pdf",
-                      label: false %>
+              input_html: { class: "custom-file-input",
+                            id: "cv-upload",
+                            name: "cv",
+                            onchange: "updateFileName(this, 'cv-file-name')",
+                            accept: "application/pdf",
+                            multiple: false,
+                            direct_upload: false },
+              label: false %>
       </div>
 
       <div class="custom-file">

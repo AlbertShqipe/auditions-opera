@@ -28,7 +28,7 @@ class AuditionApplication < ApplicationRecord
   def set_cloudinary_folder
     return unless profile_image.attached?
 
-    profile_image.blob.update!(filename: "audition_applications/#{profile_image.filename}")
+    profile_image.blob.update!(filename: "production/audition_applications_lyon_ballet/#{profile_image.filename}")
   end
 
   def set_default_ethnicity
