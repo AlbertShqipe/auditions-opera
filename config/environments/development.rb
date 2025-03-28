@@ -12,8 +12,19 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
 
+  config.cache_classes = false
+
   # Do not eager load code on boot.
   config.eager_load = false
+
+  # Show full error reports and disable caching.
+  config.reload_classes_only_on_change = true
+  config.assets.debug = true
+
+  # ensures that the development environment doesn’t require assets:precompile.
+  config.assets.check_precompiled_asset = false
+  config.assets.digest = true
+
 
   # Show full error reports.
   config.consider_all_requests_local = true

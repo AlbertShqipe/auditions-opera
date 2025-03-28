@@ -4,6 +4,12 @@
   margin-top: 40px;
   margin-bottom: 40px;
 
+  .text-h1-show {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
   .show-content {
     display: flex;
     justify-content: space-around;
@@ -31,18 +37,36 @@
         font-size: large;
 
         @media (max-width:760px) {
-          flex-direction:column;
+          // flex-direction:column;
+          align-items: center;
         }
 
 
         .show-image {
-          width: 50%;
+          margin: auto;
           // height: 300px;
 
           img {
             width: 200px;
             border-radius:10px;
             margin-right: 10px;
+
+            @media (max-width:760px) {
+              width: 150px;
+              margin-bottom: 20px;
+            }
+          }
+        }
+
+        .body_p_show {
+          // margin-bottom: 2.625rem;
+          font-size: 16px;
+          text-indent: calc(2.5rem,-.3168335901rem + 12.0184899846vw,7.375rem);
+
+          @media (max-width: 760px) {
+            font-size:12px;
+            // margin-top: 5px;
+            margin-bottom: 10px;
           }
         }
       }

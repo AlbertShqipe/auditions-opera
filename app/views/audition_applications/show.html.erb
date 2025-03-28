@@ -1,13 +1,17 @@
 <div class="show-container">
-  <h1 class="text-h1"><%= @application.first_name %> <%= @application.last_name %></h1>
+  <h1 class="text-h1-show"><%= @application.first_name %> <%= @application.last_name %></h1>
   <div class="show-content">
     <div class="show-info">
       <div class="show-text">
         <div class="show-image">
           <% if @application.profile_image.attached? %>
-            <a href="<%= @application.profile_image.url %>" target="_blank">
-              <%= cl_image_tag @application.profile_image.key, width: 150 %>
-            </a>
+            <% if Rails.env.production? %>
+              <a href="<%= @application.profile_image.url %>" target="_blank">
+                <%= cl_image_tag @application.profile_image.key, width: 150 %>
+              </a>
+            <% else %>
+              <%= image_tag url_for(@application.profile_image), width: 150 %>
+            <% end %>
           <% end %>
         </div>
         <div class="main-info">
