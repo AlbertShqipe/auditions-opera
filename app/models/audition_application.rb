@@ -6,8 +6,6 @@ class AuditionApplication < ApplicationRecord
   has_one_attached :cv
   has_one_attached :profile_image
 
-  before_save :set_cloudinary_folder
-
   before_create :set_default_ethnicity
   after_update :send_status_update_email
 
@@ -24,12 +22,6 @@ class AuditionApplication < ApplicationRecord
   using: { trigram: { threshold: 0.001 } }
 
   private
-
-  def set_cloudinary_folder
-    return unless profile_image.attached?
-
-    profile_image.blob.update!(filename: "production/audition_applications_lyon_ballet/#{profile_image.filename}")
-  end
 
   def set_default_ethnicity
     self.ethnicity ||= Ethnicity.find_by(name: "Unknown")

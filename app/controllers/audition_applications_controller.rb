@@ -45,7 +45,7 @@ class AuditionApplicationsController < ApplicationController
     if @selected_vote.present?
       # Fetch votes based on the current user's ID and selected vote status
       @audition_applications = @audition_applications.joins(:votes)
-                                                   .where(votes: { user_id: current_user.id, vote_value: @selected_vote })
+                                                    .where(votes: { user_id: current_user.id, vote_value: @selected_vote })
     end
 
     # Fetch votes related to the filtered applications and admins
