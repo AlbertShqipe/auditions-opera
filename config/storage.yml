@@ -11,7 +11,7 @@ wasabi:
   access_key_id: "<%= ENV['WASABI_ACCESS_KEY_ID'] %>"
   secret_access_key: "<%= ENV['WASABI_SECRET_ACCESS_KEY'] %>"
   region: "eu-west-2"
-  bucket: "opera-lyon"
+  bucket: "albert-nikolli-certification-2024.fr"
   endpoint: "https://s3.eu-west-2.wasabisys.com"  # Change this based on your region
   public: true
 
