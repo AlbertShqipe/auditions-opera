@@ -27,7 +27,7 @@
         <span id="profile-image-file-name">No file chosen</span>
         <%= f.input :profile_image, as: :file, required: true,
                       input_html: { class: "custom-file-input", id: "profile-image-upload", onchange: "updateFileName(this, 'profile-image-file-name')" },
-                      accept: "image/png, image/jpeg, image/gif",
+                      accept: "image/png, image/jpeg, image/gif, image/jpg, image/webp",
                       label: false %>
       </div>
     </div>
@@ -43,7 +43,7 @@
   }
   function updateFileName(input, labelId) {
     const allowedCVTypes = ["application/pdf"];
-    const allowedImageTypes = ["image/png", "image/jpeg", "image/gif"];
+    const allowedImageTypes = ["image/png", "image/jpeg", "image/gif, image/jpg", "image/webp"];
 
     const file = input.files[0];
     if (file) {
@@ -61,6 +61,7 @@
       document.getElementById(labelId).textContent = file.name;
     }
   }
+
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form"); // Select the form
     form.addEventListener("submit", function (event) {

@@ -23,17 +23,17 @@ class AuditionApplicationsController < ApplicationController
     end
 
     # Status, gender, and vote filter params
-    @statuses = AuditionApplication.statuses.keys
-    @selected_status = params[:status]
-    @selected_gender = params[:gender]
-    @selected_age = params[:age]
-    @selected_vote = params[:vote]
+    # @statuses = AuditionApplication.statuses.keys
+    # @selected_status = params[:status]
+    # @selected_gender = params[:gender]
+    # @selected_age = params[:age]
+    # @selected_vote = params[:vote]
 
     # Initialize filtered applications based on search results or all applications if no search
     @audition_applications = @applications
 
-    # Apply status filter if selected
-    @audition_applications = @audition_applications.where(status: @selected_status) if @selected_status.present?
+    # # Apply status filter if selected
+    # @audition_applications = @audition_applications.where(status: @selected_status) if @selected_status.present?
 
     # Apply gender filter if selected
     @audition_applications = @audition_applications.where(gender: @selected_gender) if @selected_gender.present?
