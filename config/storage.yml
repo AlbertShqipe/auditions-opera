@@ -13,6 +13,7 @@ wasabi:
   region: "eu-west-2"
   bucket: "opera-lyon"
   endpoint: "https://s3.eu-west-2.wasabisys.com"  # Change this based on your region
+  public: true
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
