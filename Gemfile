@@ -58,6 +58,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end
 
+gem "aws-sdk-s3"
+
 ## This gem is used to set set a test environment for the email
 gem "letter_opener", group: :development
 
