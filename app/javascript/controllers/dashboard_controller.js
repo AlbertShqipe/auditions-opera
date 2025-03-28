@@ -36,9 +36,9 @@ export default class extends Controller {
           render: function (data, type, row) {
             // Mapping user_id to names
             const userNames = {
-              1: "Cedric",
+              1: "Marco",
               2: "Raul",
-              3: "Marco"
+              3: "Cédric"
             };
 
             if (Array.isArray(data)) {
