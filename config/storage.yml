@@ -10,9 +10,9 @@ wasabi:
   service: S3
   access_key_id: "<%= ENV['WASABI_ACCESS_KEY_ID'] %>"
   secret_access_key: "<%= ENV['WASABI_SECRET_ACCESS_KEY'] %>"
-  region: "eu-west-2"  # Change this based on your Wasabi bucket region
+  region: "eu-west-2"
   bucket: "opera-lyon"
-  endpoint: "https://s3.us-east-1.wasabisys.com"  # Change this based on your region
+  endpoint: "https://eu-west-2.wasabisys.com"  # Change this based on your region
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
