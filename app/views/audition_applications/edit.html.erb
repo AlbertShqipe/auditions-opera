@@ -1,4 +1,4 @@
-<div class="m-auto mt-3 mb-3" style="width:70%;">
+<div class="m-auto mt-3 mb-3" style="width:70%;" data-controller="file-upload">
   <h2>Modifier la candidature</h2>
 
   <%= simple_form_for(@application, method: :patch) do |f| %>
@@ -13,22 +13,27 @@
     <%= f.input :video_link, label: "Lien vers la vidéo", required: true %>
     <div class="custom-file-container">
       <div class="custom-file">
-        <label for="cv-upload" class="custom-file-label">Upload CV</label>
-        <span id="cv-file-name"><%= @application.cv.present? ? @application.cv.filename : "No file chosen" %></span>
-        <%= f.input :cv, as: :file, required: false,
-                      input_html: { class: "custom-file-input", id: "cv-upload", onchange: "updateFileName(this, 'cv-file-name')" },
-                      accept: "application/pdf",
-                      label: false %>
-      </div>
+      <label for="cv-upload" class="custom-file-label">Upload CV</label>
+      <span data-file-upload-target="cvLabel">No file chosen</span>
+      <%= f.input :cv, as: :file, required: true,
+                    input_html: { class: "custom-file-input", id: "cv-upload",
+                                  "data-action" => "change->file-upload#updateFileName",
+                                  "data-label-target" => "cvLabel" },
+                    accept: "application/pdf",
+                    label: false %>
+    </div>
 
-      <div class="custom-file">
-        <label for="profile-image-upload" class="custom-file-label">Upload Photo</label>
-        <span id="profile-image-file-name"><%= @application.profile_image.present? ? @application.profile_image.filename : "No file chosen" %></span>
-        <%= f.input :profile_image, as: :file, required: false,
-                      input_html: { class: "custom-file-input", id: "profile-image-upload", onchange: "updateFileName(this, 'profile-image-file-name')" },
-                      accept: "image/png, image/jpeg, image/gif",
-                      label: false %>
-      </div>
+    <!-- Profile Image Upload -->
+    <div class="custom-file">
+      <label for="profile-image-upload" class="custom-file-label">Upload Photo</label>
+      <span data-file-upload-target="imageLabel">No file chosen</span>
+      <%= f.input :profile_image, as: :file, required: true,
+                    input_html: { class: "custom-file-input", id: "profile-image-upload",
+                                  "data-action" => "change->file-upload#updateFileName",
+                                  "data-label-target" => "imageLabel" },
+                    accept: "image/png, image/jpeg, image/gif, image/jpg, image/webp",
+                    label: false %>
+    </div>
     </div>
 
     <%= f.button :submit, 'Enregistrer les modifications', class: "submit-button" %>

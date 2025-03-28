@@ -1,4 +1,4 @@
-<div class="container mt-3 mb-3" style="width:70%; ">
+<div class="container mt-3 mb-3" style="width:70%;" data-controller="file-upload">
   <h2>Fill up this application form</h2>
   <%= simple_form_for(@audition_application || AuditionApplication.new) do |f| %>
     <%= f.input :first_name, label: "Prénom", required: true %>
@@ -8,25 +8,30 @@
     <%= f.input :address, label: "Address", required: true %>
     <%= f.input :height, label: "Taille", required: true %>
     <%= f.input :gender, collection: ["male", "female", "non-binary", "other"], label: "Sexe", required: true %>
-    <p>Make sure to upload a youtube video by coping the url, ex: "https://www.youtube.com/watch?v=MOPOb52MkOQ" </p>
+    <p class="p-input-info">Make sure to upload a youtube video by coping the url, ex: "https://www.youtube.com/watch?v=MOPOb52MkOQ" </p>
     <%= f.input :video_link, label: "Lien vers la vidéo", required: true %>
 
-    <div class="d-flex justify-content-around mb-3">
+    <div class="custom-file-container">
 
       <div class="custom-file">
         <label for="cv-upload" class="custom-file-label">Upload CV</label>
-        <span id="cv-file-name">No file chosen</span>
+        <span data-file-upload-target="cvLabel" id="cv-file-name">No file chosen</span>
         <%= f.input :cv, as: :file, required: true,
-                      input_html: { class: "custom-file-input", id: "cv-upload", onchange: "updateFileName(this, 'cv-file-name')" },
+                      input_html: { class: "custom-file-input", id: "cv-upload",
+                                    "data-action" => "change->file-upload#updateFileName",
+                                    "data-label-target" => "cvLabel" },
                       accept: "application/pdf",
                       label: false %>
       </div>
 
+    <!-- Profile Image Upload -->
       <div class="custom-file">
         <label for="profile-image-upload" class="custom-file-label">Upload Photo</label>
-        <span id="profile-image-file-name">No file chosen</span>
+        <span data-file-upload-target="imageLabel" id="profile-image-file-name">No file chosen</span>
         <%= f.input :profile_image, as: :file, required: true,
-                      input_html: { class: "custom-file-input", id: "profile-image-upload", onchange: "updateFileName(this, 'profile-image-file-name')" },
+                      input_html: { class: "custom-file-input", id: "profile-image-upload",
+                                    "data-action" => "change->file-upload#updateFileName",
+                                    "data-label-target" => "imageLabel" },
                       accept: "image/png, image/jpeg, image/gif, image/jpg, image/webp",
                       label: false %>
       </div>
@@ -36,7 +41,7 @@
     <%= f.button :submit, f.object.persisted? ? 'Modifier' : 'Soumettre la candidature', class:"submit-button" %>
   <% end %>
 </div>
-<script>
+<%# <script>
   function updateFileName(input, labelId) {
     const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
     document.getElementById(labelId).textContent = fileName;
@@ -78,4 +83,4 @@
       form.classList.add("was-validated"); // Add Bootstrap validation class
     });
   });
-</script>
+</script> %>
