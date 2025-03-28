@@ -1,4 +1,4 @@
-<div class="container mt-3 mb-3" style="width:70%;">
+<div class="m-auto mt-3 mb-3" style="width:70%;">
   <h2>Modifier la candidature</h2>
 
   <%= simple_form_for(@application, method: :patch) do |f| %>
@@ -11,7 +11,7 @@
     <%= f.input :gender, collection: ["male", "female", "non-binary", "other"], selected: @application.gender %>
     <%= f.hidden_field :status, value: @application.status %>
     <%= f.input :video_link, label: "Lien vers la vidéo", required: true %>
-    <div class="d-flex justify-content-around mb-3">
+    <div class="custom-file-container">
       <div class="custom-file">
         <label for="cv-upload" class="custom-file-label">Upload CV</label>
         <span id="cv-file-name"><%= @application.cv.present? ? @application.cv.filename : "No file chosen" %></span>
