@@ -12,7 +12,7 @@
       <li>⏰ Time: [Audition Time]</li>
     </ul>
 
-    <p>Please confirm your attendance <a href="http://localhost:3000/">here</a> before [confirmation deadline].</p>
+    <p>Please confirm your attendance <%= link_to "confirm your attendance", confirm_attendance_audition_application_url(@application)%> before [confirmation deadline].</p>
     <%# If you have any questions, do not hesitate to reach out. %>
 
     <p>We look forward to seeing you soon and wish you the best for your audition!</p>

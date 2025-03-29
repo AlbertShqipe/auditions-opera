@@ -102,8 +102,10 @@
     <% end %>
   <% else %>
     <div>
-      <%= link_to edit_audition_application_path(@application), class:"link" do %>
-        <span>Edit my form</span>
+      <% if @application.status != "accepted" %>
+        <%= link_to edit_audition_application_path(@application), class:"link" do %>
+          <span>Edit my form</span>
+        <% end %>
       <% end %>
     </div>
   <% end %>
