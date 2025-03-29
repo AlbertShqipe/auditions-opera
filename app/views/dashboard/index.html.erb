@@ -1,6 +1,6 @@
 
-<div class="div-index">
-  <div class="mx-5">
+<div id="div-index">
+  <div class="mx-5 mb-4">
     <h1>Dashboard</h1>
     <%= link_to 'Applications', audition_applications_path, class: 'link' %><br>
     <%= link_to "Charge Dashboard", request.fullpath, class: "link" %>
@@ -24,54 +24,54 @@
       <tbody></tbody> <!-- DataTables will populate this dynamically -->
     </table>
   </div>
-</div>
-<div class="container description">
-  <table>
-    <thead>
-      <tr style="background-color: #222; color: #fff;">
-        <th style="border: 1px solid #444; padding: 5px;">Votes (star, yes, maybe, no)</th>
-        <th style="border: 1px solid #444; padding: 5px;">Output</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="border: 1px solid #444; padding: 5px;">yes, yes, yes</td>
-        <td style="border: 1px solid #444; padding: 5px;">YES ✅</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #444; padding: 5px;">star, no, no</td>
-        <td style="border: 1px solid #444; padding: 5px;">YES ✅ (because 'star' is present)</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #444; padding: 5px;">star, maybe, maybe</td>
-        <td style="border: 1px solid #444; padding: 5px;">YES ✅ (because 'star' is present)</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #444; padding: 5px;">yes, star, no</td>
-        <td style="border: 1px solid #444; padding: 5px;">YES ✅ (because 'star' is present)</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #444; padding: 5px;">yes, maybe, maybe</td>
-        <td style="border: 1px solid #444; padding: 5px;">MAYBE+ 🟡</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #444; padding: 5px;">maybe, maybe, maybe</td>
-        <td style="border: 1px solid #444; padding: 5px;">MAYBE 🟠</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #444; padding: 5px;">maybe, no, no</td>
-        <td style="border: 1px solid #444; padding: 5px;">NO 🔴</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #444; padding: 5px;">no, no, no</td>
-        <td style="border: 1px solid #444; padding: 5px;">NO 🔴</td>
-      </tr>
-    </tbody>
-  </table>
-  <p padding="5px">In the Votes column, the numbers represent from left to right "star", "yes", "maybe", "no".<br>
-  In case of a star from Cédric, the final result is going to be YES.<br>
-  Ex.1 In the case of row with id 1: 0 star, 0 yes, 1 maybe, 2 no... therefore the final result is NO.<br>
-  EX.2 In the case of row with id 9: only two have voted but, since Cédric put a star, the final result is YES.</p>
+  <div class="container description">
+    <table>
+      <thead>
+        <tr style="background-color: #222; color: #fff;">
+          <th style="border: 1px solid #444; padding: 5px;">Votes (star, yes, maybe, no)</th>
+          <th style="border: 1px solid #444; padding: 5px;">Output</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #444; padding: 5px;">yes, yes, yes</td>
+          <td style="border: 1px solid #444; padding: 5px;">YES ✅</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #444; padding: 5px;">star, no, no</td>
+          <td style="border: 1px solid #444; padding: 5px;">YES ✅ (because 'star' is present)</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #444; padding: 5px;">star, maybe, maybe</td>
+          <td style="border: 1px solid #444; padding: 5px;">YES ✅ (because 'star' is present)</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #444; padding: 5px;">yes, star, no</td>
+          <td style="border: 1px solid #444; padding: 5px;">YES ✅ (because 'star' is present)</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #444; padding: 5px;">yes, maybe, maybe</td>
+          <td style="border: 1px solid #444; padding: 5px;">MAYBE+ 🟡</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #444; padding: 5px;">maybe, maybe, maybe</td>
+          <td style="border: 1px solid #444; padding: 5px;">MAYBE 🟠</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #444; padding: 5px;">maybe, no, no</td>
+          <td style="border: 1px solid #444; padding: 5px;">NO 🔴</td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #444; padding: 5px;">no, no, no</td>
+          <td style="border: 1px solid #444; padding: 5px;">NO 🔴</td>
+        </tr>
+      </tbody>
+    </table>
+    <p padding="5px">In the Votes column, the numbers represent from left to right "star", "yes", "maybe", "no".<br>
+    In case of a star from Cédric, the final result is going to be YES.<br>
+    Ex.1 In the case of row with id 1: 0 star, 0 yes, 1 maybe, 2 no... therefore the final result is NO.<br>
+    EX.2 In the case of row with id 9: only two have voted but, since Cédric put a star, the final result is YES.</p>
+  </div>
 </div>
 <!-- Include DataTables -->
 <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>

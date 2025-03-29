@@ -23,11 +23,11 @@ class AuditionApplicationsController < ApplicationController
     end
 
     # Status, gender, and vote filter params
-    # @statuses = AuditionApplication.statuses.keys
-    # @selected_status = params[:status]
-    # @selected_gender = params[:gender]
-    # @selected_age = params[:age]
-    # @selected_vote = params[:vote]
+    @statuses = AuditionApplication.statuses.keys
+    @selected_status = params[:status]
+    @selected_gender = params[:gender]
+    @selected_age = params[:age]
+    @selected_vote = params[:vote]
 
     # Initialize filtered applications based on search results or all applications if no search
     @audition_applications = @applications
@@ -38,14 +38,32 @@ class AuditionApplicationsController < ApplicationController
     # Apply gender filter if selected
     @audition_applications = @audition_applications.where(gender: @selected_gender) if @selected_gender.present?
 
+    # Apply ordering by vote value
+    @audition_applications = @audition_applications
+    .left_joins(:votes)
+    .order(Arel.sql("CASE
+                      WHEN votes.vote_value IS NULL THEN 0  -- for 'not_set'
+                      WHEN votes.vote_value = 0 THEN 1      -- for 'not_set'
+                      WHEN votes.vote_value = 2 THEN 2      -- for 'maybe'
+                      WHEN votes.vote_value = 1 THEN 3      -- for 'yes'
+                      WHEN votes.vote_value = 3 THEN 4      -- for 'no'
+                      ELSE 5                               -- for 'star'
+                    END"))
+
     # Fetch all admins
     @admins = User.where(role: [:admin, :director])
 
     # Filter by votes if selected
     if @selected_vote.present?
-      # Fetch votes based on the current user's ID and selected vote status
-      @audition_applications = @audition_applications.joins(:votes)
-                                                    .where(votes: { user_id: current_user.id, vote_value: @selected_vote })
+      if @selected_vote == "not set"
+        # Fetch candidates with no votes or with a vote explicitly set to nil
+        @audition_applications = @audition_applications.left_joins(:votes)
+                                                      .where('votes.audition_application_id IS NULL OR votes.vote_value IS NULL')
+      else
+        # Fetch candidates with a specific vote status (not "not_set")
+        @audition_applications = @audition_applications.joins(:votes)
+                                                      .where(votes: { user_id: current_user.id, vote_value: @selected_vote })
+      end
     end
 
     # Fetch votes related to the filtered applications and admins

@@ -47,65 +47,66 @@
       <% end %>
     <% end %>
   </div>
-  <% if current_user.admin? || current_user.director?%>
-    <!-- Change Vote with Buttons -->
-    <div class="votes-show">
-      <% if current_user.director? %>
-        <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
-          <%= hidden_field_tag :value, "star" %>
-          <%= button_tag type: :submit, class: "btn-vote btn-star", title: "Star" do %>
-            <span class="material-symbols-outlined">
-              star
-            </span>
+
+    <% if current_user.admin? || current_user.director?%>
+      <% unless @application.status != 'pending' %>
+        <!-- Change Vote with Buttons -->
+        <div class="votes-show">
+          <% if current_user.director? %>
+            <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
+              <%= hidden_field_tag :value, "star" %>
+              <%= button_tag type: :submit, class: "btn-vote btn-star", title: "Star" do %>
+                <span class="material-symbols-outlined">
+                  star
+                </span>
+              <% end %>
+            <% end %>
           <% end %>
+          <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
+            <%= hidden_field_tag :value, "yes" %>
+            <%= button_tag type: :submit, class: "btn-vote btn-yes", title: "Yes" do %>
+              <span class="material-symbols-outlined">
+                check
+              </span>
+            <% end %>
+          <% end %>
+
+          <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
+            <%= hidden_field_tag :value, "maybe" %>
+            <%= button_tag type: :submit, class: "btn-vote btn-maybe", title: "Maybe" do %>
+              <span style="font-size: 1.5rem;font-weight: 300;">
+                ?
+              </span>
+            <% end %>
+          <% end %>
+
+          <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
+            <%= hidden_field_tag :value, "no" %>
+            <%= button_tag type: :submit, class: "btn-vote btn-no", title: "No" do %>
+              <span class="material-symbols-outlined">
+                close
+              </span>
+            <% end %>
+          <% end %>
+
+        </div>
+      <% end %>
+      <% if @application.ethnicity == 'not-set' %>
+        <!-- Change Ethnicity -->
+        <div class="ethnicity-form">
+          <%= simple_form_for(@application) do |f| %>
+            <%= f.input :ethnicity_id, collection: Ethnicity.all.collect { |e| [e.name, e.id] }, prompt: "Select Ethnicity" %>
+            <%= f.button :submit, 'Set Ethnicity', class: "submit-button" %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <div>
+        <%= link_to edit_audition_application_path(@application), class:"link" do %>
+          <span>Edit my form</span>
         <% end %>
-      <% end %>
-      <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
-        <%= hidden_field_tag :value, "yes" %>
-        <%= button_tag type: :submit, class: "btn-vote btn-yes", title: "Yes" do %>
-          <span class="material-symbols-outlined">
-            check
-          </span>
-        <% end %>
-      <% end %>
-
-      <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
-        <%= hidden_field_tag :value, "maybe" %>
-        <%= button_tag type: :submit, class: "btn-vote btn-maybe", title: "Maybe" do %>
-          <span style="font-size: 1.5rem;font-weight: 300;">
-            ?
-          </span>
-        <% end %>
-      <% end %>
-
-      <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
-        <%= hidden_field_tag :value, "no" %>
-        <%= button_tag type: :submit, class: "btn-vote btn-no", title: "No" do %>
-          <span class="material-symbols-outlined">
-            close
-          </span>
-        <% end %>
-      <% end %>
-
-    </div>
-    <div>
-
-    <!-- Change Ethnicity -->
-    <div class="ethnicity-form">
-      <%= simple_form_for(@application) do |f| %>
-        <%= f.input :ethnicity_id, collection: Ethnicity.all.collect { |e| [e.name, e.id] }, prompt: "Select Ethnicity" %>
-        <%= f.button :submit, 'Set Ethnicity', class: "submit-button" %>
-      <% end %>
-    </div>
-
-    </div>
-  <% else %>
-    <div>
-      <%= link_to edit_audition_application_path(@application), class:"link" do %>
-        <span>Edit my form</span>
-      <% end %>
-    </div>
-  <% end %>
+      </div>
+    <% end %>
   <%= link_to "Back", audition_applications_path, class:"link" %>
   <% if current_user&.admin? || current_user&.director? %>
     <div>

@@ -27,7 +27,7 @@
             <!-- Vote Filter -->
             <div class="third">
               <%= form.label :vote, 'Select Vote Status' %> <br>
-              <%= form.select :vote, options_for_select(['', 'yes', 'maybe', 'star', 'no'], @selected_vote) %>
+              <%= form.select :vote, options_for_select(['', "not set", 'yes', 'maybe', 'star', 'no'], @selected_vote) %>
             </div>
 
             <!-- Filter Submit Button -->
@@ -86,25 +86,26 @@
             <h5><%= application.height %>m</h5>
           </div>
         </a>
-
-        <!-- Admin Voting Section -->
-        <% if current_user.admin? || current_user.director? %>
-          <div class="votes">
-            <% ['yes', 'maybe', 'no'].each do |vote| %>
-              <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
-                <%= hidden_field_tag :value, vote %>
-                <%= submit_tag "", class: "btn-vote btn-#{vote}", title: vote.capitalize %>
+        <% unless application.status != 'pending' %>
+          <!-- Admin Voting Section -->
+          <% if current_user.admin? || current_user.director? %>
+            <div class="votes">
+              <% ['yes', 'maybe', 'no'].each do |vote| %>
+                <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
+                  <%= hidden_field_tag :value, vote %>
+                  <%= submit_tag "", class: "btn-vote btn-#{vote}", title: vote.capitalize %>
+                <% end %>
               <% end %>
-            <% end %>
 
-            <% if current_user.director? %>
-              <!-- Only director can vote "star" -->
-              <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
-                <%= hidden_field_tag :value, 'star' %>
-                <%= submit_tag "", class: "btn-vote btn-star", title: "Star" %>
+              <% if current_user.director? %>
+                <!-- Only director can vote "star" -->
+                <%= form_with url: audition_application_votes_path(application), method: :post do |f| %>
+                  <%= hidden_field_tag :value, 'star' %>
+                  <%= submit_tag "", class: "btn-vote btn-star", title: "Star" %>
+                <% end %>
               <% end %>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         <% end %>
       </article>
     <% end %>

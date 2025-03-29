@@ -33,63 +33,63 @@ export default class extends Controller {
         {
           data: "votes_count",
           title: "Votes",
-          render: function (data, type, row) {
-            // Mapping user_id to names
-            const userNames = {
-              1: "Marco",
-              2: "Raul",
-              3: "Cédric"
-            };
+          // render: function (data, type, row) {
+          //   // Mapping user_id to names
+          //   const userNames = {
+          //     32: "Marco",
+          //     33: "Raul",
+          //     34: "Cédric"
+          //   };
 
-            if (Array.isArray(data)) {
-              return data
-                .map((vote) => {
-                  let userName = userNames[vote.user_id] || `User ${vote.user_id}`;
-                  return `<strong>${userName}</strong>: ${vote.vote_value}`;
-                })
-                .join("<br>");
+          //   if (Array.isArray(data)) {
+          //     return data
+          //       .map((vote) => {
+          //         let userName = userNames[vote.user_id] || `User ${vote.user_id}`;
+          //         return `<strong>${userName}</strong>: ${vote.vote_value}`;
+          //       })
+          //       .join("<br>");
+          //   }
+
+          //   return data;
+          // },
+          render: function (data, type, row) {
+            if (!Array.isArray(data)) return data;
+
+            // Count votes
+            let countStars = data.filter(vote => vote.vote_value === "star").length;
+            let countYes = data.filter(vote => vote.vote_value === "yes").length;
+            let countMaybe = data.filter(vote => vote.vote_value === "maybe").length;
+            let countNo = data.filter(vote => vote.vote_value === "no").length;
+
+            // If there is at least one star, the result is "OUI"
+            if (countStars > 0) {
+              return "YES ✅" + " " + countStars + countYes + countMaybe + countNo;
             }
 
-            return data;
-          },
-          // render: function (data, type, row) {
-          //   if (!Array.isArray(data)) return data;
-
-          //   // Count votes
-          //   let countStars = data.filter(vote => vote.vote_value === "star").length;
-          //   let countYes = data.filter(vote => vote.vote_value === "yes").length;
-          //   let countMaybe = data.filter(vote => vote.vote_value === "maybe").length;
-          //   let countNo = data.filter(vote => vote.vote_value === "no").length;
-
-          //   // If there is at least one star, the result is "OUI"
-          //   if (countStars > 0) {
-          //     return "YES" + " " + countStars + countYes + countMaybe + countNo;
-          //   }
-
-          //   // Determine the result based on conditions
-          //   if (countYes === 3) {
-          //     return "YES" + " " + countStars + countYes + countMaybe + countNo;
-          //   } else if (
-          //     (countYes === 1 && countMaybe === 2) ||
-          //     (countYes === 2 && countMaybe === 1) ||
-          //     (countYes === 1 && countMaybe === 1 && countNo === 1) ||
-          //     (countYes === 2 && countNo === 1)
-          //   ) {
-          //     return "MAYBE+" + " " + countStars + countYes + countMaybe + countNo;
-          //   } else if (
-          //     (countYes === 1 && countNo === 2) ||
-          //     countMaybe === 3 ||
-          //     (countMaybe === 2 && countNo === 1)
-          //   ) {
-          //     return "MAYBE" + " " + countStars + countYes + countMaybe + countNo;
-          //   } else if (countMaybe === 1 && countNo === 2) {
-          //     return "NO" + " " + countStars + countYes + countMaybe + countNo;
-          //   } else if (countNo === 3) {
-          //     return "NO" + " " + countStars + countYes + countMaybe + countNo;
-          //   } else {
-          //     return "N/A" + " " + countStars + countYes + countMaybe + countNo;
-          //   }
-          // }
+            // Determine the result based on conditions
+            if (countYes === 3) {
+              return "YES ✅" + " " + countStars + countYes + countMaybe + countNo;
+            } else if (
+              (countYes === 1 && countMaybe === 2) ||
+              (countYes === 2 && countMaybe === 1) ||
+              (countYes === 1 && countMaybe === 1 && countNo === 1) ||
+              (countYes === 2 && countNo === 1)
+            ) {
+              return "MAYBE+ 🟡" + " " + countStars + countYes + countMaybe + countNo;
+            } else if (
+              (countYes === 1 && countNo === 2) ||
+              countMaybe === 3 ||
+              (countMaybe === 2 && countNo === 1)
+            ) {
+              return "MAYBE 🟠" + " " + countStars + countYes + countMaybe + countNo;
+            } else if (countMaybe === 1 && countNo === 2) {
+              return "NO 🔴" + " " + countStars + countYes + countMaybe + countNo;
+            } else if (countNo === 3) {
+              return "NO 🔴" + " " + countStars + countYes + countMaybe + countNo;
+            } else {
+              return "N/A" + " " + countStars + countYes + countMaybe + countNo;
+            }
+          }
         },
         { data: "email",
           title: "Email",
@@ -115,8 +115,11 @@ export default class extends Controller {
       search: {
         regex: true,
       },
-      dom: "Bfrtip",
+      dom: "lfrtipB",
       buttons: ["copy", "csv", "excel", "pdf", "print"],
+      // 🔹 Set the default page length to 100 and options for the user
+      "pageLength": 100,  // Set default to 100 rows per page
+      "lengthMenu": [10, 25, 50, 100],  // Allow user to select 10, 25, 50, or 100 rows per page
     });
 
     // 🔹 Fix: Ensure the search works across multiple columns

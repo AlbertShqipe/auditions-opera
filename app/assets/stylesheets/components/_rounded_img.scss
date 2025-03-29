@@ -1,27 +1,17 @@
 .rounded-top {
   width: 100%;
-  height: 100%;
-  margin-right:50px;
-
-  // display: flex;
-  // align-items: start;
-  // justify-content: center;
 
   img {
     width: 100%;
     border-radius: 50% 50% 0 0/39% 39% 0 0;
-    // border: 0.1px solid rgba(255, 255, 255, 0.2);
 
     @media (max-width:760px){
       width: 100%;
     }
   }
   .title-holder {
-    // width: 50%;
-    // margin-left: 50%;
     text-align: right;
   }
-
 }
 
 .rounded-top-logedIn {
