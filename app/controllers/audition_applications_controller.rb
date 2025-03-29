@@ -11,7 +11,7 @@ class AuditionApplicationsController < ApplicationController
     if @application.accepted? && !@application.confirmed_attendance
       render :confirm_attendance
     else
-      redirect_to audition_application_path(@application), alert: "You cannot confirm your attendance because your application is not accepted or you have already confirmed."
+      redirect_to audition_application_path(@application), alert: "You cannot confirm your attendance because your application is already confirmed."
     end
   end
 
