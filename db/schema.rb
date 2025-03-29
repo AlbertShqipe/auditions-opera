@@ -10,9 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_24_090951) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_29_153643) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -59,8 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_24_090951) do
     t.datetime "updated_at", null: false
     t.string "address"
     t.bigint "ethnicity_id"
-    t.index "((((first_name)::text || ' '::text) || (last_name)::text)) gin_trgm_ops", name: "audition_applications_name_trgm_idx", using: :gin
-    t.index "((((first_name)::text || ' '::text) || (last_name)::text)) gin_trgm_ops", name: "audition_applications_trigram_idx", using: :gin
+    t.boolean "confirmed_attendance", default: false
     t.index ["ethnicity_id"], name: "index_audition_applications_on_ethnicity_id"
     t.index ["user_id"], name: "index_audition_applications_on_user_id"
   end

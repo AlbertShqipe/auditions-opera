@@ -18,6 +18,13 @@
             <%= link_to audition_application_path(current_user.audition_applications.first), class:"button" do%>
               <span>Check my application</span>
             <% end %>
+            <% if current_user.audition_applications.present? && current_user.audition_applications.first.status == 'accepted' %>
+              <%= link_to "Confirm Attendance", confirm_attendance_audition_application_path(current_user.audition_applications.first), method: :get, class: "btn btn-primary" %>
+            <% else %>
+              <%= link_to new_audition_application_path, class:"btn btn-secondary" do %>
+                <span>Apply for the audition</span>
+              <% end %>
+            <% end %>
           <% else %>
             <%= link_to new_audition_application_path, class:"button" do%>
               <span>Apply for the audition</span>

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     member do
       patch :update_status
       patch :update_ethnicity
+      get :confirm_attendance
+      patch :update_attendance
     end
     resources :votes, only: [:create]
   end

@@ -1,0 +1,7 @@
+<h1>Confirm Your Attendance</h1>
+
+<p>Are you sure you want to confirm your attendance for the audition?</p>
+
+<%= form_with url: update_attendance_audition_application_path(@application), method: :patch do |form| %>
+  <%= form.submit "Confirm Attendance", class: "btn btn-primary" %>
+<% end %>
