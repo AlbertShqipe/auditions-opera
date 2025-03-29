@@ -2,6 +2,27 @@ class AuditionApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin, only: [:index, :destroy]
   before_action :set_application, only: [:show, :update_status]
+  before_action :set_application, only: [:confirm_attendance, :update_attendance]
+  before_action :authorize_candidate, only: [:confirm_attendance]
+
+  # Show the confirm attendance page
+  # Show the confirm attendance page
+  def confirm_attendance
+    if @application.accepted? && !@application.confirmed_attendance
+      render :confirm_attendance
+    else
+      redirect_to audition_application_path(@application), alert: "You cannot confirm your attendance because your application is already confirmed."
+    end
+  end
+
+  # Handle the confirmation of attendance (PATCH request)
+  def update_attendance
+    if @application.update(confirmed_attendance: true)
+      redirect_to audition_application_path(@application), notice: "Attendance confirmed successfully!"
+    else
+      redirect_to audition_application_path(@application), alert: "There was an issue confirming your attendance."
+    end
+  end
 
   def update_status
     # Log the status to make sure it is coming through
@@ -136,6 +157,16 @@ class AuditionApplicationsController < ApplicationController
   end
 
   private
+
+  def set_application
+    @application = current_user.audition_applications.find(params[:id])
+  end
+
+  def authorize_candidate
+    unless current_user.candidate?
+      redirect_to root_path, alert: "You are not authorized to confirm attendance."
+    end
+  end
 
   def set_application
     @application = AuditionApplication.find_by(id: params[:id])

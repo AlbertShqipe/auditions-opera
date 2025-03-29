@@ -9,31 +9,33 @@
     <%= f.input :nationality, label: "Nationalité", required: true %>
     <%= f.input :height, label: "Taille", required: true %>
     <%= f.input :gender, collection: ["male", "female", "non-binary", "other"], selected: @application.gender %>
-    <%= f.hidden_field :status, value: @application.status %>
+    <p class="p-input-info">Make sure to upload a youtube video by coping the url, ex: "https://www.youtube.com/watch?v=MOPOb52MkOQ" </p>
     <%= f.input :video_link, label: "Lien vers la vidéo", required: true %>
-    <div class="custom-file-container">
-      <div class="custom-file">
-      <label for="cv-upload" class="custom-file-label">Upload CV</label>
-      <span data-file-upload-target="cvLabel">No file chosen</span>
-      <%= f.input :cv, as: :file, required: true,
-                    input_html: { class: "custom-file-input", id: "cv-upload",
-                                  "data-action" => "change->file-upload#updateFileName",
-                                  "data-label-target" => "cvLabel" },
-                    accept: "application/pdf",
-                    label: false %>
-    </div>
 
-    <!-- Profile Image Upload -->
-    <div class="custom-file">
-      <label for="profile-image-upload" class="custom-file-label">Upload Photo</label>
-      <span data-file-upload-target="imageLabel">No file chosen</span>
-      <%= f.input :profile_image, as: :file, required: true,
-                    input_html: { class: "custom-file-input", id: "profile-image-upload",
-                                  "data-action" => "change->file-upload#updateFileName",
-                                  "data-label-target" => "imageLabel" },
-                    accept: "image/png, image/jpeg, image/gif, image/jpg, image/webp",
-                    label: false %>
-    </div>
+    <div class="custom-file-container">
+
+      <div class="custom-file">
+        <label for="cv-upload" class="custom-file-label">Upload CV</label>
+        <span data-file-upload-target="cvLabel" id="cv-file-name">No file chosen</span>
+        <%= f.input :cv, as: :file, required: true,
+                      input_html: { class: "custom-file-input", id: "cv-upload",
+                                    "data-action" => "change->file-upload#updateFileName",
+                                    "data-label-target" => "cvLabel" },
+                      accept: "application/pdf",
+                      label: false %>
+      </div>
+
+      <!-- Profile Image Upload -->
+      <div class="custom-file">
+        <label for="profile-image-upload" class="custom-file-label">Upload Photo</label>
+        <span data-file-upload-target="imageLabel" id="profile-image-file-name">No file chosen</span>
+        <%= f.input :profile_image, as: :file, required: true,
+                      input_html: { class: "custom-file-input", id: "profile-image-upload",
+                                    "data-action" => "change->file-upload#updateFileName",
+                                    "data-label-target" => "imageLabel" },
+                      accept: "image/png, image/jpeg, image/gif, image/jpg, image/webp",
+                      label: false %>
+      </div>
     </div>
 
     <%= f.button :submit, 'Enregistrer les modifications', class: "submit-button" %>

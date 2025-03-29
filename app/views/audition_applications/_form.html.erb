@@ -24,7 +24,7 @@
                       label: false %>
       </div>
 
-    <!-- Profile Image Upload -->
+      <!-- Profile Image Upload -->
       <div class="custom-file">
         <label for="profile-image-upload" class="custom-file-label">Upload Photo</label>
         <span data-file-upload-target="imageLabel" id="profile-image-file-name">No file chosen</span>
@@ -36,7 +36,6 @@
                       label: false %>
       </div>
     </div>
-
 
     <%= f.button :submit, f.object.persisted? ? 'Modifier' : 'Soumettre la candidature', class:"submit-button" %>
   <% end %>
