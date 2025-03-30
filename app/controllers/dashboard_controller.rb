@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
   def index
-    @applications = AuditionApplication.includes(:user, :ethnicity, :votes, :gender, :nationality, :address)
+    @applications = AuditionApplication.includes(:user, :ethnicity, :votes, :gender, :nationality, :address, :confirmed_attendance)
   end
 
   def data
@@ -23,7 +23,8 @@ class DashboardController < ApplicationController
         },
         email: app.user.email,
         video_link: app.video_link,
-        cv: app.cv.attached? ? url_for(app.cv) : nil
+        cv: app.cv.attached? ? url_for(app.cv) : nil,
+        confirmed_attendance: app.confirmed_attendance
       }
     end
 

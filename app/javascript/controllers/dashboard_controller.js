@@ -111,6 +111,7 @@ export default class extends Controller {
             return data ? `<a href="${data}" target="_blank" class="link">CV</a>` : "";
           }
         },
+        {data: "confirmed_attendance", title: "Confirmed Attendance"}
       ],
       search: {
         regex: true,
