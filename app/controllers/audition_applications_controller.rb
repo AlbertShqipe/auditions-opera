@@ -118,7 +118,11 @@ class AuditionApplicationsController < ApplicationController
 
     if @application.save
       redirect_to root_path, notice: "Application submitted successfully! Check your email for confirmation. Spam folder too!"
-      AuditionApplicationMailer.confirmation_email(@application).deliver_now
+
+      # Notify the user about the application submission
+        AuditionMailer.confirmation_email(@application).deliver_now
+        # Notify the admin about the new application
+        AuditionMailer.admin_email(@application).deliver_now
     else
       render :new, alert: "Something went wrong. Please check the form and try again."
     end
