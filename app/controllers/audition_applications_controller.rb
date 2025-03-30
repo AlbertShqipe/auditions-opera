@@ -117,11 +117,8 @@ class AuditionApplicationsController < ApplicationController
     @application.status = "pending"
 
     if @application.save
-      if current_user.admin? || current_user.director?
-        redirect_to audition_applications_path, notice: "Application submitted successfully!"
-      else
-        redirect_to root_path, notice: "Application submitted successfully!"
-      end
+      redirect_to root_path, notice: "Application submitted successfully! Check your email for confirmation. Spam folder too!"
+      AuditionApplicationMailer.confirmation_email(@application).deliver_now
     else
       render :new, alert: "Something went wrong. Please check the form and try again."
     end
