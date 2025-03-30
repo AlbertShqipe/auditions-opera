@@ -48,7 +48,7 @@
     <% end %>
   </div>
 
-  <% if current_user.admin? || current_user.director?%>
+  <% if current_user.admin? || current_user.director? %>
     <% unless @application.status != 'pending' %>
       <!-- Change Vote with Buttons -->
       <div class="votes-show">
@@ -91,7 +91,7 @@
 
       </div>
     <% end %>
-    <% if @application.ethnicity == 'not-set' %>
+    <% if @application.ethnicity == 'not-set' || @application.ethnicity == nil %>
       <!-- Change Ethnicity -->
       <div class="ethnicity-form">
         <%= simple_form_for(@application) do |f| %>
