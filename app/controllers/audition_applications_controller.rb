@@ -5,8 +5,6 @@ class AuditionApplicationsController < ApplicationController
   before_action :set_application, only: [:confirm_attendance, :update_attendance]
   before_action :authorize_candidate, only: [:confirm_attendance]
 
-  # Show the confirm attendance page
-  # Show the confirm attendance page
   def confirm_attendance
     if @application.accepted? && !@application.confirmed_attendance
       render :confirm_attendance
@@ -30,6 +28,7 @@ class AuditionApplicationsController < ApplicationController
 
     if @application.update(status: params[:status])
       redirect_to @application, notice: "Status updated to #{params[:status].humanize}."
+      AuditionMailer.status_update_email(@application).deliver_now
     else
       redirect_to @application, alert: "Failed to update status."
     end
