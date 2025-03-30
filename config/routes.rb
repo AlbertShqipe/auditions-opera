@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'dashboard', to: 'dashboard#index'
-  get 'dashboard/data', to: 'dashboard#data'
+  get 'dashboard/data', to: 'dashboard#data', as: :dashboard_data
+  resources :dashboard, only: [:index, :show]
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

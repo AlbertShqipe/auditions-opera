@@ -1,0 +1,42 @@
+<turbo-stream action="replace" target="application_show">
+  <template>
+      <div class="show-content">
+        <div class="show-info">
+          <div class="show-text">
+            <div class="show-image">
+              <% if @application.profile_image.attached? %>
+                <% if Rails.env.production? %>
+                  <a href="<%= @application.profile_image.url %>" target="_blank">
+                    <%= cl_image_tag @application.profile_image.key, width: 150 %>
+                  </a>
+                <% else %>
+                  <%= image_tag url_for(@application.profile_image), width: 150 %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="main-info">
+              <p class="body_p_show"><strong>Date of Birth:</strong> <%= @application.date_of_birth %></p>
+              <p class="body_p_show"><strong>Nationality:</strong> <%= @application.nationality %></p>
+              <p class="body_p_show"><strong>Address:</strong> <%= @application.address.present? ? @application.address : " " %></p>
+              <p class="body_p_show"><strong>Height:</strong> <%= @application.height %> cm</p>
+              <p class="body_p_show"><strong>Gender:</strong> <%= @application.gender.humanize %></p>
+              <p class="body_p_show"><strong>Status:</strong> <%= @application.status.humanize %></p>
+            </div>
+          </div>
+          <div class="show-video">
+            <% if @application.video_link.present? %>
+              <iframe src="<%= youtube_embed_url(@application.video_link) %>" frameborder="0" allowfullscreen></iframe>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv">
+        <% if @application.cv.attached? %>
+          <%= link_to "View CV", rails_blob_path(@application.cv, disposition: "inline"), class: "button" %>
+        <% else %>
+          <p>No CV uploaded</p>
+        <% end %>
+      </div>
+  </template>
+</turbo-stream>

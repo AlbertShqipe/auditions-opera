@@ -1,0 +1,3 @@
+class AuditionApplicationMailer < ApplicationMailer
+
+end

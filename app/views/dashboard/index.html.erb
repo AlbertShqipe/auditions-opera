@@ -1,12 +1,15 @@
-
-<div id="div-index">
+<div id="div-index" data-controller="toggle-index-dashboard">
   <div class="mx-5 mb-4">
     <h1>Dashboard</h1>
     <%= link_to 'Applications', audition_applications_path, class: 'link' %><br>
-    <%= link_to "Charge Dashboard", request.fullpath, class: "link" %>
+    <button data-action="click->toggle-index-dashboard#toggleView" class="submit-button">Toggle View</button>
   </div>
-  <div id="dashboard">
+  <!-- Toggle Button -->
+  <div id="dashboard" data-toggle-index-dashboard-target="table">
     <div data-controller="dashboard" class='scrollable-div'>
+      <div class="mb-3">
+        <%= link_to "Charge Dashboard", request.fullpath, class: "link" %>
+      </div>
       <table id="dashboard-table" class="styled-table">
         <thead>
           <tr>
@@ -75,9 +78,51 @@
       EX.2 In the case of row with id 9: only two have voted but, since Cédric put a star, the final result is YES.</p>
     </div>
   </div>
-  <div id="indxex">
+  <div id="index" data-toggle-index-dashboard-target="index" style="display: none;">
+    <div class="container">
+      <h2>Index Section</h2>
+      <%= form_with url: dashboard_index_path, method: :get, local: true, data: { turbo_frame: "applications_list" } do |form| %>
+        <!-- Vote Filter -->
+        <div class="third">
+          <%= form.label :vote, 'Select Vote Status' %> <br>
+          <%= form.select :vote, options_for_select([ "not set", 'yes', 'maybe', 'star', 'no'], @selected_vote), { prompt: "Everyone" }, { onchange: 'this.form.requestSubmit();' } %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Turbo Frame for live updates -->
+    <turbo-frame id="applications_list">
+      <div>
+        <section class="tiles my-4">
+          <% @applications.each do |application| %>
+            <article class="style1 tile" id="votes_<%= application.id %>">
+              <!-- Profile Image -->
+              <span class="image">
+                <% if application.profile_image.present? %>
+                  <%= image_tag(application.profile_image) %>
+                <% else %>
+                  <%= cl_image_tag application.photo.key %>
+                <% end %>
+              </span>
+
+              <!-- Load show view dynamically in a Turbo Frame -->
+              <a href="<%= audition_application_path(application) %>" data-turbo-frame="_top">
+                <h3 id="text-tiles"><%= application.first_name %> <%= application.last_name %></h3>
+                <br>
+                <h5><%= application.nationality %></h5>
+                <div class="content">
+                  <h5><%= application.height %>m</h5>
+                </div>
+              </a>
+            </article>
+          <% end %>
+        </section>
+      </div>
+    <!-- This is where the show page will load dynamically -->
+    </turbo-frame>
   </div>
 </div>
+    <%# <turbo-frame id="application_show"></turbo-frame> %>
 <!-- Include DataTables -->
 <%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.0.min.js' %>
 <%= javascript_include_tag 'https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js' %>
