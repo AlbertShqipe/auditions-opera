@@ -20,10 +20,11 @@
             <th>Status</th>
             <th>Ethnicity</th>
             <th>Votes</th>
+            <th>Result</th>
             <th>Email</th>
             <th>Video Link</th>
             <th>CV</th>
-            <th>Confirmed Presence</th>
+            <th>Confirmed Attendance</th>
           </tr>
         </thead>
         <tbody></tbody> <!-- DataTables will populate this dynamically -->
@@ -55,11 +56,19 @@
             <td style="border: 1px solid #444; padding: 5px;">YES ✅ (because 'star' is present)</td>
           </tr>
           <tr>
+            <td style="border: 1px solid #444; padding: 5px;">yes, yes, maybe</td>
+            <td style="border: 1px solid #444; padding: 5px;">MAYBE+ 🟡</td>
+          </tr>
+          <tr>
             <td style="border: 1px solid #444; padding: 5px;">yes, maybe, maybe</td>
             <td style="border: 1px solid #444; padding: 5px;">MAYBE+ 🟡</td>
           </tr>
           <tr>
             <td style="border: 1px solid #444; padding: 5px;">maybe, maybe, maybe</td>
+            <td style="border: 1px solid #444; padding: 5px;">MAYBE 🟠</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #444; padding: 5px;">maybe, maybe, no</td>
             <td style="border: 1px solid #444; padding: 5px;">MAYBE 🟠</td>
           </tr>
           <tr>
@@ -85,7 +94,11 @@
         <!-- Vote Filter -->
         <div class="third">
           <%= form.label :vote, 'Select Vote Status' %> <br>
-          <%= form.select :vote, options_for_select([ "not set", 'yes', 'maybe', 'star', 'no'], @selected_vote), { prompt: "Everyone" }, { onchange: 'this.form.requestSubmit();' } %>
+          <% vote_options = ["not set", 'yes'] %>
+          <% vote_options << 'star' if current_user.director? %>
+          <% vote_options += ['maybe', 'no'] %>
+
+          <%= form.select :vote, options_for_select(vote_options, @selected_vote), { prompt: "Everyone" }, { onchange: 'this.form.requestSubmit();' } %>
         </div>
       <% end %>
     </div>
@@ -93,9 +106,9 @@
     <!-- Turbo Frame for live updates -->
     <turbo-frame id="applications_list">
       <div>
-        <section class="tiles my-4">
+        <section class="tiles-index my-4">
           <% @applications.each do |application| %>
-            <article class="style1 tile" id="votes_<%= application.id %>">
+            <article class="style1 tile <%= application.confirmed_attendance ? 'confirmed' : 'not-confirmed' %>" id="votes_<%= application.id %>">
               <!-- Profile Image -->
               <span class="image">
                 <% if application.profile_image.present? %>

@@ -30,67 +30,66 @@ export default class extends Controller {
         { data: "gender", title: "Gender" },
         { data: "application_status", title: "Status" },
         { data: "ethnicity", title: "Ethnicity" },
+        // {
+        //   data: "votes_count",
+        //   title: "Votes",
+        //   render: function (data, type, row) {
+        //     if (!Array.isArray(data)) return data;
+
+        //     // Count votes
+        //     let countStars = data.filter(vote => vote.vote_value === "star").length;
+        //     let countYes = data.filter(vote => vote.vote_value === "yes").length;
+        //     let countMaybe = data.filter(vote => vote.vote_value === "maybe").length;
+        //     let countNo = data.filter(vote => vote.vote_value === "no").length;
+
+        //     let voteResult = `${countStars}⭐ | ${countYes}✅ | ${countMaybe}🟡 | ${countNo}🔴`;
+
+        //     return voteResult;
+        //   }
+        // },
+        //
         {
           data: "votes_count",
           title: "Votes",
-          // render: function (data, type, row) {
-          //   // Mapping user_id to names
-          //   const userNames = {
-          //     32: "Marco",
-          //     33: "Raul",
-          //     34: "Cédric"
-          //   };
-
-          //   if (Array.isArray(data)) {
-          //     return data
-          //       .map((vote) => {
-          //         let userName = userNames[vote.user_id] || `User ${vote.user_id}`;
-          //         return `<strong>${userName}</strong>: ${vote.vote_value}`;
-          //       })
-          //       .join("<br>");
-          //   }
-
-          //   return data;
-          // },
           render: function (data, type, row) {
-            if (!Array.isArray(data)) return data;
+              if (!Array.isArray(data)) return data;
 
-            // Count votes
-            let countStars = data.filter(vote => vote.vote_value === "star").length;
-            let countYes = data.filter(vote => vote.vote_value === "yes").length;
-            let countMaybe = data.filter(vote => vote.vote_value === "maybe").length;
-            let countNo = data.filter(vote => vote.vote_value === "no").length;
+              // Lookup mapping for user names
+              let userNames = {
+                  1: 'MM',  // user_id 1 corresponds to MC
+                  2: 'RS',  // user_id 2 corresponds to RS
+                  3: 'CA',  // user_id 3 corresponds to CA
+                  // Add more user ids and their corresponding names if needed
+              };
 
-            // If there is at least one star, the result is "OUI"
-            if (countStars > 0) {
-              return "YES ✅" + " " + countStars + countYes + countMaybe + countNo;
-            }
+              let voteHtml = '';
 
-            // Determine the result based on conditions
-            if (countYes === 3) {
-              return "YES ✅" + " " + countStars + countYes + countMaybe + countNo;
-            } else if (
-              (countYes === 1 && countMaybe === 2) ||
-              (countYes === 2 && countMaybe === 1) ||
-              (countYes === 1 && countMaybe === 1 && countNo === 1) ||
-              (countYes === 2 && countNo === 1)
-            ) {
-              return "MAYBE+ 🟡" + " " + countStars + countYes + countMaybe + countNo;
-            } else if (
-              (countYes === 1 && countNo === 2) ||
-              countMaybe === 3 ||
-              (countMaybe === 2 && countNo === 1)
-            ) {
-              return "MAYBE 🟠" + " " + countStars + countYes + countMaybe + countNo;
-            } else if (countMaybe === 1 && countNo === 2) {
-              return "NO 🔴" + " " + countStars + countYes + countMaybe + countNo;
-            } else if (countNo === 3) {
-              return "NO 🔴" + " " + countStars + countYes + countMaybe + countNo;
-            } else {
-              return "N/A" + " " + countStars + countYes + countMaybe + countNo;
-            }
+              // Function to convert vote value to corresponding icon
+              function getVoteIcon(voteValue) {
+                  switch (voteValue) {
+                      case 'yes': return '✅';  // 'yes' vote
+                      case 'maybe': return '🟡'; // 'maybe' vote
+                      case 'no': return '🔴'; // 'no' vote
+                      case 'star': return '⭐️'; // 'star' vote
+                      default: return '❓'; // for undefined or not set votes
+                  }
+              }
+
+              // Iterate over the votes data
+              data.forEach(vote => {
+                  let userName = userNames[vote.user_id] || `User ${vote.user_id}`; // Fallback to User ID if no name
+                  let voteIcon = getVoteIcon(vote.vote_value);
+
+                  // Construct HTML for each user's name and their vote icon, side-by-side
+                  voteHtml += `<span style="display: inline-block; margin-right: 10px;">
+                                  <strong>${userName}</strong>: ${voteIcon}
+                                </span>`;
+              });
+
+            return voteHtml;
           }
         },
+        {data: "result", title: "Result"},
         { data: "email",
           title: "Email",
           render: function (data) {
@@ -133,6 +132,17 @@ export default class extends Controller {
         let cellData = (data[index] || "").toString().toLowerCase();
         return cellData.split(/\s+/).includes(searchTerm);
       });
+    });
+
+    // 🔹 Search Function for "Votes" Column
+    $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+      let searchTerm = $("#dashboard-table_filter input").val().trim().toLowerCase();
+      if (!searchTerm) return true; // Show all if search is empty
+
+      let voteColumnIndex = 6; // Adjust based on column position
+      let voteData = data[voteColumnIndex] || "";
+
+      return voteData.toLowerCase().includes(searchTerm);
     });
 
     // 🔹 Trigger search when typing
