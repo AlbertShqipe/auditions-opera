@@ -3,11 +3,12 @@ class DashboardController < ApplicationController
   before_action :check_admin
 
   def index
+    # not_set: 0, yes: 1, maybe: 2, no: 3, star: 4
     vote_mapping = {
       "not set" => nil,
       "yes" => 1,
       "maybe" => 2,
-      "star" => 5,
+      "star" => 4,
       "no" => 3
     }
     vote_value = vote_mapping[params[:vote]]
