@@ -78,27 +78,6 @@ class DashboardController < ApplicationController
 
   private
 
-  # Method to evaluate the result based on the vote counts
-  # def evaluate_votes(yes_count, maybe_count, no_count, star_count)
-  #   # If there's any 'star' vote, return 'YES'
-  #   return "OUI" if star_count > 0
-
-  #   # Specific vote combinations
-  #   if yes_count >= 2 && maybe_count == 0 && no_count == 0
-  #     return "OUI" # All 'YES' votes
-  #   elsif maybe_count >= 2 && no_count == 0
-  #     return "MAYBE+" # More 'MAYBE' votes than 'YES' and 'NO'
-  #   elsif yes_count >= 1 && maybe_count >= 1 && no_count == 0
-  #     return "MAYBE" # Some 'YES' and 'MAYBE' votes, but no 'NO' votes
-  #   elsif no_count >= 2
-  #     return "NON" # More 'NO' votes than 'YES' and 'MAYBE'
-  #   elsif yes_count == 0 && maybe_count == 0 && no_count == 0
-  #     return "INCONNU" # All votes are zero, return 'INCONNU'
-  #   end
-
-  #   # Default fallback in case no condition is met
-  #   return "INCONNU"
-  # end
   def evaluate_votes(yes_count, maybe_count, no_count, star_count)
     # If there is any "star" vote, return "YES"
     if star_count > 0
