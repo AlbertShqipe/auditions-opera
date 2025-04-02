@@ -86,7 +86,7 @@ class DashboardController < ApplicationController
 
     # Check conditions and return the corresponding result
     if yes_count == 3
-      return "OUI ✅"
+      return "YES ✅"
     elsif (yes_count == 1 && maybe_count == 2) ||
           (yes_count == 2 && maybe_count == 1) ||
           (yes_count == 1 && maybe_count == 1 && no_count == 1) ||
@@ -97,11 +97,11 @@ class DashboardController < ApplicationController
           (maybe_count == 2 && no_count == 1)
       return "MAYBE 🟠"
     elsif maybe_count == 1 && no_count == 2
-      return "NON 🔴"
+      return "NO 🔴"
     elsif (no_count == 3 )
-      return "NON 🔴"
+      return "NO 🔴"
     else
-      return "INCONNU ❓"
+      return "UNKNOWN ❓"
     end
   end
 
