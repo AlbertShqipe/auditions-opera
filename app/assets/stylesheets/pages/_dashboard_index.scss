@@ -214,16 +214,16 @@
 // }
 
 .tiles-index article.style1.confirmed > .image:before {
-  background-color: #40ff0090; /* Green for confirmed */
-  border: 5px solid #00a030;
+  background-color: #b2bcae90; /* Green for confirmed */
+  border: 20px solid #00a030;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .tiles-index article.style1.not-confirmed > .image:before {
-  background-color: #ff000090; /* Red for not confirmed */
-  border: 5px solid #850000;
+  background-color: #b09c9c90; /* Red for not confirmed */
+  border: 20px solid #850000;
   display: flex;
   justify-content: center;
   align-items: center;

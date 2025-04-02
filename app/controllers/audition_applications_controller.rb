@@ -63,9 +63,23 @@ class AuditionApplicationsController < ApplicationController
 
     # Filter by votes if selected
     if @selected_vote.present?
-      # Fetch votes based on the current user's ID and selected vote status
-      @audition_applications = @audition_applications.joins(:votes)
-                                                   .where(votes: { user_id: current_user.id, vote_value: @selected_vote })
+      if @selected_vote == "not set"
+        @audition_applications = @audition_applications
+          .left_joins(:votes)
+          .where("votes.user_id IS NULL OR (votes.user_id = ? AND votes.vote_value = ?)", current_user.id, 0)
+      else
+        vote_mapping = {
+          "yes" => 1,
+          "maybe" => 2,
+          "no" => 3,
+          "star" => 4
+        }
+        vote_value = vote_mapping[@selected_vote]
+
+        @audition_applications = @audition_applications
+          .joins(:votes)
+          .where(votes: { user_id: current_user.id, vote_value: vote_value })
+      end
     end
 
     # Fetch votes related to the filtered applications and admins
