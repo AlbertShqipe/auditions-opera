@@ -57,9 +57,13 @@
 .tiles article > .image img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 190px;
   border-radius: 30px;
 
+  @media (max-width: 760px) {
+    height: 100%;
+
+  }
 }
 
 .tiles article > .image:before {
