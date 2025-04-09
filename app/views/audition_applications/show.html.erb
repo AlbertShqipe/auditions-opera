@@ -112,7 +112,15 @@
       <% end %>
     </div>
   <% end %>
-  <%= link_to "Home", root_path, class:"link" %>
+  <%= link_to "Home", root_path, class:"link" %><br>
+  <%= link_to "Delete Application", @application,
+      data: {
+        turbo_method: :delete,
+        controller: "turbo-confirm",
+        action: "click->turbo-confirm#confirm",
+        turbo_confirm_message_value: "Are you sure you want to delete this application?"
+      },
+      class: "link" %>
   <% if current_user&.admin? || current_user&.director? %>
     <div>
       <a href="mailto:<%=@application.user.email%>" class="link">Contact user</a>

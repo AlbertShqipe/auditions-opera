@@ -1,6 +1,6 @@
 class AuditionApplicationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_admin, only: [:index, :destroy]
+  before_action :check_admin, only: [:index]
   before_action :set_application, only: [:show, :update_status]
   before_action :set_application, only: [:confirm_attendance, :update_attendance]
   before_action :authorize_candidate, only: [:confirm_attendance]
@@ -97,8 +97,13 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def show
-    @application = AuditionApplication.find(params[:id])
-    @ethnicities = Ethnicity.all
+    @application = AuditionApplication.find_by(id: params[:id])
+
+    if @application
+      @ethnicities = Ethnicity.all
+    else
+      redirect_to audition_applications_path, alert: "Application not found."
+    end
     # raise
   end
 
@@ -140,8 +145,13 @@ class AuditionApplicationsController < ApplicationController
 
   def destroy
     @application = AuditionApplication.find(params[:id])
-    @application.destroy
-    redirect_to audition_applications_path, notice: "Application deleted."
+
+    if @application.user == current_user || current_user.admin? || current_user.director?
+      @application.destroy
+      redirect_to audition_applications_path, notice: "Application deleted."
+    else
+      redirect_to audition_applications_path, alert: "You are not authorized to delete this application."
+    end
   end
 
   def update_ethnicity
