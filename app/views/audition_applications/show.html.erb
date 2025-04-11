@@ -117,18 +117,20 @@
       <% end %>
     </div>
   <% end %>
-  <%= link_to t("show.btn.delete"), @application,
-      data: {
-        turbo_method: :delete,
-        controller: "turbo-confirm",
-        action: "click->turbo-confirm#confirm",
-        turbo_confirm_message_value: "Are you sure you want to delete this application?"
-      },
-      class: "link" %><br>
   <% if current_user&.admin? || current_user&.director? %>
     <div>
       <a href="mailto:<%=@application.user.email%>" class="link"><%= t("show.btn.contact_user") %></a>
     </div>
+  <% end %>
+  <% if current_user&.candidate?  %>
+    <%= link_to t("show.btn.delete"), @application,
+    data: {
+      turbo_method: :delete,
+      controller: "turbo-confirm",
+      action: "click->turbo-confirm#confirm",
+      turbo_confirm_message_value: "Are you sure you want to delete this application?"
+    },
+    class: "link" %><br>
   <% end %>
   <%= link_to t("show.btn.home"), root_path, class:"link" %>
 </div>

@@ -157,7 +157,7 @@ class AuditionApplicationsController < ApplicationController
   def destroy
     @application = AuditionApplication.find(params[:id])
 
-    if @application.user == current_user || current_user.admin? || current_user.director?
+    if @application.user == current_user
       @application.destroy
       redirect_to audition_applications_path, notice: "Application deleted."
     else

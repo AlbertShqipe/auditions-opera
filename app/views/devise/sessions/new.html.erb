@@ -1,20 +1,22 @@
 <div class="devise_container">
-  <h2>Log in</h2>
+  <h2><%= t("devise.sessions.new.h2") %></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-inputs">
       <%= f.input :email,
                   required: false,
                   autofocus: true,
+                  label: t("devise.sessions.new.email"),
                   input_html: { autocomplete: "email" } %>
       <%= f.input :password,
                   required: false,
+                  label: t("devise.sessions.new.password"),
                   input_html: { autocomplete: "current-password" } %>
-      <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      <%= f.input :remember_me,label: t("devise.sessions.new.remember_me"), as: :boolean if devise_mapping.rememberable? %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Log in", class:"submit-button" %>
+      <%= f.button :submit, t("devise.sessions.new.btn_submit"), class:"submit-button" %>
     </div>
   <% end %>
 

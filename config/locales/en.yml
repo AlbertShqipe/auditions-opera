@@ -143,3 +143,90 @@ en:
     link: "Initiate dashboard"
     index_title: "Index Section"
     select_vote: "Select Vote Status"
+
+  devise:
+    failure:
+      user:
+        already_authenticated: "You are already logged in."
+    confirmations:
+      new:
+        h2: "Resend confirmation instructions"
+        btn_submit: "Resend confirmation instructions"
+    mailer:
+      confirmation_instructions:
+        p1: "Welcome"
+        p2: "You can confirm your account email through the link below:"
+        link: "Confirm my account"
+      email_changed:
+        p1: "Hello"
+        p2: "We're contacting you to notify you that your email is being changed to "
+        p3: "We're contacting you to notify you that your email has been changed to "
+      password_change:
+        p1: "Hello"
+        p2: "We're contacting you to notify you that your password has been changed."
+      reset_password_instructions:
+        p1: "Hello"
+        p2: "Someone has requested a link to change your password. You can do this through the link below."
+        link: "Change my password"
+        p3: "If you didn't request this, please ignore this email."
+        p4: "Your password won't change until you access the link above and create a new one."
+      unlock_instructions:
+        p1: "Hello"
+        p2: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+        p3: "Click the link below to unlock your account:"
+        link: "Unlock my account"
+    passwords:
+      user:
+        no_token: "Jeton de réinitialisation du mot de passe manquant. Veuillez utiliser le lien fourni dans l’e-mail."
+      edit:
+        h2: "Change your password"
+        label1: "New password"
+        hint: "characters minimum"
+        label2: "Confirm your new password"
+        btn_submit: "Change my password"
+      new:
+        h2: "Forgot your password?"
+        email: "Email"
+        btn_submit: "Send me reset password instructions"
+    registrations:
+      edit:
+        h2: "Edit"
+        p1: "Currently waiting confirmation for:"
+        label1: "New password"
+        hint1: "leave it blank if you don't want to change it"
+        label2: "Confirm your new password"
+        hint2: "we need your current password to confirm your changes"
+        btn_submit: "Update"
+        h3: "Cancel my account"
+        div: "Unhappy?"
+        link: "Back"
+        confirm: "Are you sure?"
+      new:
+        h2: "Sign up"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Confirm password"
+        hint: "characters minimum"
+        btn_submit: "Sign up"
+    sessions:
+      user:
+        signed_in: "Sign in successful."
+        signed_out: "Sign out successful."
+      new:
+        h2: "Log in"
+        remember_me: "Remember me"
+        email: "Email"
+        password: "Password"
+        btn_submit: "Log in"
+    shared:
+      links:
+        sign_in: "Log in"
+        sign_up: "Sign up"
+        forgot_password: "Forgot your password?"
+        confirmation_instructions: "Didn't receive confirmation instructions?"
+        unlock_instructions: "Didn't receive unlock instructions?"
+        btn: "Sign in with"
+    unlocks:
+      new:
+        h2: "Resend unlock instructions"
+        btn_submit: "Resend unlock instructions"

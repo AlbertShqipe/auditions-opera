@@ -148,3 +148,90 @@ fr:
     link: "Démarrer le tableau de bord"
     index_title: "Section d’index"
     select_vote: "Sélectionner le statut du vote"
+
+  devise:
+    failure:
+      user:
+        already_authenticated: "Vous êtes déjà connecté."
+    confirmations:
+      new:
+        h2: "Renvoyer les instructions de confirmation"
+        btn_submit: "Renvoyer les instructions de confirmation"
+    mailer:
+      confirmation_instructions:
+        p1: "Bienvenue"
+        p2: "Vous pouvez confirmer votre adresse e-mail en cliquant sur le lien ci-dessous :"
+        link: "Confirmer mon compte"
+      email_changed:
+        p1: "Bonjour"
+        p2: "Nous vous contactons pour vous informer que votre adresse e-mail est en cours de modification vers "
+        p3: "Nous vous contactons pour vous informer que votre adresse e-mail a été modifiée vers "
+      password_change:
+        p1: "Bonjour"
+        p2: "Nous vous contactons pour vous informer que votre mot de passe a été modifié."
+      reset_password_instructions:
+        p1: "Bonjour"
+        p2: "Quelqu’un a demandé un lien pour changer votre mot de passe. Vous pouvez le faire via le lien ci-dessous."
+        link: "Changer mon mot de passe"
+        p3: "Si vous n'avez pas fait cette demande, ignorez cet e-mail."
+        p4: "Votre mot de passe ne sera pas modifié tant que vous n’aurez pas accédé au lien ci-dessus et créé un nouveau mot de passe."
+      unlock_instructions:
+        p1: "Bonjour"
+        p2: "Votre compte a été verrouillé en raison d’un trop grand nombre de tentatives de connexion infructueuses."
+        p3: "Cliquez sur le lien ci-dessous pour déverrouiller votre compte :"
+        link: "Déverrouiller mon compte"
+    passwords:
+      user:
+        no_token: "Missing reset password token. Please use the link in the email."
+      edit:
+        h2: "Changer votre mot de passe"
+        hint: "charactères minimum"
+        label1: "Nouveau mot de passe"
+        label2: "Confirmez votre nouveau mot de passe"
+        btn_submit: "Changer mon mot de passe"
+      new:
+        h2: "Mot de passe oublié ?"
+        email: "Adresse e-mail"
+        btn_submit: "Envoyez-moi les instructions de réinitialisation"
+    registrations:
+      edit:
+        h2: "Modifier"
+        p1: "En attente de confirmation pour :"
+        label1: "Nouveau mot de passe"
+        hint1: "laissez vide si vous ne souhaitez pas le changer"
+        label2: "Confirmez votre nouveau mot de passe"
+        hint2: "nous avons besoin de votre mot de passe actuel pour valider les modifications"
+        btn_submit: "Mettre à jour"
+        h3: "Supprimer mon compte"
+        div: "Pas satisfait ?"
+        link: "Retour"
+        confirm: "Êtes-vous sûr ?"
+      new:
+        h2: "Créer un compte"
+        email: "Adresse e-mail"
+        password: "Mot de passe"
+        password_confirmation: "Confirmer le mot de passe"
+        hint: "caractères minimum"
+        btn_submit: "S'inscrire"
+    sessions:
+      user:
+        signed_in: "Connexion réussie."
+        signed_out: "Déconnexion réussie."
+      new:
+        h2: "Se connecter"
+        remember_me: "Se souvenir de moi"
+        email: "Adresse e-mail"
+        password: "Mot de passe"
+        btn_submit: "Connexion"
+    shared:
+      links:
+        sign_in: "Se connecter"
+        sign_up: "Créer un compte"
+        forgot_password: "Mot de passe oublié ?"
+        confirmation_instructions: "Vous n’avez pas reçu les instructions de confirmation ?"
+        unlock_instructions: "Vous n’avez pas reçu les instructions de déverrouillage ?"
+        btn: "Se connecter avec"
+    unlocks:
+      new:
+        h2: "Renvoyer les instructions de déverrouillage"
+        btn_submit: "Renvoyer les instructions de déverrouillage"

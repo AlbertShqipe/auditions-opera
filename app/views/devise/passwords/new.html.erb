@@ -1,5 +1,5 @@
 <div class="devise_container">
-  <h2>Forgot your password?</h2>
+  <h2><%= t("devise.passwords.new.h2") %></h2>
 
   <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
     <%= f.error_notification %>
@@ -8,11 +8,12 @@
       <%= f.input :email,
                   required: true,
                   autofocus: true,
+                  label: t("devise.passwords.new.email"),
                   input_html: { autocomplete: "email" } %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Send me reset password instructions", class:"submit-button" %>
+      <%= f.button :submit, t("devise.passwords.new.btn_submit"), class:"submit-button" %>
     </div>
   <% end %>
 

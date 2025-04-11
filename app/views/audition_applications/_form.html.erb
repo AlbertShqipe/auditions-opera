@@ -1,6 +1,5 @@
 <div class="container mt-3 mb-3" style="width:70%;" data-controller="file-upload">
   <h2><%= t("audition_form.filling") %></h2>
-  <p>Current locale: <%= I18n.locale %></p>
   <%= simple_form_for(@audition_application || AuditionApplication.new) do |f| %>
     <%= f.input :first_name, label: t("audition_form.form.name"), required: true %>
     <%= f.input :last_name, label: t("audition_form.form.last_name"), required: true %>

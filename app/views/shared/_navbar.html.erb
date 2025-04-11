@@ -43,6 +43,11 @@
     <% end %>
   </div>
   <div class="nav-center" data-controller="lang">
-    <b><%= link_to "Fr", url_for(locale: 'fr'), data: { lang_target: "link", locale: "fr" }, class:"link-nav" %></b>  <b><%= link_to "En", url_for(locale: 'en'), data: { lang_target: "link", locale: "en" }, class:"link-nav mr-5" %></b>
+    <b>
+      <%= link_to "Fr", url_for(locale: 'fr', reset_password_token: params[:reset_password_token]), class: "link-nav", data: { lang_target: "link", locale: "fr" } %>
+    </b>
+    <b>
+      <%= link_to "En", url_for(locale: 'en', reset_password_token: params[:reset_password_token]), class: "link-nav mr-5", data: { lang_target: "link", locale: "en" } %>
+    </b>
   </div>
 </div>
