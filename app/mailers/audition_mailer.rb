@@ -7,8 +7,7 @@ class AuditionMailer < ApplicationMailer
     )
   end
 
-  def admin_email(application)
-    @application = application
+  def admin_email
     mail(
       to: 'albert_nikolli@icloud.com',
       subject: 'New Audition Application'

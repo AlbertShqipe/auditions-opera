@@ -1,21 +1,24 @@
 <div class="container mt-3 mb-3" style="width:70%;" data-controller="file-upload">
-  <h2>Fill up this application form</h2>
+  <h2><%= t("audition_form.filling") %></h2>
+  <p>Current locale: <%= I18n.locale %></p>
   <%= simple_form_for(@audition_application || AuditionApplication.new) do |f| %>
-    <%= f.input :first_name, label: "Prénom", required: true %>
-    <%= f.input :last_name, label: "Nom de famille", required: true %>
-    <%= f.input :date_of_birth, as: :date, label: "Date de naissance", required: true, start_year: 1900, end_year: Date.today.year %>
-    <%= f.input :nationality, label: "Nationalité", required: true %>
-    <%= f.input :address, label: "Address", required: true %>
+    <%= f.input :first_name, label: t("audition_form.form.name"), required: true %>
+    <%= f.input :last_name, label: t("audition_form.form.last_name"), required: true %>
+    <%= f.input :date_of_birth, as: :date, label: t("audition_form.form.birth_date"), required: true, start_year: 1900, end_year: Date.today.year %>
+    <%= f.input :nationality, label: t("audition_form.form.nationality"), required: true %>
+    <%= f.input :address, label: t("audition_form.form.address"), required: true %>
     <%= f.input :height, label: "Taille", required: true %>
-    <%= f.input :gender, collection: ["male", "female", "non-binary", "other"], label: "Sexe", required: true %>
-    <p class="p-input-info">Make sure to upload a youtube video by coping the url, ex: "https://www.youtube.com/watch?v=MOPOb52MkOQ" </p>
-    <%= f.input :video_link, label: "Lien vers la vidéo", required: true %>
+    <%= f.input :gender,
+            collection: AuditionApplication.localized_genders,
+            label: t("audition_form.form.gender"),
+            required: true %>
+    <p class="p-input-info"><%= t("audition_form.form.video_link_placeholder") %></p>
+    <%= f.input :video_link, label: t("audition_form.form.video_link"), required: true %>
 
     <div class="custom-file-container">
-
       <div class="custom-file">
-        <label for="cv-upload" class="custom-file-label">Upload CV</label>
-        <span data-file-upload-target="cvLabel" id="cv-file-name">No file chosen</span>
+        <label for="cv-upload" class="custom-file-label"><%= t("audition_form.input.cv.upload_cv") %></label>
+        <span data-file-upload-target="cvLabel" id="cv-file-name"><%= t("audition_form.input.cv.span_cv") %></span>
         <%= f.input :cv, as: :file, required: true,
                       input_html: { class: "custom-file-input", id: "cv-upload",
                                     "data-action" => "change->file-upload#updateFileName",
@@ -26,8 +29,8 @@
 
       <!-- Profile Image Upload -->
       <div class="custom-file">
-        <label for="profile-image-upload" class="custom-file-label">Upload Photo</label>
-        <span data-file-upload-target="imageLabel" id="profile-image-file-name">No file chosen</span>
+        <label for="profile-image-upload" class="custom-file-label"><%= t("audition_form.input.photo.upload_photo") %></label>
+        <span data-file-upload-target="imageLabel" id="profile-image-file-name"><%= t("audition_form.input.photo.span_photo") %></span>
         <%= f.input :profile_image, as: :file, required: true,
                       input_html: { class: "custom-file-input", id: "profile-image-upload",
                                     "data-action" => "change->file-upload#updateFileName",
@@ -37,49 +40,6 @@
       </div>
     </div>
 
-    <%= f.button :submit, f.object.persisted? ? 'Modifier' : 'Soumettre la candidature', class:"submit-button" %>
+    <%= f.button :submit, f.object.persisted? ? t("audition_form.btn.modify") : t("audition_form.btn.submit"), class:"submit-button" %>
   <% end %>
 </div>
-<%# <script>
-  function updateFileName(input, labelId) {
-    const fileName = input.files.length > 0 ? input.files[0].name : "No file chosen";
-    document.getElementById(labelId).textContent = fileName;
-  }
-  function updateFileName(input, labelId) {
-    const allowedCVTypes = ["application/pdf"];
-    const allowedImageTypes = ["image/png", "image/jpeg", "image/gif," "image/jpg", "image/webp"];
-
-    const file = input.files[0];
-    if (file) {
-      const fileType = file.type;
-      const isCV = input.id === "cv-upload";
-
-      if ((isCV && !allowedCVTypes.includes(fileType)) ||
-          (!isCV && !allowedImageTypes.includes(fileType))) {
-        alert("Invalid file type! Please upload a " + (isCV ? "PDF." : "JPG, PNG, or GIF."));
-        input.value = ""; // Reset file input
-        document.getElementById(labelId).textContent = "No file chosen";
-        return;
-      }
-
-      document.getElementById(labelId).textContent = file.name;
-    }
-  }
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form"); // Select the form
-    form.addEventListener("submit", function (event) {
-      if (!form.checkValidity()) {
-        event.preventDefault(); // Prevent form submission
-        event.stopPropagation();
-
-        // Show custom alert (Bootstrap example)
-        let alertDiv = document.createElement("div");
-        alertDiv.className = "alert alert-danger mt-2";
-        alertDiv.innerHTML = "Veuillez remplir tous les champs obligatoires.";
-        form.prepend(alertDiv); // Insert alert at the top of the form
-      }
-
-      form.classList.add("was-validated"); // Add Bootstrap validation class
-    });
-  });
-</script> %>

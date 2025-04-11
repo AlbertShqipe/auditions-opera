@@ -28,4 +28,111 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  slideshow:
+    link1: "Home"
+    link2: "Applications"
+    link3: "Dashboard"
+    link4: "Final Step"
+
+  sections:
+    link1: "Log in"
+    link2: "Sign Up"
+    link3: "Log out"
+
+  home:
+    main_title: "Ballet de l'Opéra de Lyon Audition"
+    title: "Audition Applications"
+    welcome: "Welcome"
+    status:
+      pending: "Thanks for submitting your form! We are currently reviewing the applications and will get back to you as soon as possible."
+      accepted:
+        confirmed_attendance: "Congratulations, your application has been accepted. You have confirmed your attendance, and we are looking forward to meeting you."
+        unconfirmed_attendance: "Congratulations, your application has been accepted. Please make sure to confirm your attendance before --/--/----."
+      rejected: "We are sorry to inform you that your application has been rejected. <br> We wish you the best of luck with your future auditions."
+    questions: "If you have any questions, please feel free to contact us."
+    good_luck: "Please make sure to fill out the form by following the link below. You will be notified by mail once we have reviewed your application.<br>Best of luck, and thanks for your interest in our company!"
+    btn:
+      confirm_attendance: "Confirm Attendance"
+      application_check: "Check my application"
+      apply_audition: "Apply for the audition"
+      applications: "Applications"
+
+  audition_form:
+    filling: "Fill out this application form"
+    form:
+      name: "First name"
+      last_name: "Last name"
+      birth_date: "Date of birth"
+      nationality: "Nationality"
+      address: "Address"
+      height: "Height"
+      gender: "Gender"
+      gender_collection:
+        male: "Male"
+        female: "Female"
+        other: "Other"
+        non_binary: "Non-binary"
+      video_link: "Video link"
+      video_link_placeholder: "Make sure to upload a youtube video by coping the url, for example: https://www.youtube.com/watch?v=MOPOb52MkOQ"
+    input:
+      cv:
+        upload_cv: "Upload CV"
+        span_cv: "No file chosen"
+      photo:
+        upload_photo: "Upload photo"
+        span_photo: "No file chosen"
+    btn:
+      submit: "Submit application"
+      modify: "Modify"
+      cancel: "Cancel"
+      save_changes: "Save changes"
+
+  show:
+    main_info:
+      birth_date: "Date of birth"
+      nationality: "Nationality"
+      address: "Address"
+      height: "Height"
+      gender: "Gender"
+      status: "Application status"
+      ethnicity: "Ethnicity"
+    input:
+      ethnicity_span: "Ethnicity"
+    btn:
+      edit: "Edit my form"
+      delete: "Delete Application"
+      home: "Home"
+      contact_user: "Contact user"
+      set_ethnicity: "Set Ethnicity"
+    cv:
+      cv_view_btn: "View CV"
+      no_cv: "No CV uploaded"
+
+  audition_application_index:
+    applications: "Audition Applications"
+    filters:
+      text: "Filter Applications"
+      gender: "Select Gender"
+      vote: "Select Vote"
+      btn:
+        filter: "Apply Filter"
+    search:
+      search: "Search"
+      search_name: "Search by name"
+    reset: "Reset"
+
+  confirm_attendance:
+    title: "Confirm Your Attendance"
+    text: "Are you sure you want to confirm your attendance for the audition?"
+    text2: "If you are unable to attend, please provide a reason.<br> We will review your message and get back to you by email to discuss whether a private invitation can be arranged."
+    btn:
+      confirm_attendance: "Confirm Attendance"
+      message: "Send Message"
+    success: "Your attendance has been confirmed successfully."
+    error: "There was an error confirming your attendance. Please try again later."
+    form:
+      contact:
+        name: "Name"
+        email: "Email"
+        message: "Message"
+        send: "Send"

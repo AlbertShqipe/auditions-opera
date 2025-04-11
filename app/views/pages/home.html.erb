@@ -2,42 +2,41 @@
   <% if user_signed_in? %>
     <% if current_user.role != "admin" && current_user.role != "director" %>
       <div class="mt-5">
-        <h1 class="text-center text-h1 title_R">Audition Applications</h1>
+
         <div class="body_p text-center">
           <% if current_user.audition_applications.present? %>
             <h3 class="text-h3">
-              Welcome <%= current_user.audition_applications.first.first_name %> <%= current_user.audition_applications.first.last_name %>
+              <%= t("home.welcome") %> <%= current_user.audition_applications.first.first_name %> <%= current_user.audition_applications.first.last_name %>
             </h3>
 
             <% application = current_user.audition_applications.first %>
 
             <% if application.status == 'pending' %>
               <p class="text-p">
-                Thanks for submitting your form! We are currently reviewing the applications and will get back to you as soon as possible.
+                <%= t("home.status.pending") %>
               </p>
 
             <% elsif application.status == 'accepted' && application.confirmed_attendance == true %>
               <p class="text-p">
-                Congratulations, your application has been accepted. You have confirmed your attendance, and we are looking forward to meeting you.
+                <%= t("home.status.accepted.confirmed_attendance") %>
               </p>
 
             <% elsif application.status == 'accepted' && application.confirmed_attendance == false %>
               <p class="text-p">
-                Congratulations, your application has been accepted. Please make sure to confirm your attendance before --/--/----.
+                <%= t("home.status.accepted.unconfirmed_attendance") %>
               </p>
             <% elsif application.status == 'rejected' %>
               <p class="text-p">
-                We are sorry to inform you that your application has been rejected. <br> We wish you the best of luck with your future auditions.
+                <%= t("home.status.rejected") %>
               </p>
               <p class="text-p">
-                If you have any questions, please feel free to contact us.
+                <%= t("home.questions") %>
               </p>
             <% end %>
 
           <% else %>
             <p class="text-p">
-              Please make sure to fill out the form by following the link below. You will be notified by mail once we have reviewed your application. <br>
-              Best of luck, and thanks for your interest in our company!
+              <%= t("home.good_luck").html_safe %>
             </p>
           <% end %>
         </div>
@@ -49,20 +48,20 @@
             <% if current_user.audition_applications.first.status == 'accepted' %>
               <% if current_user.audition_applications.first.confirmed_attendance == false %>
                 <%= link_to confirm_attendance_audition_application_path(current_user.audition_applications.first), method: :get, class: "button" do %>
-                  <span>Confirm Attendance</span>
+                  <span><%= t("home.btn.confirm_attendance") %></span>
                 <% end %>
               <% end %>
               <%= link_to audition_application_path(current_user.audition_applications.first), class:"button" do%>
-                <span>Check my application</span>
+                <span><%= t("home.btn.application_check") %></span>
               <% end %>
             <% else %>
               <%= link_to audition_application_path(current_user.audition_applications.first), class:"button" do%>
-                <span>Check my application</span>
+                <span><%= t("home.btn.application_check") %></span>
               <% end %>
             <% end %>
           <% else %>
             <%= link_to new_audition_application_path, class:"button" do %>
-              <span>Apply for the audition</span>
+              <span><%= t("home.btn.apply_audition") %></span>
             <% end %>
           <% end %>
         </div>
@@ -76,8 +75,8 @@
           <div class="d-flex justify-content-center" style=" width: 50%; margin: 10px auto">
             <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA", class:"logo-home" %>
           </div>
-          <%= link_to audition_applications_path, class:"button" do %>
-            <span>Applications</span>
+          <%= link_to audition_applications_path, class:"button mt-3" do %>
+            <span><%= t("home.btn.applications") %></span>
           <% end %>
         </div>
       </div>
@@ -87,14 +86,14 @@
       <img class="img-home" src="https://api.opera-lyon.com/assets/q80-w960/bfda6276/bloc_tournees_ballet.jpg">
     </div>
     <div class="title-holder">
-      <h1 class="text-h2">Ballet de l'Opéra de Lyon Audition</h1>
+      <h1 class="text-h2"><%= t("home.main_title") %></h1>
         <p class="body_p">Saison 2025 - 2026</p>
         <p>
           <%= link_to new_user_registration_path, class: "button" do %>
-            <span>Sign up</span>
+            <span><%= t("sections.link2") %></span>
           <% end %>
           <%= link_to new_user_session_path, class:"button" do %>
-            <span>Login</span>
+            <span><%= t("sections.link1") %></span>
           <% end %>
         </p>
     </div>

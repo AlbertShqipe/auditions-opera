@@ -15,16 +15,19 @@
           <% end %>
         </div>
         <div class="main-info">
-          <p class="body_p_show"><strong>Date of Birth:</strong> <%= @application.date_of_birth %></p>
-          <p class="body_p_show"><strong>Nationality:</strong> <%= @application.nationality %></p>
-          <p class="body_p_show"><strong>Address:</strong> <%= @application.address.present? ? @application.address : " "  %></p>
-          <p class="body_p_show"><strong>Height:</strong> <%= @application.height %> cm</p>
-          <p class="body_p_show"><strong>Gender:</strong> <%= @application.gender.humanize %></p>
-          <p class="body_p_show"><strong>Status:</strong> <%= @application.status.humanize %></p>
+          <p class="body_p_show"><strong><%= t("show.main_info.birth_date") %>:</strong> <%= @application.date_of_birth.present? ? @application.date_of_birth : " " %></p>
+          <p class="body_p_show"><strong><%= t("show.main_info.nationality") %>:</strong> <%= @application.nationality.present? ? @application.nationality : " "  %></p>
+          <p class="body_p_show"><strong><%= t("show.main_info.address") %>:</strong> <%= @application.address.present? ? @application.address : " "  %></p>
+          <p class="body_p_show"><strong><%= t("show.main_info.height") %>:</strong> <%= @application.height.present? ? @application.height : " " %> cm</p>
+          <p class="body_p_show"><strong><%= t("show.main_info.gender") %>:</strong> <%= @application.gender.present? ? @application.gender.humanize : " " %></p>
+          <p class="body_p_show"><strong><%= t("show.main_info.status") %>:</strong> <%= @application.status.present? ? @application.status.humanize : " "  %></p>
 
+          <!-- Ethnicity section -->
+          <!--
           <% if current_user.admin? || current_user.director? %>
-            <p class="body_p_show"><strong>Ethnicity:</strong> <%= @application.ethnicity ? @application.ethnicity.name : "Unset" %></p>
+            <p class="body_p_show"><strong><%= t("show.main_info.ethnicity") %>:</strong> <%= @application.ethnicity ? @application.ethnicity.name : "Unset" %></p>
           <% end %>
+          -->
 
         </div>
       </div>
@@ -40,10 +43,10 @@
     <% if @application.cv.attached? %>
       <% if @application.cv.attached? %>
         <%= link_to rails_blob_path(@application.cv, disposition: "inline"), class:"button" do %>
-          <span>View CV</span>
+          <span><%= t("show.cv.cv_view_btn") %></span>
         <% end %>
       <% else %>
-        <p>No CV uploaded</p>
+        <p><%= t("show.cv.no_cv") %></p>
       <% end %>
     <% end %>
   </div>
@@ -93,12 +96,14 @@
     <% end %>
     <% if @application.ethnicity == 'not-set' || @application.ethnicity == nil %>
       <!-- Change Ethnicity -->
+      <!--
       <div class="ethnicity-form">
         <%= simple_form_for(@application) do |f| %>
-          <%= f.input :ethnicity_id, collection: Ethnicity.all.collect { |e| [e.name, e.id] }, prompt: "Select Ethnicity" %>
-          <%= f.button :submit, 'Set Ethnicity', class: "submit-button" %>
+          <%= f.input :ethnicity_id, collection: Ethnicity.all.collect { |e| [e.name, e.id] }, prompt: t("show.input.ethnicity_span") %>
+          <%= f.button :submit, t("show.btn.set_ethnicity"), class: "submit-button" %>
         <% end %>
       </div>
+      -->
     <% end %>
     <div>
       <%= link_to "Applications", audition_applications_path, class:"link" %>
@@ -107,23 +112,23 @@
     <div>
       <% if @application.status != "accepted" %>
         <%= link_to edit_audition_application_path(@application), class:"link" do %>
-          <span>Edit my form</span>
+          <span><%= t("show.btn.edit") %></span>
         <% end %>
       <% end %>
     </div>
   <% end %>
-  <%= link_to "Home", root_path, class:"link" %><br>
-  <%= link_to "Delete Application", @application,
+  <%= link_to t("show.btn.delete"), @application,
       data: {
         turbo_method: :delete,
         controller: "turbo-confirm",
         action: "click->turbo-confirm#confirm",
         turbo_confirm_message_value: "Are you sure you want to delete this application?"
       },
-      class: "link" %>
+      class: "link" %><br>
   <% if current_user&.admin? || current_user&.director? %>
     <div>
-      <a href="mailto:<%=@application.user.email%>" class="link">Contact user</a>
+      <a href="mailto:<%=@application.user.email%>" class="link"><%= t("show.btn.contact_user") %></a>
     </div>
   <% end %>
+  <%= link_to t("show.btn.home"), root_path, class:"link" %>
 </div>

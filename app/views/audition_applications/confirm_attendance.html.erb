@@ -1,38 +1,38 @@
 <div class="confirm_attendance_container" data-controller="toggle-form">
-  <h1>Confirm Your Attendance</h1>
+  <h1><%= t("confirm_attendance.title") %></h1>
 
-  <p>Are you sure you want to confirm your attendance for the audition?</p>
+  <p><%= t("confirm_attendance.text") %></p>
 
   <%= form_with url: update_attendance_audition_application_path(@application), method: :patch do |form| %>
-    <%= form.submit "Confirm Attendance", class: "submit-button" %>
+    <%= form.submit t("confirm_attendance.btn.confirm_attendance"), class: "submit-button" %>
   <% end %>
 
-  <p>If you are unable to attend, please provide a reason. We will review your message and get back to you by email to discuss whether a private invitation can be arranged.</p>
+  <p><%= t("confirm_attendance.text2").html_safe %></p>
 
   <!-- Toggle Button -->
   <button data-action="click->toggle-form#toggle" class="btn btn-primary mt-3">
-    Send a Message
+    <%= t("confirm_attendance.btn.message").html_safe %>
   </button>
 
   <!-- The Form, initially hidden -->
   <div data-toggle-form-target="form" class="hidden">
     <%= form_with class: "form-message", data: { toggle_form_target: "form" } do |form| %>
       <div class="field">
-        <%= form.label :name %>
+        <%= form.label :name, t("confirm_attendance.form.contact.name") %>
         <%= form.text_field :name %>
       </div>
 
       <div class="field">
-        <%= form.label :email %>
+        <%= form.label :email, t("confirm_attendance.form.contact.email") %>
         <%= form.email_field :email %>
       </div>
 
       <div class="field">
-        <%= form.label :message %>
+        <%= form.label :message, t("confirm_attendance.form.contact.message") %>
         <%= form.text_area :message %>
       </div>
 
-      <%= form.submit "Submit", class:"submit-button" %>
+      <%= form.submit t("confirm_attendance.form.contact.send"), class:"submit-button" %>
     <% end %>
   </div>
 </div>

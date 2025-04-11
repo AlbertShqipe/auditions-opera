@@ -120,9 +120,20 @@ class AuditionApplicationsController < ApplicationController
       redirect_to root_path, notice: "Application submitted successfully! Check your email for confirmation. Spam folder too!"
 
       # Notify the user about the application submission
-        AuditionMailer.confirmation_email(@application).deliver_now
-        # Notify the admin about the new application
-        AuditionMailer.admin_email(@application).deliver_now
+      AuditionMailer.confirmation_email(@application).deliver_now
+
+      # Notify the admin about the number of applications every 10 applications
+      pending_count = AuditionApplication.where(status: "pending").count
+      if pending_count % 10 == 0
+        record = AdminNotification.find_or_initialize_by(kind: "application_milestone")
+        last_notified = record.value || 0
+
+        if pending_count > last_notified
+          AuditionMailer.admin_email.deliver_now # Use deliver_later for safety with bulk
+          record.update(value: pending_count)
+        end
+      end
+        # AuditionMailer.admin_email(@application).deliver_now
     else
       render :new, alert: "Something went wrong. Please check the form and try again."
     end

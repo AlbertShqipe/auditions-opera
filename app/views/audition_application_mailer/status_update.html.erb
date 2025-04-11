@@ -1,7 +1,7 @@
 <% if @application.status == "accepted" %>
   <div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; max-width: 1000px; margin: auto;">
     <h1 style="color: #333;">Audition Application Update</h1>
-    <p>Dear <%= @application.first_name %> <%= @application.last_name %>,</p>
+    <p><%= t("status.dear") %> <%= @application.first_name %> <%= @application.last_name %>,</p>
 
     <p>We are pleased to inform you that your application for the Ballet de l'Opéra de Lyon audition has been accepted! Congratulations on reaching this stage.</p>
 

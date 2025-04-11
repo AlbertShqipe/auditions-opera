@@ -3,7 +3,10 @@
   flex-direction: column;
   align-items: center;
   // justify-content: center;
-  height: 100vh;
+  // height: 100vh;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .form-message {
@@ -13,6 +16,8 @@
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
 
 
   /* Input fields */
@@ -20,21 +25,21 @@
   input[type="email"],
   textarea {
     width: 100%;
-    padding: 12px;
+    padding: 6px;
     margin: 10px 0 20px 0;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 0.9em;
     box-sizing: border-box;
     transition: border 0.3s;
   }
 
   /* Labels */
   label {
-    font-size: 1.1em;
+    font-size: 0.9em;
     color: #ffffff;
     display: block;
-    margin-bottom: 8px;
+    // margin-bottom: 4px;
   }
 
   input[type="text"]:focus,
@@ -42,6 +47,12 @@
   textarea:focus {
     border-color: #007BFF;
     outline: none;
+  }
+
+  /* Submit button */
+  input[type="submit"] {
+    margin-bottom: 0;
+    padding: 8px 16px;
   }
 
 }

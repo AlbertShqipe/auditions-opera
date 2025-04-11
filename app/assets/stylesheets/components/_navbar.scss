@@ -1,10 +1,11 @@
 .navbar-lewagon {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 1fr 1fr auto;
   align-items: center;
   padding: 0 40px;
   background: rgb(0, 0, 0);
   position: relative;
+  z-index: 2000;
 
   .dropdown-menu {
     background: rgb(0, 0, 0);
@@ -26,6 +27,26 @@
   @media (max-width:760px) {
     padding:0;
   }
+}
+
+.nav-center {
+  text-align: center;
+
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 5px;
+    transition: background 0.3s;
+
+    &:hover {
+      background: transparent ;
+    }
+  }
+}
+
+.locale-active {
+  color: white !important;
+  border-bottom: 2px solid rgb(255, 255, 255);
 }
 
 .navbar-lewagon::after {

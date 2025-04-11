@@ -58,7 +58,7 @@ class DashboardController < ApplicationController
         nationality: app.nationality,
         gender: app.gender,
         application_status: app.status,
-        ethnicity: app.ethnicity&.name || "N/A",
+        # ethnicity: app.ethnicity&.name || "N/A",
         votes_count: app.votes.map { |vote|
           {
             user_id: vote.user_id,

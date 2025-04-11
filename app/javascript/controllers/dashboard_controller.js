@@ -28,7 +28,7 @@ initDataTable() {
             { data: "nationality", title: "Nationality" },
             { data: "gender", title: "Gender" },
             { data: "application_status", title: "Status" },
-            { data: "ethnicity", title: "Ethnicity" },
+            // { data: "ethnicity", title: "Ethnicity" },
             {
                 data: "votes_count",
                 title: "Votes",
