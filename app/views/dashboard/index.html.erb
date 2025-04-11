@@ -1,14 +1,13 @@
 <div id="div-index" data-controller="toggle-index-dashboard">
   <div class="mx-5 mb-4">
-    <h1>Dashboard</h1>
-    <%= link_to 'Applications', audition_applications_path, class: 'link' %><br>
-    <button data-action="click->toggle-index-dashboard#toggleView" class="submit-button">Toggle View</button>
+    <h1><%= t("dashboard.title") %></h1>
+    <button data-action="click->toggle-index-dashboard#toggleView" class="submit-button"><%= t("dashboard.toggle_btn") %></button>
   </div>
   <!-- Toggle Button -->
   <div id="dashboard" data-toggle-index-dashboard-target="table">
     <div data-controller="dashboard" class='scrollable-div'>
       <div class="mb-3">
-        <%= link_to "Charge Dashboard", request.fullpath, class: "link" %>
+        <%= link_to t("dashboard.link"), request.fullpath, class: "link" %>
       </div>
       <table id="dashboard-table" class="styled-table">
         <thead>
@@ -81,19 +80,16 @@
           </tr>
         </tbody>
       </table>
-      <p padding="5px">In the Votes column, the numbers represent from left to right "star", "yes", "maybe", "no".<br>
-      In case of a star from Cédric, the final result is going to be YES.<br>
-      Ex.1 In the case of row with id 1: 0 star, 0 yes, 1 maybe, 2 no... therefore the final result is NO.<br>
-      EX.2 In the case of row with id 9: only two have voted but, since Cédric put a star, the final result is YES.</p>
     </div>
+
   </div>
   <div id="index" data-toggle-index-dashboard-target="index" style="display: none;">
     <div class="container">
-      <h2>Index Section</h2>
+      <h2><%= t("dashboard.index_title") %></h2>
       <%= form_with url: dashboard_index_path, method: :get, local: true, data: { turbo_frame: "applications_list" } do |form| %>
         <!-- Vote Filter -->
         <div class="third">
-          <%= form.label :vote, 'Select Vote Status' %> <br>
+          <%= form.label :vote, t("dashboard.select_vote") %> <br>
           <% vote_options = ["not set", 'yes'] %>
           <% vote_options << 'star' if current_user.director? %>
           <% vote_options += ['maybe', 'no'] %>

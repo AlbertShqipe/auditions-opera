@@ -141,3 +141,10 @@ fr:
         email: "E-mail"
         message: "Message"
         send: "Envoyer"
+
+  dashboard:
+    title: "Tableau de bord"
+    toggle_btn: "Basculer la vue"
+    link: "Démarrer le tableau de bord"
+    index_title: "Section d’index"
+    select_vote: "Sélectionner le statut du vote"
