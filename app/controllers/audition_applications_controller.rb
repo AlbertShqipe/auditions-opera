@@ -7,18 +7,19 @@ class AuditionApplicationsController < ApplicationController
 
   def confirm_attendance
     if @application.accepted? && !@application.confirmed_attendance
+      flash[:notice] = t("controllers.audition_application.confirm_attendance.success")
       render :confirm_attendance
     else
-      redirect_to audition_application_path(@application), alert: "You cannot confirm your attendance because your application is already confirmed."
+      redirect_to audition_application_path(@application), alert: t("controllers.audition_application.confirm_attendance.error")
     end
   end
 
   # Handle the confirmation of attendance (PATCH request)
   def update_attendance
     if @application.update(confirmed_attendance: true)
-      redirect_to audition_application_path(@application), notice: "Attendance confirmed successfully!"
+      redirect_to audition_application_path(@application), notice: t("controllers.audition_application.update_attendance.success")
     else
-      redirect_to audition_application_path(@application), alert: "There was an issue confirming your attendance."
+      redirect_to audition_application_path(@application), alert: t("controllers.audition_application.update_attendance.error")
     end
   end
 
@@ -27,10 +28,10 @@ class AuditionApplicationsController < ApplicationController
     Rails.logger.debug "Received status: #{params[:status]}"
 
     if @application.update(status: params[:status])
-      redirect_to @application, notice: "Status updated to #{params[:status].humanize}."
+      redirect_to @application, notice: t("controllers.audition_application.update_status.success", status: params[:status].humanize)
       AuditionMailer.status_update_email(@application).deliver_now
     else
-      redirect_to @application, alert: "Failed to update status."
+      redirect_to @application, alert: t("controllers.audition_application.update_status.error")
     end
   end
 
@@ -102,7 +103,7 @@ class AuditionApplicationsController < ApplicationController
     if @application
       @ethnicities = Ethnicity.all
     else
-      redirect_to audition_applications_path, alert: "Application not found."
+      redirect_to audition_applications_path, alert: t("controllers.audition_application.show.error")
     end
     # raise
   end
@@ -117,7 +118,7 @@ class AuditionApplicationsController < ApplicationController
     @application.status = "pending"
 
     if @application.save
-      redirect_to root_path, notice: "Application submitted successfully! Check your email for confirmation. Spam folder too!"
+      redirect_to root_path, notice: t("controllers.audition_application.create.success")
 
       # Notify the user about the application submission
       AuditionMailer.confirmation_email(@application).deliver_now
@@ -135,7 +136,8 @@ class AuditionApplicationsController < ApplicationController
       end
         # AuditionMailer.admin_email(@application).deliver_now
     else
-      render :new, alert: "Something went wrong. Please check the form and try again."
+      flash[:alert] = t("controllers.audition_application.create.error")
+      render :new
     end
   end
 
@@ -148,9 +150,9 @@ class AuditionApplicationsController < ApplicationController
     previous_status = @application.status # Store the previous status
 
     if @application.update(application_params) # This will handle updating the status along with other attributes
-      redirect_to audition_application_path, notice: "Application updated!"
+      redirect_to audition_application_path, notice: t("controllers.audition_application.update.success")
     else
-      redirect_to audition_application_path, alert: "Failed to update the application. Contact support."
+      redirect_to audition_application_path, alert: t("controllers.audition_application.update.error")
     end
   end
 
@@ -159,9 +161,9 @@ class AuditionApplicationsController < ApplicationController
 
     if @application.user == current_user
       @application.destroy
-      redirect_to audition_applications_path, notice: "Application deleted."
+      redirect_to audition_applications_path, notice: t("controllers.audition_application.destroy.success")
     else
-      redirect_to audition_applications_path, alert: "You are not authorized to delete this application."
+      redirect_to audition_applications_path, alert: t("controllers.audition_application.destroy.error")
     end
   end
 
@@ -181,13 +183,13 @@ class AuditionApplicationsController < ApplicationController
 
   def authorize_candidate
     unless current_user.candidate?
-      redirect_to root_path, alert: "You are not authorized to confirm attendance."
+      redirect_to root_path, alert: t("controllers.audition_application.authorize_candidate.error")
     end
   end
 
   def set_application
     @application = AuditionApplication.find_by(id: params[:id])
-    redirect_to audition_applications_path, alert: "Application not found" if @application.nil?
+    redirect_to audition_applications_path, alert: t("controllers.audition_application.set_application.not_found") if @application.nil?
   end
 
   def application_params
@@ -200,6 +202,6 @@ class AuditionApplicationsController < ApplicationController
 
 
   def check_admin
-    redirect_to root_path, alert: "Access denied!" unless current_user&.admin? || current_user&.director?
+    redirect_to root_path, alert: t("controllers.audition_application.check_admin") unless current_user&.admin? || current_user&.director?
   end
 end

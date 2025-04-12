@@ -17,7 +17,7 @@ class VotesController < ApplicationController
 
     # Ensure only admin can vote
     unless @admin.admin? || @admin.director?
-      redirect_to audition_applications_path, alert: "You are not authorized to vote." and return
+      redirect_to audition_applications_path, alert: t("controllers.votes.update.error") and return
     end
 
 
@@ -40,11 +40,11 @@ class VotesController < ApplicationController
                                           partial: "votes/vote_status",
                                           locals: { vote: @vote, application: @application, votes: @votes })
         end
-        format.html { redirect_to audition_applications_path, notice: "Vote cast successfully." }
+        format.html { redirect_to audition_applications_path, notice: t("controllers.votes.update.success") }
       end
     else
       respond_to do |format|
-        format.html { redirect_to audition_applications_path, alert: "Vote failed." }
+        format.html { redirect_to audition_applications_path, alert: t("controllers.votes.update.error1") }
         format.turbo_stream
       end
     end
@@ -53,6 +53,6 @@ class VotesController < ApplicationController
   private
 
   def check_admin
-    redirect_to root_path, alert: "Access denied!" unless current_user&.admin? || current_user&.director?
+    redirect_to root_path, alert: t("controllers.audition_application.check_admin") unless current_user&.admin? || current_user&.director?
   end
 end

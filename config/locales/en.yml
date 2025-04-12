@@ -148,6 +148,7 @@ en:
     failure:
       user:
         already_authenticated: "You are already logged in."
+        unauthenticated: "You need to sign in or sign up before continuing."
     confirmations:
       new:
         h2: "Resend confirmation instructions"
@@ -177,7 +178,8 @@ en:
         link: "Unlock my account"
     passwords:
       user:
-        no_token: "Jeton de réinitialisation du mot de passe manquant. Veuillez utiliser le lien fourni dans l’e-mail."
+        no_token: "Missing reset password token. Please use the link in the email."
+        send_instructions: "You will receive an email with instructions to reset your password in a few minutes."
       edit:
         h2: "Change your password"
         label1: "New password"
@@ -230,3 +232,36 @@ en:
       new:
         h2: "Resend unlock instructions"
         btn_submit: "Resend unlock instructions"
+
+  controllers:
+    audition_application:
+      confirm_attendance:
+        success: "Please confirm your attendance for the audition."
+        error: "You cannot confirm your attendance because your application is still pending or it has been rejected."
+      update_attendance:
+        success: "Attendance confirmed successfully."
+        error: "There was an issue confirming your attendance."
+      update_status:
+        success: "Status updated to %{status}."
+        error: "There was an issue updating the status."
+      show:
+        error: "Application not found."
+      create:
+        success: "Application submitted successfully! Check your email for confirmation. Spam folder too!"
+        error: "Something went wrong. Please check the form and try again."
+      update:
+        success: "Application updated successfully."
+        error: "There was an error updating your application. Contact support."
+      destroy:
+        success: "Application deleted successfully."
+        error: "There was an error deleting your application. Please try again later."
+      authorize_candidate:
+        error: "You are not authorized to confirm attendance."
+      set_application:
+        not_found: "Application not found."
+      check_admin: "Access denied!"
+    votes:
+      update:
+        success: "Vote cast successfully."
+        error: "You are not authorized to vote."
+        error1: "Vote failed"

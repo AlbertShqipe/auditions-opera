@@ -153,6 +153,7 @@ fr:
     failure:
       user:
         already_authenticated: "Vous êtes déjà connecté."
+        unauthenticated: "Vous devez vous connecter ou créer un compte avant de continuer."
     confirmations:
       new:
         h2: "Renvoyer les instructions de confirmation"
@@ -182,7 +183,8 @@ fr:
         link: "Déverrouiller mon compte"
     passwords:
       user:
-        no_token: "Missing reset password token. Please use the link in the email."
+        no_token: "Token de réinitialisation de mot de passe manquant. Veuillez utiliser le lien dans l'e-mail."
+        send_instructions: "Vous allez recevoir un e-mail contenant les instructions pour réinitialiser votre mot de passe dans quelques minutes."
       edit:
         h2: "Changer votre mot de passe"
         hint: "charactères minimum"
@@ -235,3 +237,36 @@ fr:
       new:
         h2: "Renvoyer les instructions de déverrouillage"
         btn_submit: "Renvoyer les instructions de déverrouillage"
+
+  controllers:
+    audition_application:
+      confirm_attendance:
+        success: "Veuillez confirmer votre présence à l’audition."
+        error: "Vous ne pouvez pas confirmer votre présence car votre candidature est toujours en attente attente ou a été refusée."
+      update_attendance:
+        success: "Présence confirmée avec succès."
+        error: "Un problème est survenu lors de la confirmation de votre présence."
+      update_status:
+        success: "Statut de la candidature %{status}."
+        error: "Une erreur est survenue lors de la mise à jour du statut de la candidature. Veuillez réessayer plus tard."
+      show:
+        error: "Aucune candidature trouvée."
+      create:
+        success: "Candidature soumise avec succès. Veuillez vérifier votre e-mail pour plus d'informations. Dans les spams aussi."
+        error: "Une erreur est survenue lors de la soumission de votre candidature. Contrôlez que vous avez rempli tous les champs et réessayez."
+      update:
+        success: "Candidature mise à jour avec succès."
+        error: "Une erreur est survenue lors de la mise à jour de votre candidature. Veuillez contacter le support."
+      destroy:
+        success: "Candidature supprimée avec succès."
+        error: "Une erreur est survenue lors de la suppression de votre candidature. Veuillez réessayer plus tard."
+      authorize_candidate:
+        error: "Vous n'êtes pas autorisé à accéder à cette candidature."
+      set_application:
+        not_found: "Aucune candidature trouvée."
+      check_admin: "Accès refusé!"
+    votes:
+      update:
+        success: "Vote enregistré avec succès."
+        error: "Vous n’êtes pas autorisé à voter."
+        error1: "Échec du vote."

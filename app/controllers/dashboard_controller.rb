@@ -52,11 +52,18 @@ class DashboardController < ApplicationController
       no_count = app.votes.where(vote_value: "no").count
       star_count = app.votes.where(vote_value: "star").count
 
+      gender_labels = {
+        "male" => "Male",
+        "female" => "Woman",
+        "non_binary" => "Non-binary",
+        "other" => "Other"
+      }
+
       {
         id: app.id,
         name: app.first_name + ' ' + app.last_name,
         nationality: app.nationality,
-        gender: app.gender,
+        gender: gender_labels[app.gender] || app.gender.capitalize,
         application_status: app.status,
         # ethnicity: app.ethnicity&.name || "N/A",
         votes_count: app.votes.map { |vote|
@@ -106,6 +113,6 @@ class DashboardController < ApplicationController
   end
 
   def check_admin
-    redirect_to root_path, alert: "Access denied!" unless current_user&.admin? || current_user&.director?
+    redirect_to root_path, alert: t("controllers.audition_application.check_admin") unless current_user&.admin? || current_user&.director?
   end
 end
