@@ -33,7 +33,7 @@ class AuditionMailer < ApplicationMailer
 
     mail(
       to: "albert_nikolli@icloud.com", # Replace with your admin email
-      from: email,
+      from: "no-reply@albert-nikolli-certification-2024.fr",
       subject: "New Contact Message from #{name}"
     )
   end
