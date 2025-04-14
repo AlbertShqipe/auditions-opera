@@ -29,12 +29,12 @@ class AuditionMailer < ApplicationMailer
   def contact_message(name, email, message)
     @name = name
     @message = message
-    @from = email
+    @email = email
 
     mail(
       to: "albert_nikolli@icloud.com", # Replace with your admin email
       from: "no-reply@albert-nikolli-certification-2024.fr",
-      subject: "New Contact Message from #{name}"
+      subject: "#{name} cannot attend the audition",
     )
   end
 end
