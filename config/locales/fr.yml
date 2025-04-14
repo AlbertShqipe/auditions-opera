@@ -265,6 +265,7 @@ fr:
       set_application:
         not_found: "Aucune candidature trouvée."
       check_admin: "Accès refusé!"
+      confirm_attendance_message: "Votre message a été envoyé ! Nous vous contacterons dès que possible."
     votes:
       update:
         success: "Vote enregistré avec succès."

@@ -21,7 +21,7 @@ class AuditionApplicationsController < ApplicationController
 
     AuditionMailer.contact_message(name, email, message).deliver_now
 
-    flash[:notice] = "Your message has been sent!"
+    flash[:notice] = t("controllers.audition_application.confirm_attendance_message")
     redirect_to audition_application_path(params[:id])
   end
 

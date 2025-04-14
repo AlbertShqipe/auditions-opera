@@ -260,6 +260,8 @@ en:
       set_application:
         not_found: "Application not found."
       check_admin: "Access denied!"
+      confirm_attendance_message: "Your message has been sent! We will get back to you as soon as possible."
+
     votes:
       update:
         success: "Vote cast successfully."
