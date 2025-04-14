@@ -16,7 +16,7 @@
 
   <!-- The Form, initially hidden -->
   <div data-toggle-form-target="form" class="hidden">
-    <%= form_with class: "form-message", data: { toggle_form_target: "form" } do |form| %>
+    <%= form_with url: confirm_attendance_message_audition_application_path(@application), method: :post, class: "form-message", data: { toggle_form_target: "form" } do |form| %>
       <div class="field">
         <%= form.label :name, t("confirm_attendance.form.contact.name") %>
         <%= form.text_field :name %>

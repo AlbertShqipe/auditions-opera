@@ -14,6 +14,17 @@ class AuditionApplicationsController < ApplicationController
     end
   end
 
+  def confirm_attendance_message
+    name = params[:name]
+    email = params[:email]
+    message = params[:message]
+
+    AuditionMailer.contact_message(name, email, message).deliver_now
+
+    flash[:notice] = "Your message has been sent!"
+    redirect_to audition_application_path(params[:id])
+  end
+
   # Handle the confirmation of attendance (PATCH request)
   def update_attendance
     if @application.update(confirmed_attendance: true)

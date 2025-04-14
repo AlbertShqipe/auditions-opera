@@ -1,4 +1,5 @@
 class AuditionMailer < ApplicationMailer
+
   def confirmation_email(application)
     @application = application
     mail(
@@ -23,5 +24,17 @@ class AuditionMailer < ApplicationMailer
             "Thank You for Your Application – Audition Update"
           end
         )
+  end
+
+  def contact_message(name, email, message)
+    @name = name
+    @message = message
+    @from = email
+
+    mail(
+      to: "albert_nikolli@icloud.com", # Replace with your admin email
+      from: email,
+      subject: "New Contact Message from #{name}"
+    )
   end
 end
