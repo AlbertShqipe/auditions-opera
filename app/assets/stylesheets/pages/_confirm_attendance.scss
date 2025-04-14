@@ -7,18 +7,23 @@
   width: 90%;
   margin: 0 auto;
   text-align: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 20px;
+
+  }
 }
 
 .form-message {
-  width: 100%;
+  width: 500px;
   margin: 20px auto;
   background: #7c7c7c45;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: left;
-  position: relative;
-
+  // position: relative;
 
   /* Input fields */
   input[type="text"],
@@ -55,6 +60,11 @@
     padding: 8px 16px;
   }
 
+  @media (max-width: 768px) {
+    width: 300px ;
+    margin: 10px auto;
+
+  }
 }
 
 /* Form title */
