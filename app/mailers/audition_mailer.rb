@@ -11,6 +11,7 @@ class AuditionMailer < ApplicationMailer
   def admin_email
     mail(
       to: 'albert_nikolli@icloud.com',
+      bcc: 'candrieux@opera-lyon.com',
       subject: 'New Audition Application'
     )
   end
