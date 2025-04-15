@@ -3,6 +3,20 @@ class DashboardController < ApplicationController
   before_action :check_admin
 
   def index
+    # Fetch all admins
+    @audition_applications = AuditionApplication.all
+    @admins = User.where(role: [:admin, :director])
+    # Fetch votes related to the filtered applications and admins
+    votes = Vote.where(user_id: @admins.pluck(:id), audition_application_id: @audition_applications.pluck(:id))
+
+    # Create a lookup hash for votes: { [audition_application_id, user_id] => vote_value }
+    votes_lookup = votes.index_by { |v| [v.audition_application_id, v.user_id] }
+    @votes = @audition_applications.each_with_object({}) do |application, hash|
+      hash[application.id] = @admins.each_with_object({}) do |admin, inner_hash|
+        inner_hash[admin.email] = votes_lookup[[application.id, admin.id]]&.vote_value || "not_set"
+      end
+    end
+
     # not_set: 0, yes: 1, maybe: 2, no: 3, star: 4
     vote_mapping = {
       "not set" => nil,

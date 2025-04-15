@@ -160,10 +160,21 @@ class AuditionApplicationsController < ApplicationController
     @application = AuditionApplication.find(params[:id])
     previous_status = @application.status # Store the previous status
 
-    if @application.update(application_params) # This will handle updating the status along with other attributes
-      redirect_to audition_application_path, notice: t("controllers.audition_application.update.success")
+
+    if params[:audition_application_status].present?
+      # Only updating status
+      if @application.update(status: params[:audition_application_status])
+        flash[:notice] = t("controllers.audition_application.update.success")
+      else
+        flash[:alert] = t("controllers.audition_application.update.error")
+      end
     else
-      redirect_to audition_application_path, alert: t("controllers.audition_application.update.error")
+      # Normal update with full application_params
+      if @application.update(application_params)
+        redirect_to audition_application_path(@application), notice: t("controllers.audition_application.update.success")
+      else
+        redirect_to audition_application_path(@application), alert: t("controllers.audition_application.update.error")
+      end
     end
   end
 
@@ -185,6 +196,7 @@ class AuditionApplicationsController < ApplicationController
       redirect_to @application, alert: "Failed to update ethnicity."
     end
   end
+
 
   private
 

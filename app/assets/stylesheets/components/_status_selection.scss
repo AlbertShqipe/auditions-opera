@@ -1,0 +1,17 @@
+.status-buttons {
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+  }
+  .status-button {
+    width: 100%;
+    margin-right: 0.5rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

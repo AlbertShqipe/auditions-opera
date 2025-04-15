@@ -12,6 +12,18 @@ class PagesController < ApplicationController
     # Your code here
   end
 
+  def final_step
+    # Your code here
+    @applications = AuditionApplication.all
+
+    # Fetch all applications with different statuses
+    @pending_applications = AuditionApplication.where(status: "pending")
+    @rejected_applications = AuditionApplication.where(status: "rejected")
+    @accepted_applications = AuditionApplication.where(status: "accepted")
+
+
+  end
+
   private
 
   def check_admin

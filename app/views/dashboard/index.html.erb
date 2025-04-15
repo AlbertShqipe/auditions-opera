@@ -105,6 +105,7 @@
         <section class="tiles-index my-4">
           <% @applications.each do |application| %>
             <article class="style1 tile <%= application.confirmed_attendance ? 'confirmed' : 'not-confirmed' %>" id="votes_<%= application.id %>">
+              <%= render "votes/vote_status", application: application %>
               <!-- Profile Image -->
               <span class="image">
                 <% if application.profile_image.present? %>
@@ -123,6 +124,16 @@
                   <h5><%= application.height %>m</h5>
                 </div>
               </a>
+              <% if current_user.admin? || current_user.director? %>
+                <div class="status-buttons d-flex justify-content-center">
+                  <% ['accepted', 'rejected'].each do |status| %>
+                    <%= form_with model: application, url: audition_application_path(application), method: :patch, local: true do |f| %>
+                      <%= hidden_field_tag :audition_application_status, status %>
+                      <%= f.submit status.capitalize, class: "btn btn-#{status == 'accepted' ? 'success' : 'danger'} mx-1", value: "#{status == 'accepted' ? 'Accept' : 'Reject'}" %>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
             </article>
           <% end %>
         </section>
