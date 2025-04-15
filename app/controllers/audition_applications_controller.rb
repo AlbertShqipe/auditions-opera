@@ -225,6 +225,6 @@ class AuditionApplicationsController < ApplicationController
 
 
   def check_admin
-    redirect_to root_path, alert: t("controllers.audition_application.check_admin") unless current_user&.admin? || current_user&.director?
+    redirect_to root_path, alert: t("controllers.audition_application.check_admin") unless current_user&.admin? || current_user&.director? || current_user&.guest?
   end
 end

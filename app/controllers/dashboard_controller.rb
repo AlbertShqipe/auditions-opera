@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
   def index
     # Fetch all admins
     @audition_applications = AuditionApplication.all
-    @admins = User.where(role: [:admin, :director])
+    @admins = User.where(role: [:admin, :director, :guest])
     # Fetch votes related to the filtered applications and admins
     votes = Vote.where(user_id: @admins.pluck(:id), audition_application_id: @audition_applications.pluck(:id))
 
@@ -17,31 +17,16 @@ class DashboardController < ApplicationController
       end
     end
 
-    # not_set: 0, yes: 1, maybe: 2, no: 3, star: 4
-    vote_mapping = {
-      "not set" => nil,
-      "yes" => 1,
-      "maybe" => 2,
-      "star" => 4,
-      "no" => 3
-    }
-    vote_value = vote_mapping[params[:vote]]
-
-    # Select only the votes of the current_user
     @applications = AuditionApplication
-                      .select("audition_applications.*") # Only distinct applications
-                      .left_joins(:votes)
-                      .where("votes.user_id = ? OR votes.user_id IS NULL", current_user.id) # Filter votes by current_user
-                      .group("audition_applications.id")
-                      .order(Arel.sql("MAX(votes.vote_value) DESC NULLS LAST")) # Sort by highest vote value
+                  .select("audition_applications.*")
+                  .left_joins(:votes)
+                  # .where("votes.user_id = ? OR votes.user_id IS NULL", current_user.id)
+                  .group("audition_applications.id")
+                  .order(Arel.sql("MAX(votes.vote_value) DESC NULLS LAST"))
 
-    # Apply vote filter if selected
-    if params[:vote].present? && params[:vote] != ""
-      if vote_value.nil?
-        @applications = @applications.having("MAX(votes.vote_value) IS NULL OR MAX(votes.vote_value) = 0")
-      else
-        @applications = @applications.having("MAX(votes.vote_value) = ?", vote_value)
-      end
+    # NEW: Filter by vote_result value directly
+    if params[:vote_result].present?
+      @applications = @applications.where(vote_result: params[:vote_result])
     end
 
     respond_to do |format|
@@ -86,7 +71,7 @@ class DashboardController < ApplicationController
             vote_value: vote.vote_value,
           }
         },
-        result: evaluate_votes(yes_count, maybe_count, no_count, star_count),
+        result: app.vote_result,
         email: app.user.email,
         video_link: app.video_link,
         cv: app.cv.attached? ? url_for(app.cv) : nil,
@@ -99,34 +84,7 @@ class DashboardController < ApplicationController
 
   private
 
-  def evaluate_votes(yes_count, maybe_count, no_count, star_count)
-    # If there is any "star" vote, return "YES"
-    if star_count > 0
-      return "YES ⭐️"
-    end
-
-    # Check conditions and return the corresponding result
-    if yes_count == 3
-      return "YES ✅"
-    elsif (yes_count == 1 && maybe_count == 2) ||
-          (yes_count == 2 && maybe_count == 1) ||
-          (yes_count == 1 && maybe_count == 1 && no_count == 1) ||
-          (yes_count == 2 && no_count == 1)
-      return "MAYBE+ 🟡"
-    elsif (yes_count == 1 && no_count == 2) ||
-          maybe_count == 3 ||
-          (maybe_count == 2 && no_count == 1)
-      return "MAYBE 🟠"
-    elsif maybe_count == 1 && no_count == 2
-      return "NO 🔴"
-    elsif (no_count == 3 )
-      return "NO 🔴"
-    else
-      return "UNKNOWN ❓"
-    end
-  end
-
   def check_admin
-    redirect_to root_path, alert: t("controllers.audition_application.check_admin") unless current_user&.admin? || current_user&.director?
+    redirect_to root_path, alert: t("controllers.audition_application.check_admin") unless current_user&.admin? || current_user&.director? || current_user&.guest?
   end
 end

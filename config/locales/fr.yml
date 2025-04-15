@@ -147,7 +147,7 @@ fr:
     toggle_btn: "Basculer la vue"
     link: "Démarrer le tableau de bord"
     index_title: "Section d’index"
-    select_vote: "Sélectionner le statut du vote"
+    select_vote_result: "Sélectionner le résultat du vote"
 
   devise:
     failure:

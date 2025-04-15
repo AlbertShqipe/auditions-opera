@@ -27,6 +27,7 @@ class VotesController < ApplicationController
 
     if @vote.save
       # Regenerate votes after saving
+      @application.update_vote_result!
       votes = Vote.where(user_id: @admins.pluck(:id), audition_application_id: @applications.pluck(:id))
       votes_lookup = votes.index_by { |v| [v.audition_application_id, v.user_id] }
       @votes = @applications.each_with_object({}) do |application, hash|

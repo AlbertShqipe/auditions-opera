@@ -142,7 +142,7 @@ en:
     toggle_btn: "Toggle view"
     link: "Initiate dashboard"
     index_title: "Index Section"
-    select_vote: "Select Vote Status"
+    select_vote_result: "Select Vote Result"
 
   devise:
     failure:

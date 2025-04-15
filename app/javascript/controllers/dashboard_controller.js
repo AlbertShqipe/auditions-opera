@@ -5,6 +5,11 @@ export default class extends Controller {
     this.initDataTable();
   }
 
+  disconnect() {
+    if ($.fn.DataTable.isDataTable("#dashboard-table")) {
+      $("#dashboard-table").DataTable().destroy();
+    }
+  }
   initDataTable() {
       if ($.fn.DataTable.isDataTable("#dashboard-table")) {
           $("#dashboard-table").DataTable().destroy();

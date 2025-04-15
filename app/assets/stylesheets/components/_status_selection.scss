@@ -6,12 +6,27 @@
     align-items: center;
     z-index: 4;
   }
-  .status-button {
+  .status-button-reject {
     width: 100%;
-    margin-right: 0.5rem;
+    background-color: red;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    color: white;
 
-    &:last-child {
-      margin-right: 0;
+    &:hover {
+      background-color: darkred;
+    }
+  }
+  .status-button-accept {
+    width: 100%;
+    background-color: green;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    color: white;
+
+
+    &:hover {
+      background-color: darkgreen;
     }
   }
 }

@@ -1,8 +1,7 @@
 <div class="home-container">
   <% if user_signed_in? %>
-    <% if current_user.role != "admin" && current_user.role != "director" %>
+    <% if current_user.role != "admin" && current_user.role != "director" && current_user.role != "guest" %>
       <div class="mt-5">
-
         <div class="body_p text-center">
           <% if current_user.audition_applications.present? %>
             <h3 class="text-h3">

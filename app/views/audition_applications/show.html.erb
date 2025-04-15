@@ -51,88 +51,74 @@
     <% end %>
   </div>
 
-  <% if current_user.admin? || current_user.director? %>
-    <% unless @application.status != 'pending' %>
-      <!-- Change Vote with Buttons -->
-      <div class="votes-show">
-        <% if current_user.director? %>
-          <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
-            <%= hidden_field_tag :value, "star" %>
-            <%= button_tag type: :submit, class: "btn-vote btn-star", title: "Star" do %>
-              <span class="material-symbols-outlined">
-                star
-              </span>
+  <% user = current_user %>
+
+<% if user.admin? || user.director? %>
+  <% if @application.status == 'pending' %>
+    <!-- Change Vote with Buttons -->
+    <div class="votes-show">
+      <% if user.director? %>
+        <%= form_with url: audition_application_votes_path(@application), method: :post do %>
+          <%= hidden_field_tag :value, "star" %>
+          <%= button_tag type: :submit, class: "btn-vote btn-star", title: "Star" do %>
+            <span class="material-symbols-outlined">star</span>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% ["yes", "maybe", "no"].each do |vote| %>
+        <%= form_with url: audition_application_votes_path(@application), method: :post do %>
+          <%= hidden_field_tag :value, vote %>
+          <%= button_tag type: :submit, class: "btn-vote btn-#{vote}", title: vote.capitalize do %>
+            <%# Choose icon or fallback %>
+            <% icon = case vote
+              when "yes" then "check"
+              when "maybe" then "?"
+              when "no" then "close"
+            end %>
+            <% if icon == "?" %>
+              <span style="font-size: 1.5rem; font-weight: 300;">?</span>
+            <% else %>
+              <span class="material-symbols-outlined"><%= icon %></span>
             <% end %>
           <% end %>
         <% end %>
-        <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
-          <%= hidden_field_tag :value, "yes" %>
-          <%= button_tag type: :submit, class: "btn-vote btn-yes", title: "Yes" do %>
-            <span class="material-symbols-outlined">
-              check
-            </span>
-          <% end %>
-        <% end %>
-
-        <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
-          <%= hidden_field_tag :value, "maybe" %>
-          <%= button_tag type: :submit, class: "btn-vote btn-maybe", title: "Maybe" do %>
-            <span style="font-size: 1.5rem;font-weight: 300;">
-              ?
-            </span>
-          <% end %>
-        <% end %>
-
-        <%= form_with url: audition_application_votes_path(@application), method: :post do |f| %>
-          <%= hidden_field_tag :value, "no" %>
-          <%= button_tag type: :submit, class: "btn-vote btn-no", title: "No" do %>
-            <span class="material-symbols-outlined">
-              close
-            </span>
-          <% end %>
-        <% end %>
-
-      </div>
-    <% end %>
-    <% if @application.ethnicity == 'not-set' || @application.ethnicity == nil %>
-      <!-- Change Ethnicity -->
-      <!--
-      <div class="ethnicity-form">
-        <%= simple_form_for(@application) do |f| %>
-          <%= f.input :ethnicity_id, collection: Ethnicity.all.collect { |e| [e.name, e.id] }, prompt: t("show.input.ethnicity_span") %>
-          <%= f.button :submit, t("show.btn.set_ethnicity"), class: "submit-button" %>
-        <% end %>
-      </div>
-      -->
-    <% end %>
-    <div>
-      <%= link_to "Applications", audition_applications_path, class:"link" %>
-    </div>
-  <% else %>
-    <div>
-      <% if @application.status != "accepted" %>
-        <%= link_to edit_audition_application_path(@application), class:"link" do %>
-          <span><%= t("show.btn.edit") %></span>
-        <% end %><br>
-        <%= link_to t("show.btn.delete"), @application,
-          data: {
-            turbo_method: :delete,
-            controller: "turbo-confirm",
-            action: "click->turbo-confirm#confirm",
-            turbo_confirm_message_value: "Are you sure you want to delete this application?"
-          },
-          class: "link"
-        %>
       <% end %>
     </div>
   <% end %>
-  <% if current_user&.admin? || current_user&.director? %>
+
+  <% if @application.ethnicity == "not-set" || @application.ethnicity.nil? %>
+    <!-- Ethnicity block remains commented as in your version -->
+  <% end %>
+<% end %>
+
+<% if user.admin? || user.director? || user.guest? %>
+  <div>
+    <%= link_to "Applications", audition_applications_path, class: "link" %>
+  </div>
+  <div>
+    <%= mail_to @application.user.email, t("show.btn.contact_user"), class: "link" %>
+  </div>
+<% end %>
+
+<% if user.candidate? %>
+  <%= link_to t("show.btn.delete"), @application,
+        data: {
+          turbo_method: :delete,
+          controller: "turbo-confirm",
+          action: "click->turbo-confirm#confirm",
+          turbo_confirm_message_value: "Are you sure you want to delete this application?"
+        },
+        class: "link" %>
+  <br>
+  <% if @application.status != "accepted" %>
     <div>
-      <a href="mailto:<%=@application.user.email%>" class="link"><%= t("show.btn.contact_user") %></a>
+      <%= link_to edit_audition_application_path(@application), class: "link" do %>
+        <span><%= t("show.btn.edit") %></span>
+      <% end %><br>
     </div>
   <% end %>
-  <% if current_user&.candidate?  %>
-<br>
-  <% end %>
-  <%= link_to t("show.btn.home"), root_path, class:"link" %>
+<% end %>
+
+<%= link_to t("show.btn.home"), root_path, class: "link" %>
 </div>
