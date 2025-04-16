@@ -95,6 +95,7 @@ en:
       height: "Height"
       gender: "Gender"
       status: "Application status"
+      status_can: "Under review"
       ethnicity: "Ethnicity"
     input:
       ethnicity_span: "Ethnicity"

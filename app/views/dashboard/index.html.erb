@@ -131,7 +131,7 @@
                 <br>
                 <h5><%= application.nationality %></h5>
                 <div class="content">
-                  <h5><%= application.height %>m</h5>
+                  <h5><%= application.status %></h5>
                 </div>
               </a>
               <% if current_user.admin? || current_user.director? || current_user.guest?%>
@@ -139,7 +139,9 @@
                   <% ['accepted', 'rejected'].each do |status| %>
                     <%= form_with model: application, url: audition_application_path(application), method: :patch, local: true do |f| %>
                       <%= hidden_field_tag :audition_application_status, status %>
-                      <%= f.submit status.capitalize, class: " status-button-#{status == 'accepted' ? 'accept' : 'reject'} mx-1", value: "#{status == 'accepted' ? 'Accept' : 'Reject'}" %>
+                      <%= f.button type: :submit, class: "button_status button_status--#{status} mx-1" do %>
+                        <span><%= status == 'accepted' ? 'Accept' : 'Reject' %></span>
+                      <% end %>
                     <% end %>
                   <% end %>
                 </div>

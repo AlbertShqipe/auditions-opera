@@ -20,7 +20,16 @@
           <p class="body_p_show"><strong><%= t("show.main_info.address") %>:</strong> <%= @application.address.present? ? @application.address : " "  %></p>
           <p class="body_p_show"><strong><%= t("show.main_info.height") %>:</strong> <%= @application.height.present? ? @application.height : " " %> cm</p>
           <p class="body_p_show"><strong><%= t("show.main_info.gender") %>:</strong> <%= @application.gender.present? ? @application.gender.humanize : " " %></p>
-          <p class="body_p_show"><strong><%= t("show.main_info.status") %>:</strong> <%= @application.status.present? ? @application.status.humanize : " "  %></p>
+          <% if current_user.candidate? %>
+            <% if @application.status_published? %>
+              <p class="body_p_show"><strong><%= t("show.main_info.status") %>:</strong> <%= @application.status.present? ? @application.status.humanize : " "  %></p>
+            <% else %>
+              <p class="body_p_show"><strong><%= t("show.main_info.status") %></strong>: <%= t("show.main_info.status_can") %></p>
+            <% end %>
+          <% else %>
+            <!-- Admins see the real status and controls -->
+            <p class="body_p_show"><strong><%= t("show.main_info.status") %></strong>: <%= @application.status.capitalize %></p>
+          <% end %>
 
           <!-- Ethnicity section -->
           <!--

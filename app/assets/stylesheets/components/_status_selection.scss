@@ -1,32 +1,60 @@
-.status-buttons {
+.button_status {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  border: 2px solid rgb(0, 0, 0);
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 4;
-  }
-  .status-button-reject {
-    width: 100%;
-    background-color: red;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    color: white;
+/* Shared background hover effect */
+.button_status::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s ease-in-out;
+  z-index: 0;
+}
 
-    &:hover {
-      background-color: darkred;
-    }
-  }
-  .status-button-accept {
-    width: 100%;
-    background-color: green;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    color: white;
+.button_status:hover::before {
+  transform: scaleY(1);
+  transform-origin: top;
+}
 
+/* Keep text above the hover background */
+.button_status span {
+  position: relative;
+  z-index: 1;
+}
 
-    &:hover {
-      background-color: darkgreen;
-    }
-  }
+/* Accept (green) */
+.button_status--accepted::before {
+  background-color: green;
+}
+
+.button_status--accepted:hover {
+  color: white !important;
+  border-color: white;
+}
+
+/* Reject (red) */
+.button_status--rejected::before {
+  background-color: red;
+}
+
+.button_status--rejected:hover {
+  color: white !important;
+  border-color: white;
 }
