@@ -2,3 +2,8 @@
 <p>Rejected applications: <%= @rejected_applications.count %> / <%= @applications.count %></p>
 <p>Accepted applications: <%= @accepted_applications.count %> / <%= @applications.count %></p>
 <p>Pending applications: <%= @pending_applications.count %> / <%= @applications.count %></p>
+<%= button_to "Send Results to All Candidates",
+              send_results_audition_applications_path,
+              method: :post,
+              data: { confirm: "Are you sure you want to notify all candidates now?" },
+              class: "btn btn-primary" %>

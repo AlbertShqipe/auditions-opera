@@ -5,6 +5,17 @@ class AuditionApplicationsController < ApplicationController
   before_action :set_application, only: [:confirm_attendance, :update_attendance]
   before_action :authorize_candidate, only: [:confirm_attendance]
 
+  def send_results
+    applications = AuditionApplication.where(status: ["accepted", "rejected"], status_published: [false, nil])
+
+    applications.find_each do |application|
+      AuditionMailer.status_update(application).deliver_now
+      application.update(status_published: true)
+    end
+
+    redirect_to audition_applications_path, notice: "Results sent to all candidates."
+  end
+
   def confirm_attendance
     if @application.accepted? && !@application.confirmed_attendance
       flash[:notice] = t("controllers.audition_application.confirm_attendance.success")
@@ -25,7 +36,6 @@ class AuditionApplicationsController < ApplicationController
     redirect_to audition_application_path(params[:id])
   end
 
-  # Handle the confirmation of attendance (PATCH request)
   def update_attendance
     if @application.update(confirmed_attendance: true)
       redirect_to audition_application_path(@application), notice: t("controllers.audition_application.update_attendance.success")
@@ -196,7 +206,6 @@ class AuditionApplicationsController < ApplicationController
       redirect_to @application, alert: "Failed to update ethnicity."
     end
   end
-
 
   private
 

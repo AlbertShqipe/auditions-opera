@@ -23,6 +23,9 @@ Rails.application.routes.draw do
         post :confirm_attendance_message
         patch :update_attendance
       end
+      collection do
+        post :send_results
+      end
       resources :votes, only: [:create]
     end
   end
