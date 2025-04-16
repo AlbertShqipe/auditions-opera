@@ -145,17 +145,16 @@ class AuditionApplicationsController < ApplicationController
       AuditionMailer.confirmation_email(@application).deliver_now
 
       # Notify the admin about the number of applications every 10 applications
-      pending_count = AuditionApplication.where(status: "pending").count
-      if pending_count % 10 == 0
+      auditions = AuditionApplication.all.count
+      if auditions % 10 == 0
         record = AdminNotification.find_or_initialize_by(kind: "application_milestone")
         last_notified = record.value || 0
 
-        if pending_count > last_notified
+        if auditions > last_notified
           AuditionMailer.admin_email.deliver_now # Use deliver_later for safety with bulk
-          record.update(value: pending_count)
+          record.update(value: auditions)
         end
       end
-        # AuditionMailer.admin_email(@application).deliver_now
     else
       flash[:alert] = t("controllers.audition_application.create.error")
       render :new
