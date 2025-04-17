@@ -73,7 +73,8 @@ en:
         other: "Other"
         non_binary: "Non-binary"
       video_link: "Video link"
-      video_link_placeholder: "Make sure to upload a youtube video by coping the url, for example: https://www.youtube.com/watch?v=MOPOb52MkOQ"
+      video_link_placeholder: "Make sure to upload a youtube video by coping the url, for example: 'https://www.youtube.com/watch?v=MOPOb52MkOQ'"
+      height: "In meters, ex: 1.8"
     input:
       cv:
         upload_cv: "Upload CV"
@@ -86,6 +87,17 @@ en:
       modify: "Modify"
       cancel: "Cancel"
       save_changes: "Save changes"
+    errors:
+      first_name: "Please fill in your first name"
+      last_name: "Please fill in your last name"
+      birth_day: "Birthday missing"
+      nationality: "Please specify your nationality"
+      address: "Please specify your address"
+      height: "Please specify your height"
+      gender: "Please specify your gender"
+      video_link: "Video link missing"
+      cv: "CV missing"
+      photo: "Photo missing"
 
   show:
     main_info:
@@ -144,6 +156,11 @@ en:
     link: "Initiate dashboard"
     index_title: "Index Section"
     select_vote_result: "Select Vote Result"
+
+  errors:
+    messages:
+      blank: "This field cannot be blank"
+      invalid: "This field is not valid"
 
   devise:
     failure:
@@ -211,6 +228,8 @@ en:
         password_confirmation: "Confirm password"
         hint: "characters minimum"
         btn_submit: "Sign up"
+      user:
+        signed_up: "Welcome! Sign up successful."
     sessions:
       user:
         signed_in: "Sign in successful."

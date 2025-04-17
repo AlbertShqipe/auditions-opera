@@ -79,6 +79,7 @@ fr:
         non_binary: "Non-binaire"
       video_link: "Lien vers la vidéo"
       video_link_placeholder: "Assurez-vous de télécharger une vidéo YouTube en copiant l’URL, par exemple : “https://www.youtube.com/watch?v=MOPOb52MkOQ”"
+      height_info: "En metres, ex 1.8"
     input:
       cv:
         upload_cv: "Téléverser le CV"
@@ -91,6 +92,17 @@ fr:
       modify: "Modifier"
       cancel: "Annuler"
       save_changes: "Enregistrer les modifications"
+    errors:
+      first_name: "Le prénom ne peut pas être vide"
+      last_name: "Le nom de famille ne peut pas être vide"
+      birth_day: "La date de naisance ne peut pas être vide"
+      nationality: "Information de nationalité manquante"
+      address: "L'adresse ne peut pas être vide"
+      height: "Information de taille manquante"
+      gender: "Information de genre manquante"
+      video_link: "Le lien vidéo ne peut pas être vide"
+      cv: "Le CV est requis"
+      photo: "La photo est requise"
 
   show:
     main_info:
@@ -149,6 +161,11 @@ fr:
     link: "Démarrer le tableau de bord"
     index_title: "Section d’index"
     select_vote_result: "Sélectionner le résultat du vote"
+
+  errors:
+    messages:
+      blank: ", ce champ est requis"
+      invalid: ", ce champ n'est pas valide"
 
   devise:
     failure:
@@ -216,6 +233,8 @@ fr:
         password_confirmation: "Confirmer le mot de passe"
         hint: "caractères minimum"
         btn_submit: "S'inscrire"
+      user:
+        signed_up: "Bienvenue ! Vous vous êtes inscrit avec succès."
     sessions:
       user:
         signed_in: "Connexion réussie."

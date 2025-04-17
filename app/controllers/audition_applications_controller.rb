@@ -6,8 +6,10 @@ class AuditionApplicationsController < ApplicationController
   before_action :authorize_candidate, only: [:confirm_attendance]
 
   def send_results
+    # Select applications that are either accepted or rejected and their status is not published
     applications = AuditionApplication.where(status: ["accepted", "rejected"], status_published: [false, nil])
 
+    # Send emails to all selected applications about their status change
     applications.find_each do |application|
       AuditionMailer.status_update(application).deliver_now
       application.update(status_published: true)
@@ -17,6 +19,7 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def confirm_attendance
+    # Check if the application is accepted and not already confirmed for attendance
     if @application.accepted? && !@application.confirmed_attendance
       flash[:notice] = t("controllers.audition_application.confirm_attendance.success")
       render :confirm_attendance
@@ -26,6 +29,7 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def confirm_attendance_message
+    # The candidate that is accepted has the chance to contact the admin in case of inability to attend the audition
     name = params[:name]
     email = params[:email]
     message = params[:message]
@@ -37,6 +41,7 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def update_attendance
+    # Check if the application is accepted and not already confirmed for attendance
     if @application.update(confirmed_attendance: true)
       redirect_to audition_application_path(@application), notice: t("controllers.audition_application.update_attendance.success")
     else

@@ -6,6 +6,58 @@ export default class extends Controller {
 
   connect() {
     console.log("FileUploadController connected");
+    // Select elements
+    const form = document.querySelector('.form');
+    console.log(form);
+    const fields = [
+      { id: 'audition_application_first_name', errorId: 'firstNameError' },
+      { id: 'audition_application_last_name', errorId: 'lastNameError' },
+      { id: 'audition_application_date_of_birth_1i', errorId: 'birthdayError' },
+      { id: 'audition_application_date_of_birth_2i', errorId: 'birthdayError' },
+      { id: 'audition_application_date_of_birth_3i', errorId: 'birthdayError' },
+      { id: 'audition_application_nationality', errorId: 'nationalityError' },
+      { id: 'audition_application_address', errorId: 'addressError'},
+      { id: 'audition_application_height', errorId: 'heightError'},
+      { id: 'audition_application_gender', errorId: 'genderError'},
+      { id: 'audition_application_video_link', errorId: 'videoError'},
+      { id: 'cv-upload', errorId: 'cvError'},
+      { id: 'profile-image-upload', errorId: 'imageError'},
+    ];
+
+    // Helper to handle validation
+    const validateField = (field) => {
+      const input = document.getElementById(field.id);
+      console.log(input);
+      const errorMessage = document.getElementById(field.errorId);
+      if (!input || !errorMessage) return;
+
+      // Add input event listener to hide error
+      input.addEventListener('input', () => {
+        if (input.value) {
+          errorMessage.style.display = 'none';
+        }
+      });
+
+      // Return validation function for form submit
+      return () => {
+        if (!input.value) {
+          errorMessage.style.display = 'block';
+          input.focus();
+          return false;
+        }
+        errorMessage.style.display = 'none';
+        return true;
+      };
+    };
+
+    // Collect validation functions
+    const validators = fields.map(validateField).filter(Boolean);
+
+    // Form submission event
+    form.addEventListener('submit', (e) => {
+      const isValid = validators.every((validate) => validate());
+      if (!isValid) e.preventDefault();
+    });
   }
 
   updateFileName(event) {
@@ -47,4 +99,6 @@ export default class extends Controller {
 
     this.formTarget.classList.add("was-validated");
   }
+
+
 }

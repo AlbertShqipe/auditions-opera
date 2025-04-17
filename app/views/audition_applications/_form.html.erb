@@ -1,23 +1,33 @@
-<div class="container mt-3 mb-3" style="width:70%;" data-controller="file-upload">
+<div class="container mt-3 mb-3 form" style="width:70%;" data-controller="file-upload">
   <h2><%= t("audition_form.filling") %></h2>
   <%= simple_form_for(@audition_application || AuditionApplication.new) do |f| %>
     <%= f.input :first_name, label: t("audition_form.form.name"), required: true %>
+    <span id="firstNameError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.first_name') %></span>
     <%= f.input :last_name, label: t("audition_form.form.last_name"), required: true %>
+    <span id="lastNameError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.last_name') %></span>
     <%= f.input :date_of_birth, as: :date, label: t("audition_form.form.birth_date"), required: true, start_year: 1900, end_year: Date.today.year %>
+    <span id="birthdayError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.birth_day') %></span>
     <%= f.input :nationality, label: t("audition_form.form.nationality"), required: true %>
+    <span id="nationalityError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.nationality') %></span>
     <%= f.input :address, label: t("audition_form.form.address"), required: true %>
+    <span id="addressError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.address') %></span>
     <%= f.input :height, label: "Taille", required: true %>
+    <p class="p-input-info"><%= t("audition_form.form.height_info") %></p>
+    <span id="heightError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.height') %></span>
     <%= f.input :gender,
             collection: AuditionApplication.localized_genders,
             label: t("audition_form.form.gender"),
             required: true %>
-    <p class="p-input-info"><%= t("audition_form.form.video_link_placeholder") %></p>
+    <span id="genderError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.gender') %></span>
     <%= f.input :video_link, label: t("audition_form.form.video_link"), required: true %>
+    <p class="p-input-info"><%= t("audition_form.form.video_link_placeholder") %></p>
+    <span id="videoError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.video_link') %></span>
 
     <div class="custom-file-container">
       <div class="custom-file">
         <label for="cv-upload" class="custom-file-label"><%= t("audition_form.input.cv.upload_cv") %></label>
         <span data-file-upload-target="cvLabel" id="cv-file-name"><%= t("audition_form.input.cv.span_cv") %></span>
+        <span id="cvError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.cv') %></span>
         <%= f.input :cv, as: :file, required: true,
                       input_html: { class: "custom-file-input", id: "cv-upload",
                                     "data-action" => "change->file-upload#updateFileName",
@@ -30,6 +40,7 @@
       <div class="custom-file">
         <label for="profile-image-upload" class="custom-file-label"><%= t("audition_form.input.photo.upload_photo") %></label>
         <span data-file-upload-target="imageLabel" id="profile-image-file-name"><%= t("audition_form.input.photo.span_photo") %></span>
+        <span id="imageError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.photo') %></span>
         <%= f.input :profile_image, as: :file, required: true,
                       input_html: { class: "custom-file-input", id: "profile-image-upload",
                                     "data-action" => "change->file-upload#updateFileName",
@@ -42,3 +53,6 @@
     <%= f.button :submit, f.object.persisted? ? t("audition_form.btn.modify") : t("audition_form.btn.submit"), class:"submit-button" %>
   <% end %>
 </div>
+<script>
+
+</script>
