@@ -10,21 +10,20 @@
 
             <% application = current_user.audition_applications.first %>
 
-            <% if application.status == 'pending' %>
+            <% if application.status_published == false %>
               <p class="text-p">
                 <%= t("home.status.pending") %>
               </p>
-
-            <% elsif application.status == 'accepted' && application.confirmed_attendance == true %>
+            <% elsif application.status_published == true && application.status == "accepted" && application.confirmed_attendance == true %>
               <p class="text-p">
                 <%= t("home.status.accepted.confirmed_attendance") %>
               </p>
 
-            <% elsif application.status == 'accepted' && application.confirmed_attendance == false %>
+            <% elsif application.status_published == true && application.status == "accepted" && application.confirmed_attendance == false %>
               <p class="text-p">
                 <%= t("home.status.accepted.unconfirmed_attendance") %>
               </p>
-            <% elsif application.status == 'rejected' %>
+            <% elsif application.status == 'rejected' && application.status_published == true%>
               <p class="text-p">
                 <%= t("home.status.rejected") %>
               </p>
@@ -32,7 +31,6 @@
                 <%= t("home.questions") %>
               </p>
             <% end %>
-
           <% else %>
             <p class="text-p">
               <%= t("home.good_luck").html_safe %>
@@ -44,7 +42,7 @@
         </div>
         <div class="text-center mt-5">
           <% if current_user.audition_applications.present? %>
-            <% if current_user.audition_applications.first.status == 'accepted' %>
+            <% if current_user.audition_applications.first.status == 'accepted' && current_user.audition_applications.first.status_published == true %>
               <% if current_user.audition_applications.first.confirmed_attendance == false %>
                 <%= link_to confirm_attendance_audition_application_path(current_user.audition_applications.first), method: :get, class: "button" do %>
                   <span><%= t("home.btn.confirm_attendance") %></span>
