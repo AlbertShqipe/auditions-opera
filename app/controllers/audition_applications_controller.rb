@@ -8,6 +8,7 @@ class AuditionApplicationsController < ApplicationController
   def send_results
     # Select applications that are either accepted or rejected and their status is not published
     applications = AuditionApplication.where(status: ["accepted", "rejected"], status_published: [false, nil])
+    count = applications.count
 
     # Send emails to all selected applications about their status change
     applications.find_each do |application|
@@ -15,7 +16,7 @@ class AuditionApplicationsController < ApplicationController
       application.update(status_published: true)
     end
 
-    redirect_to audition_applications_path, notice: "Results sent to #{applications} candidates."
+    redirect_to audition_applications_path, notice: "Results sent to #{count} candidates."
   end
 
   def confirm_attendance

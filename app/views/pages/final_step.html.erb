@@ -1,9 +1,33 @@
-<p>Total applications: <%= @applications.count %></p>
-<p>Rejected applications: <%= @rejected_applications.count %> / <%= @applications.count %></p>
-<p>Accepted applications: <%= @accepted_applications.count %> / <%= @applications.count %></p>
-<p>Pending applications: <%= @pending_applications.count %> / <%= @applications.count %></p>
-<%= button_to "Send Results to All Candidates",
-              send_results_audition_applications_path,
-              method: :post,
-              data: { confirm: "Are you sure you want to notify all candidates now?" },
-              class: "btn btn-primary" %>
+<div class="main_container_final_step" data-controller="count-up-animation">
+  <h1>Final Step</h1>
+  <p>You have reached the final step of the audition process.
+  Please review the results and send notifications to all candidates.</p>
+  <p>Before sending the invitations, try to make sure that the pending applications are 0</p>
+  <div class="mt-5">
+    <p class="numbers">Total applications<br>
+      <strong data-count-up-animation-target="number" data-target="<%= @applications.count %>">0</strong>
+    </p>
+    <div class="cards">
+      <p class="numbers-flex">Rejected applications<br>
+        <strong data-count-up-animation-target="number" data-target="<%= @rejected_applications.count %>">0</strong>
+      </p>
+
+      <p class="numbers-flex">Accepted applications<br>
+        <strong data-count-up-animation-target="number" data-target="<%= @accepted_applications.count %>">0</strong>
+      </p>
+
+      <p class="numbers-flex">Pending applications<br>
+        <strong data-count-up-animation-target="number" data-target="<%= @pending_applications.count %>">0</strong>
+      </p>
+    </div>
+  </div>
+  <%= button_to "Send Results to All Candidates",
+                send_results_audition_applications_path,
+                method: :post,
+                data: { confirm: "Are you sure you want to notify all candidates now?", turbo_confirm: "Are you sure you want to notify all candidates now?" },
+                class: "submit-button mt-5"%>
+
+  <div class="card-image">
+    <img src="https://www.tanzimaugust.de/fileadmin/TiA/_processed_/f/3/csm_4_Ballet_de_l’Opéra_de_Lyon_Mycelium_c_Agathe_Poupeney_18f02ec2f6.jpg" alt="Audition Image">
+  </div>
+</div>
