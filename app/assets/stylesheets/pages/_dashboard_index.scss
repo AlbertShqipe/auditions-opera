@@ -180,6 +180,11 @@
   text-align: center;
   text-decoration: none;
   z-index: 3;
+  text-shadow:
+    -1px -1px 0 #010024,
+    1px -1px 0 #020085,
+    -1px 1px 0 #020085,
+    1px 1px 0 #020085 ;
 }
 
 .tiles-index article > a:hover {
@@ -199,7 +204,7 @@
   width: 100%;
   // max-height: 0;
   margin-top: 0;
-  opacity: 0;
+  opacity: 1;
   text-shadow:
     -1px -1px 0 #010024,
     1px -1px 0 #020085,

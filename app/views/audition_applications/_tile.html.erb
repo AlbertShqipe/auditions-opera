@@ -1,7 +1,15 @@
-<article class="style1 tile <%= application.confirmed_attendance ? 'confirmed' : 'not-confirmed' %>" id="votes_<%= application.id %>">
-  <div class="text-center m-auto pb-3" style="background-color: #222; color: #fff;width:60%; padding: 5px;z-index: 1000 !important;">
-    <%= application.vote_result %>
-  </div>
+<article class="style1 tile
+  <% if application.status_published == true %>
+    <%= application.confirmed_attendance ? 'confirmed' : 'not-confirmed' %>"
+  <% end %>
+  id="votes_<%= application.id %>">
+
+  <!-- Display vote result if status is published -->
+  <% unless application.status_published %>
+    <div class="text-center m-auto pb-3" style="background-color: #222; color: #fff;width:60%; padding: 5px;z-index: 1000 !important;">
+      <%= application.vote_result %>
+    </div>
+  <% end %>
   <!-- Profile Image -->
   <span class="image">
     <% if application.profile_image.present? %>
@@ -20,16 +28,20 @@
       <h5><%= application.status %></h5>
     </div>
   </a>
-  <% if current_user.admin? || current_user.director? || current_user.guest?%>
-    <div class="status-buttons d-flex justify-content-center">
-      <% ['accepted', 'rejected'].each do |status| %>
-        <%= form_with model: application, url: audition_application_path(application), method: :patch, local: true do |f| %>
-          <%= hidden_field_tag :audition_application_status, status %>
-          <%= f.button type: :submit, class: "button_status button_status--#{status} mx-1" do %>
-            <span><%= status == 'accepted' ? 'Accept' : 'Reject' %></span>
+
+  <% unless application.status_published %>
+    <% if current_user.admin? || current_user.director? || current_user.guest? %>
+      <div class="status-buttons d-flex justify-content-center">
+        <% ['accepted', 'rejected'].each do |status| %>
+          <%= form_with model: application, url: audition_application_path(application), method: :patch, local: true do |f| %>
+            <%= hidden_field_tag :audition_application_status, status %>
+            <%= f.button type: :submit, class: "button_status button_status--#{status} mx-1" do %>
+              <span><%= status == 'accepted' ? 'Accept' : 'Reject' %></span>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
+
 </article>
