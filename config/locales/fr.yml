@@ -127,7 +127,7 @@ fr:
       no_cv: "Aucun CV trouvé"
 
   audition_application_index:
-    applications: "Liste Candidatures"
+    applications: "Liste des Candidatures"
     filters:
       text: "Filtrer les Candidatures"
       gender: "Selectionner le genre"
