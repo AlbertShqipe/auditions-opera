@@ -171,23 +171,23 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def update
-    @application = AuditionApplication.find(params[:id])
-    previous_status = @application.status # Store the previous status
+    @audition_application = AuditionApplication.find(params[:id])
+    previous_status = @audition_application.status # Store the previous status
 
 
     if params[:audition_application_status].present?
       # Only updating status
-      if @application.update(status: params[:audition_application_status])
+      if @audition_application.update(status: params[:audition_application_status])
         flash[:notice] = t("controllers.audition_application.update.success")
       else
         flash[:alert] = t("controllers.audition_application.update.error")
       end
     else
       # Normal update with full application_params
-      if @application.update(application_params)
-        redirect_to audition_application_path(@application), notice: t("controllers.audition_application.update.success")
+      if @audition_application.update(application_params)
+        redirect_to audition_application_path(@audition_application), notice: t("controllers.audition_application.update.success")
       else
-        redirect_to audition_application_path(@application), alert: t("controllers.audition_application.update.error")
+        redirect_to audition_application_path(@audition_application), alert: t("controllers.audition_application.update.error")
       end
     end
   end
