@@ -84,25 +84,46 @@
   </div>
 
   <div id="index" data-toggle-index-dashboard-target="index" style="display: none;">
-    <div class="container">
-      <h2><%= t("dashboard.index_title") %></h2>
-      <%= form_with url: dashboard_index_path, method: :get, local: true, data: { turbo_frame: "applications_list" } do |form| %>
-        <div class="filter" style="margin-bottom: 1rem;">
-          <%= form.label :vote_result, t("dashboard.select_vote_result") %><br>
+      <%# <h2 class="text-center"><%= t("dashboard.index_title") </h2> %>
+    <div class="container d-flex justify-content-around align-items-center mb-3">
+      <%= form_with url: dashboard_index_path, method: :get, local: true, data: { turbo_frame: "applications_list" }, class: "filter-form" do %>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
 
-          <% result_options = [
-                ["YES ⭐️", "YES ⭐️"],
-                ["YES ✅", "YES ✅"],
-                ["MAYBE+ 🟡", "MAYBE+ 🟡"],
-                ["MAYBE 🟠", "MAYBE 🟠"],
-                ["NO 🔴", "NO 🔴"],
-                ["UNKNOWN ❓", "UNKNOWN ❓"]
-              ] %>
+          <!-- Status Filter -->
+          <div class="filter-field">
+            <%= label_tag :status, "Filter by Status" %><br>
+            <%= select_tag :status,
+                  options_for_select([
+                    ["All", ""],
+                    ["Pending", "pending"],
+                    ["Accepted", "accepted"],
+                    ["Rejected", "rejected"]
+                  ], params[:status]),
+                  class: "form-control",
+                  onchange: "this.form.requestSubmit();" %>
+          </div>
 
-          <%= form.select :vote_result,
-                options_for_select(result_options, params[:vote_result]),
-                { prompt: "All Results" },
-                { onchange: "this.form.requestSubmit();" } %>
+          <!-- Vote Result Filter -->
+          <div class="filter-field">
+            <%= label_tag :vote_result, "Filter by Vote Result" %><br>
+            <%= select_tag :vote_result,
+                  options_for_select([
+                    ["All", ""],
+                    ["YES ⭐️", "YES ⭐️"],
+                    ["YES ✅", "YES ✅"],
+                    ["MAYBE+ 🟡", "MAYBE+ 🟡"],
+                    ["MAYBE 🟠", "MAYBE 🟠"],
+                    ["NO 🔴", "NO 🔴"],
+                    ["UNKNOWN ❓", "UNKNOWN ❓"]
+                  ], params[:vote_result]),
+                  class: "form-control",
+                  onchange: "this.form.requestSubmit();" %>
+          </div>
+
+          <!-- Optional Submit Button (hidden if using onchange auto-submit) -->
+          <div>
+            <%= submit_tag "Apply Filters", class: "submit-button my-0" %>
+          </div>
         </div>
       <% end %>
     </div>
@@ -110,44 +131,11 @@
     <!-- Turbo Frame for live updates -->
     <turbo-frame id="applications_list">
       <div>
+        <div class="text-center">
+          <p><%= pluralize(@applications.size.count, "application") %> <%= params[:vote_result] if params[:vote_result].present? %></p>
+        </div>
         <section class="tiles my-4">
-          <% @applications.each do |application| %>
-            <article class="style1 tile <%= application.confirmed_attendance ? 'confirmed' : 'not-confirmed' %>" id="votes_<%= application.id %>">
-              <div class="text-center m-auto pb-3" style="background-color: #222; color: #fff;width:50%; padding: 5px;z-index: 1000 !important;">
-                <%= application.vote_result %>
-              </div>
-              <!-- Profile Image -->
-              <span class="image">
-                <% if application.profile_image.present? %>
-                  <%= image_tag(application.profile_image) %>
-                <% else %>
-                  <%= cl_image_tag application.photo.key %>
-                <% end %>
-              </span>
-
-              <!-- Load show view dynamically in a Turbo Frame -->
-              <a href="<%= audition_application_path(application) %>" data-turbo-frame="_top">
-                <h3 id="text-tiles"><%= application.first_name %> <%= application.last_name %></h3>
-                <br>
-                <h5><%= application.nationality %></h5>
-                <div class="content">
-                  <h5><%= application.status %></h5>
-                </div>
-              </a>
-              <% if current_user.admin? || current_user.director? || current_user.guest?%>
-                <div class="status-buttons d-flex justify-content-center">
-                  <% ['accepted', 'rejected'].each do |status| %>
-                    <%= form_with model: application, url: audition_application_path(application), method: :patch, local: true do |f| %>
-                      <%= hidden_field_tag :audition_application_status, status %>
-                      <%= f.button type: :submit, class: "button_status button_status--#{status} mx-1" do %>
-                        <span><%= status == 'accepted' ? 'Accept' : 'Reject' %></span>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </div>
-              <% end %>
-            </article>
-          <% end %>
+          <%= render partial: "audition_applications/tile", collection: @applications, as: :application %>
         </section>
       </div>
     </turbo-frame>

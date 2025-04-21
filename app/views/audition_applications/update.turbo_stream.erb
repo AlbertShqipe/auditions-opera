@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "votes_#{@audition_application.id}" do %>
+  <%= render partial: "audition_applications/tile", locals: { application: @audition_application } %>
+<% end %>
