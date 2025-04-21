@@ -63,6 +63,7 @@ gem "aws-sdk-s3"
 
 ## This gem is used to set set a test environment for the email
 gem "letter_opener", group: :development
+gem "nokogiri", ">= 1.18.4"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
