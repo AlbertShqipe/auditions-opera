@@ -1,10 +1,16 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" data-controller="slideshow">
-  <div class="burger" data-slideshow-target="burger">
+  <%# <div class="burger" data-slideshow-target="burger">
     <div></div>
     <div></div>
     <div></div>
-  </div>
+  </div> %>
   <div class="slideshow" data-slideshow-target="slideshow">
+    <div class="slideshow_btn_close">
+      <button id="close-toggle-menu" aria-label="Close menu" class="menu-icon" data-slideshow-target="burgerLine">
+        <span class="line line1"></span>
+      </button>
+    </div>
+
     <svg viewBox="0 0 24 28" fill="none" id="logo-min--sprite" width="30" height="34" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:20px">
       <title>Opéra de Lyon</title>
       <path d="M0 11.7824V16.576H5.5V11.7824C5.54545 8.288 8.40909 5.4656 12 5.4656C15.5909 5.4656 18.4545 8.288 18.5 11.7824V22.3552H14.8182H5.54546V28H24V11.7824C23.9545 5.2864 18.5909 0 12 0C5.36364 0 0 5.2416 0 11.7824Z" fill="currentColor"></path>
@@ -49,5 +55,11 @@
     <b>
       <%= link_to "En", url_for(locale: 'en', reset_password_token: params[:reset_password_token]), class: "link-nav mr-5", data: { lang_target: "link", locale: "en" } %>
     </b>
+  </div>
+  <div class="menu-toggle burger" data-slideshow-target="burger">
+    <button id="open-toggle-menu" aria-label="Toggle menu" class="menu-icon">
+      <span class="line line1"></span>
+      <span class="line line2"></span>
+    </button>
   </div>
 </div>

@@ -8,7 +8,7 @@
   color: rgb(255, 255, 255);
   overflow: hidden;
   transition: width 0.3s ease-in-out;
-  z-index: 1000;
+  z-index: 100;
   white-space: nowrap;
   display: flex;
   flex-direction: column;
@@ -34,4 +34,18 @@
 
 .slideshow.open a {
   opacity: 1; /* Fade in links */
+}
+
+.slideshow_btn_close {
+  position: absolute;
+  top: 44px;
+  right: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+
+  @media (max-width: 760px) {
+    right: 20px;
+  }
 }

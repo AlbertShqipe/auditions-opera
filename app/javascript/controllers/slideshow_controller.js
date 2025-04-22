@@ -2,14 +2,28 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="slideshow"
 export default class extends Controller {
-  static targets = ["burger", "slideshow"]
+  static targets = ["slideshow"]
 
   connect() {
-    this.burgerTarget.addEventListener("click", this.toggleMenu.bind(this))
+    const openButton = document.getElementById("open-toggle-menu")
+    const closeButton = document.getElementById("close-toggle-menu")
+
+    if (openButton) {
+      openButton.addEventListener("click", () => this.openMenu())
+    }
+
+    if (closeButton) {
+      closeButton.addEventListener("click", () => this.closeMenu())
+    }
   }
 
-  toggleMenu() {
-    this.burgerTarget.classList.toggle("open")
-    this.slideshowTarget.classList.toggle("open")
+  openMenu() {
+    document.getElementById("open-toggle-menu").classList.add("open")
+    this.slideshowTarget.classList.add("open")
+  }
+
+  closeMenu() {
+    document.getElementById("open-toggle-menu").classList.remove("open")
+    this.slideshowTarget.classList.remove("open")
   }
 }

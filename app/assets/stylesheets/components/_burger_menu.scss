@@ -1,42 +1,167 @@
+// .burger {
+//   width: 20px;
+//   height: 21px;
+//   margin-right: 20px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   cursor: pointer;
+//   position: absolute;
+//   top: 40px;
+//   right: 10px;
+//   z-index: 1001;
+
+//   @media (min-width: 760px) {
+//     right: 40px;
+//   }
+// }
+
+// .burger div {
+//   width: 100%;
+//   height: 1.5px;
+//   background-color: rgb(255, 255, 255);
+//   border-radius: 3px;
+//   transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+
+// }
+
+// /* Transform into X when active */
+// .burger.open div:nth-child(1) {
+//   transform: translateY(10px) rotate(45deg);
+//   background-color: rgb(255, 255, 255); /* Change to red when open */
+// }
+
+// .burger.open div:nth-child(2) {
+//   opacity: 0;
+//   background-color: rgb(255, 255, 255);
+// }
+
+// .burger.open div:nth-child(3) {
+//   transform: translateY(-10px) rotate(-45deg);
+//   background-color: rgb(255, 255, 255); /* Change to red when open */
+// }
+
+
 .burger {
-  width: 20px;
-  height: 21px;
-  margin-right: 20px;
+  @media (max-width: 760px) {
+    margin-right: 20px;
+
+  }
+}
+.menu-icon {
+  width: 30px;
+  height: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
   cursor: pointer;
-  position: absolute;
-  top: 40px;
-  right: 10px;
+  padding: 0;
+  float: right;
   z-index: 1001;
 
-  @media (min-width: 760px) {
-    right: 40px;
+}
+
+.line {
+  width: 32px;
+  height: 4px;
+  background-color: rgb(255, 255, 255);
+  margin: 4px 0;
+  transform-origin: left;
+  transform: scaleX(1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-icon .line2 {
+  transition: transform 1s ease;
+  transform-origin: right;
+  transition-delay: 0.5s;
+}
+/* === Hover Animation === */
+/* Animation on hover */
+.menu-icon:hover .line1 {
+  animation: flickerRightLeft 0.6s ease forwards;
+  animation-delay: 0.15s;
+}
+
+.menu-icon:hover .line2 {
+  animation: flickerRightLeftBottom 0.6s ease forwards;
+  animation-delay: 0s;
+}
+
+@keyframes flickerRightLeft {
+  0% {
+    transform-origin: left;
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform-origin: left;
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  53% {
+    transform-origin: right;
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform-origin: right;
+    transform: scaleX(1);
+    opacity: 1;
   }
 }
 
-.burger div {
-  width: 100%;
-  height: 1.5px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 3px;
-  transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
-
+@keyframes flickerRightLeftBottom {
+  0% {
+    transform-origin: left;
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  50% {
+    transform-origin: left;
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  53% {
+    transform-origin: right;
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  100% {
+    transform-origin: right;
+    transform: scaleX(0.8);
+    opacity: 1;
+  }
 }
 
-/* Transform into X when active */
-.burger.open div:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
-  background-color: rgb(255, 255, 255); /* Change to red when open */
+
+/* === Reappearance on hover out === */
+/* Reset both lines on hover out (important for consistency) */
+.menu-icon:not(:hover) .line1 {
+  transform: scaleX(1);
+  transition: transform 0.6s ease;
+  transition-delay: 0.3s;
 }
 
-.burger.open div:nth-child(2) {
+.menu-icon:not(:hover) .line1 {
+  transform: scaleX(1);
+  transition: transform 3s ease;
+}
+
+/* Optional: Prevent conflicting transitions during animation */
+.line1, .line2 {
+  will-change: transform, opacity;
+}
+
+
+/* === When menu is toggled open === */
+// .menu-icon.open .line1 {
+//   transform: translate(0px, 6px);
+// }
+
+.menu-icon.open .line2 {
   opacity: 0;
-  background-color: rgb(255, 255, 255);
-}
-
-.burger.open div:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
-  background-color: rgb(255, 255, 255); /* Change to red when open */
 }

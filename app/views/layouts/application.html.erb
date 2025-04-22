@@ -20,5 +20,12 @@
     <%= render "shared/flashes" %>
 
     <%= yield %>
+
+    <script>
+      const icon = document.querySelector('.menu-icon');
+icon.addEventListener('click', () => {
+  icon.classList.toggle('open');
+});
+    </script>
   </body>
 </html>
