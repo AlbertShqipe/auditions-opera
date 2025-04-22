@@ -35,11 +35,11 @@
   <div class="container-fluid">
     <% if user_signed_in? && (current_user.director? || current_user.admin?) %>
       <%= link_to audition_applications_path(locale: I18n.locale), class: "navbar-brand" do %>
-        <%= image_tag 'logo2.svg', width:"200px" %>
+        <%= image_tag '3.svg', width:"200px" %>
       <% end %>
     <% else %>
       <%= link_to root_path, class: "navbar-brand" do %>
-        <%= image_tag 'logo2.svg', width:"200px" %>
+        <%= image_tag '3.svg', width:"200px" %>
       <% end %>
     <% end %>
   </div>
