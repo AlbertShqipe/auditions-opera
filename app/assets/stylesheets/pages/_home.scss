@@ -1,11 +1,11 @@
 // Specific CSS for your home-page
 .home-container {
   width: 80%;
-  height: 100%;
+  height: calc(100vh - 110px); /* or 100% if the parent has a defined height */
   margin: 0 auto;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* horizontal centering */
+  align-items: center;     /* vertical centering */
   text-align: center;
   position: relative;
 
