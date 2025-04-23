@@ -74,7 +74,7 @@ en:
         non_binary: "Non-binary"
       video_link: "Video link"
       video_link_placeholder: "Make sure to upload a youtube video by coping the url, for example: 'https://www.youtube.com/watch?v=MOPOb52MkOQ'"
-      height: "In meters, ex: 1.8"
+      height_info: "In meters, ex: 1.8"
     input:
       cv:
         upload_cv: "Upload CV"

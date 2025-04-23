@@ -18,7 +18,7 @@
           <p class="body_p_show"><strong><%= t("show.main_info.birth_date") %>:</strong> <%= @application.date_of_birth.present? ? @application.date_of_birth : " " %></p>
           <p class="body_p_show"><strong><%= t("show.main_info.nationality") %>:</strong> <%= @application.nationality.present? ? @application.nationality : " "  %></p>
           <p class="body_p_show"><strong><%= t("show.main_info.address") %>:</strong> <%= @application.address.present? ? @application.address : " "  %></p>
-          <p class="body_p_show"><strong><%= t("show.main_info.height") %>:</strong> <%= @application.height.present? ? @application.height : " " %> cm</p>
+          <p class="body_p_show"><strong><%= t("show.main_info.height") %>:</strong> <%= @application.height.present? ? @application.height : " " %> m</p>
           <p class="body_p_show"><strong><%= t("show.main_info.gender") %>:</strong> <%= @application.gender.present? ? @application.gender.humanize : " " %></p>
           <% if current_user.candidate? %>
             <% if @application.status_published? %>

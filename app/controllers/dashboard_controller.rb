@@ -213,8 +213,7 @@ class DashboardController < ApplicationController
       ["Tallest", "#{@tallest&.full_name} (#{@max_height} cm)"],
       ["Average Height", "#{@avg_height} cm"],
       ["Number of Nationalities", @nationality_count],
-      ["Accepted", @accepted],
-      ["Rejected", @rejected]
+      ["Accepted", @accepted]
     ]
 
     # Estimate your table width
