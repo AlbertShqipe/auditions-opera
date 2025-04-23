@@ -196,7 +196,7 @@ class DashboardController < ApplicationController
       Gender representation among applicants includes:
       #{@gender_counts.map { |gender, count| "#{count} #{gender.pluralize(count)}" }.to_sentence}.
 
-      Out of all submissions, #{@accepted} have been accepted and #{@rejected} were not selected.
+      Out of all submissions, #{@accepted} have been invited to the audition.
 
     TEXT
 
