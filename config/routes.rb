@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|fr/ do
     get 'dashboard/data', to: 'dashboard#data', as: :dashboard_data
+    get 'dashboard/rapport', to: 'dashboard#rapport', as: :dashboard_rapport
+    get "dashboard/download_rapport", to: "dashboard#download_rapport", as: :download_rapport
     resources :dashboard, only: [:index, :show]
     devise_for :users
     root to: "pages#home"

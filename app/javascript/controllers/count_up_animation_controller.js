@@ -6,7 +6,8 @@ export default class extends Controller {
 
   connect() {
     this.numberTargets.forEach((el) => {
-      const target = parseInt(el.dataset.target, 10)
+      const target = parseFloat(el.dataset.target) // 🔹 Allow float
+      const decimals = parseInt(el.dataset.decimals || 0, 10) // 🔹 Control precision
       const duration = 1000 // 1 second
       const frameRate = 60
       const totalFrames = duration / (1000 / frameRate)
@@ -15,14 +16,14 @@ export default class extends Controller {
       const counter = () => {
         frame++
         const progress = frame / totalFrames
-        const current = Math.round(target * progress)
+        const current = target * progress
 
-        el.textContent = current
+        el.textContent = current.toFixed(decimals)
 
         if (frame < totalFrames) {
           requestAnimationFrame(counter)
         } else {
-          el.textContent = target
+          el.textContent = target.toFixed(decimals)
         }
       }
 

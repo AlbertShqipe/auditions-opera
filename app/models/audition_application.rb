@@ -40,6 +40,16 @@ class AuditionApplication < ApplicationRecord
     save!
   end
 
+  def age
+    return unless date_of_birth
+    now = Time.zone.now
+    now.year - date_of_birth.year - ((now.month > date_of_birth.month || (now.month == date_of_birth.month && now.day >= date_of_birth.day)) ? 0 : 1)
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def evaluate_votes(yes_count, maybe_count, no_count, star_count)
