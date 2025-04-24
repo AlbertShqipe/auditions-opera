@@ -1,19 +1,21 @@
 // Specific CSS for your home-page
-.home-container {
-  width: 80%;
-  height: calc(100dvh - 100px); /* or 100% if the parent has a defined height */
-  margin: 0 auto;
-  display: flex;
-  justify-content: center; /* horizontal centering */
-  align-items: center;     /* vertical centering */
-  text-align: center;
-  position: relative;
+.home-main-container {
 
-  @media (max-width: 760px) {
-    flex-direction: column;
+  .home-container-center {
+    width: 80%;
+    height: calc(100dvh - 150px); /* or 100% if the parent has a defined height */
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    position: static;
-    transform: none;
-  }
+    text-align: center;
+    position: relative;
 
+    @media (max-width: 760px) {
+      flex-direction: column;
+      align-items: center;
+      position: static;
+      transform: none;
+    }
+  }
 }

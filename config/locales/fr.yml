@@ -138,6 +138,12 @@ fr:
       search: "Rechercher"
       search_name: "Rechercher par prénom"
     reset: "Réinitialiser"
+    gender_select:
+      all: "Tous"
+      male: "Homme"
+      female: "Femme"
+      non_binary: "Non-binaire"
+      other: "Autre"
 
   confirm_attendance:
     title: "Confirmation de présence"
@@ -161,6 +167,10 @@ fr:
     link: "Démarrer le tableau de bord"
     index_title: "Section d’index"
     select_vote_result: "Sélectionner le résultat du vote"
+    other_view:
+      filter_by_status: "Filtrer par statut"
+      filter_by_vote_result: "Filtrer par résultat de vote"
+    results_filter: "candidatures"
 
   errors:
     messages:
@@ -291,3 +301,33 @@ fr:
         success: "Vote enregistré avec succès."
         error: "Vous n’êtes pas autorisé à voter."
         error1: "Échec du vote."
+
+  final_step:
+    h1: "Étape Finale"
+    p1: "Vous avez atteint la dernière étape du processus d’audition. Veuillez examiner les résultats et envoyer les notifications à tous les candidats."
+    p2: "Avant d’envoyer les invitations, assurez-vous que le nombre de candidatures en attente est égal à zéro."
+    confirm_button: "Êtes-vous sûr de vouloir envoyer une notification à tous les candidats maintenant ?"
+    tot_cand: "Nombre total de candidatures"
+    rejected_cand: "Candidatures refusées"
+    accepted_cand: "Candidatures acceptées"
+    pending_cand: "Candidatures en attente"
+    notify_all_candidates: "ENVOYER LE RÉSULTAT AUX CANDIDATS"
+
+  report:
+    h2: "Rapport de l’audition"
+    p1: "Rapport de l’audition pour le Ballet de l’Opéra de Lyon"
+    p2: "Total de candidatures :"
+    p3: "Âge du·de la plus jeune candidat·e"
+    p4: "Âge du·de la candidat·e le·la plus âgé·e"
+    p5: "Moyenne d’âge des candidat·e·s"
+    p6: "Candidat·e le·la plus petit·e"
+    p7: "Candidat·e le·la plus grand·e"
+    p8: "Taille moyenne des candidat·e·s"
+    p9: "Femmes"
+    p10: "Hommes"
+    p11: "Non-binaire"
+    p12: "Autre"
+    p13: "Nationalités"
+    p14: "Candidatures acceptées"
+    p15: "Candidatures refusées"
+    btn: "📄 Télécharger le rapport en PDF"

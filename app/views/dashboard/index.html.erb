@@ -91,7 +91,7 @@
 
           <!-- Status Filter -->
           <div class="filter-field">
-            <%= label_tag :status, "Filter by Status" %><br>
+            <%= label_tag :status, t("dashboard.other_view.filter_by_status") %><br>
             <%= select_tag :status,
                   options_for_select([
                     ["All", ""],
@@ -105,7 +105,7 @@
 
           <!-- Vote Result Filter -->
           <div class="filter-field">
-            <%= label_tag :vote_result, "Filter by Vote Result" %><br>
+            <%= label_tag :vote_result, t("dashboard.other_view.filter_by_vote_result") %><br>
             <%= select_tag :vote_result,
                   options_for_select([
                     ["All", ""],
@@ -132,7 +132,7 @@
     <turbo-frame id="applications_list">
       <div>
         <div class="text-center">
-          <p><%= pluralize(@applications.size.count, "applications") %> <%= params[:vote_result] if params[:vote_result].present? %></p>
+          <p><%= pluralize(@applications.size.count, t('dashboard.results_filter')) %> <%= params[:vote_result] if params[:vote_result].present? %> / <%= AuditionApplication.all.count %></p>
         </div>
         <section class="tiles-index my-4">
           <%= render partial: "audition_applications/tile", collection: @applications, as: :application %>

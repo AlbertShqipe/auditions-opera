@@ -133,6 +133,12 @@ en:
       search: "Search"
       search_name: "Search by name"
     reset: "Reset"
+    gender_select:
+      all: "All"
+      male: "Male"
+      female: "Female"
+      non_binary: "Non-binary"
+      other: "Other"
 
   confirm_attendance:
     title: "Confirm Your Attendance"
@@ -156,6 +162,10 @@ en:
     link: "Initiate dashboard"
     index_title: "Index Section"
     select_vote_result: "Select Vote Result"
+    other_view:
+      filter_by_status: "Filter by Status"
+      filter_by__vote_result: "Filter by vote Result"
+    results_filter: "applications"
 
   errors:
     messages:
@@ -287,3 +297,33 @@ en:
         success: "Vote cast successfully."
         error: "You are not authorized to vote."
         error1: "Vote failed"
+
+  final_step:
+    h1: "Final Step"
+    p1: "You have reached the final step of the audition process. Please review the results and send notifications to all candidates."
+    p2: "Before sending the invitations, try to make sure that the pending applications are 0"
+    confirm_button: "Are you sure you want to notify all candidates now?"
+    tot_cand: "Total applications"
+    rejected_cand: "Rejected applications"
+    accepted_cand: "Accepted applications"
+    pending_cand: "Pending applications"
+    notify_all_candidates: "SEND RESULTS TO ALL CANDIDATES"
+
+  report:
+    h2: "Audition Report"
+    p1: "Audition report for the year"
+    p2: "Total applications"
+    p3: "Youngest candidate age"
+    p4: "Oldest candidate age"
+    p5: "Average candidate age"
+    p6: "Shortest candidate"
+    p7: "Tallest candidate"
+    p8: "Average candidate height"
+    p9: "Women"
+    p10: "Men"
+    p11: "Non-binary"
+    p12: "Other"
+    p13: "Nationalities"
+    p14: "Accepted applications"
+    p15: "Rejected applications"
+    btn: "📄 Download Rapport as PDF"

@@ -60,7 +60,7 @@
   height: 247px;
   border-radius: 30px;
 
-  @media (max-width: 760px) {
+  @media (min-width: 760px) {
     height: 260px;
   }
 }

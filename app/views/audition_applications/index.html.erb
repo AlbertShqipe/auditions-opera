@@ -20,14 +20,30 @@
             <!-- Gender Filter -->
             <div class="second">
               <%= form.label :gender, t("audition_application_index.filters.gender") %> <br>
-              <%= form.select :gender, options_for_select(['', 'male', 'female', 'non-binary', 'other'], @selected_gender) %>
+
+              <%= form.select :gender, options_for_select([
+                [t("audition_application_index.gender_select.all"), ''],
+                [t("audition_application_index.gender_select.male"), 'male'],
+                [t("audition_application_index.gender_select.female"), 'female'],
+                [t("audition_application_index.gender_select.non_binary"), 'non_binary'],
+                [t("audition_application_index.gender_select.other"), 'other']
+              ], @selected_gender) %>
             </div>
 
             <!-- Vote Filter -->
-            <div class="third">
-              <%= form.label :vote, t("audition_application_index.filters.vote") %> <br>
-              <%= form.select :vote, options_for_select(['', "not set", 'yes', 'maybe', 'star', 'no'], @selected_vote) %>
-            </div>
+              <div class="third">
+                <%= form.label :vote, t("audition_application_index.filters.vote") %> <br>
+                <%= form.select :vote, options_for_select(
+                  [
+                    ['', ''],
+                    ['Not set', 'not set'],
+                    ['Yes', 'yes'],
+                    ['Maybe', 'maybe']
+                  ] +
+                  (current_user.director? ? [['Star', 'star'], ['No', 'no']] : [['No', 'no']]),
+                  @selected_vote
+                ) %>
+              </div>
 
             <!-- Filter Submit Button -->
           </div>

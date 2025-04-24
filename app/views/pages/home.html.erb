@@ -1,98 +1,101 @@
-<div class="home-container">
-  <% if user_signed_in? %>
-    <% if current_user.role != "admin" && current_user.role != "director" && current_user.role != "guest" %>
-      <div class="mt-5">
-        <div class="body_p text-center">
-          <% if current_user.audition_applications.present? %>
-            <h3 class="text-h3">
-              <%= t("home.welcome") %> <%= current_user.audition_applications.first.first_name %> <%= current_user.audition_applications.first.last_name %>
-            </h3>
+<div class="home-main-container">
 
-            <% application = current_user.audition_applications.first %>
+  <div class="home-container-center">
+    <% if user_signed_in? %>
+      <% if current_user.role != "admin" && current_user.role != "director" && current_user.role != "guest" %>
+        <div class="mt-5">
+          <div class="body_p text-center">
+            <% if current_user.audition_applications.present? %>
+              <h3 class="text-h3">
+                <%= t("home.welcome") %> <%= current_user.audition_applications.first.first_name %> <%= current_user.audition_applications.first.last_name %>
+              </h3>
 
-            <% if application.status_published == false %>
-              <p class="text-p">
-                <%= t("home.status.pending") %>
-              </p>
-            <% elsif application.status_published == true && application.status == "accepted" && application.confirmed_attendance == true %>
-              <p class="text-p">
-                <%= t("home.status.accepted.confirmed_attendance") %>
-              </p>
+              <% application = current_user.audition_applications.first %>
 
-            <% elsif application.status_published == true && application.status == "accepted" && application.confirmed_attendance == false %>
-              <p class="text-p">
-                <%= t("home.status.accepted.unconfirmed_attendance") %>
-              </p>
-            <% elsif application.status == 'rejected' && application.status_published == true%>
-              <p class="text-p">
-                <%= t("home.status.rejected") %>
-              </p>
-              <p class="text-p">
-                <%= t("home.questions") %>
-              </p>
-            <% end %>
-          <% else %>
-            <p class="text-p">
-              <%= t("home.good_luck").html_safe %>
-            </p>
-          <% end %>
-        </div>
-        <div class="d-flex justify-content-center" style="margin-top: 20px; width: 100%">
-          <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA",style:"width:25%" %>
-        </div>
-        <div class="text-center mt-5">
-          <% if current_user.audition_applications.present? %>
-            <% if current_user.audition_applications.first.status == 'accepted' && current_user.audition_applications.first.status_published == true %>
-              <% if current_user.audition_applications.first.confirmed_attendance == false %>
-                <%= link_to confirm_attendance_audition_application_path(current_user.audition_applications.first), method: :get, class: "button" do %>
-                  <span><%= t("home.btn.confirm_attendance") %></span>
-                <% end %>
-              <% end %>
-              <%= link_to audition_application_path(current_user.audition_applications.first), class:"button" do%>
-                <span><%= t("home.btn.application_check") %></span>
+              <% if application.status_published == false %>
+                <p class="text-p">
+                  <%= t("home.status.pending") %>
+                </p>
+              <% elsif application.status_published == true && application.status == "accepted" && application.confirmed_attendance == true %>
+                <p class="text-p">
+                  <%= t("home.status.accepted.confirmed_attendance") %>
+                </p>
+
+              <% elsif application.status_published == true && application.status == "accepted" && application.confirmed_attendance == false %>
+                <p class="text-p">
+                  <%= t("home.status.accepted.unconfirmed_attendance") %>
+                </p>
+              <% elsif application.status == 'rejected' && application.status_published == true%>
+                <p class="text-p">
+                  <%= t("home.status.rejected") %>
+                </p>
+                <p class="text-p">
+                  <%= t("home.questions") %>
+                </p>
               <% end %>
             <% else %>
-              <%= link_to audition_application_path(current_user.audition_applications.first), class:"button" do%>
-                <span><%= t("home.btn.application_check") %></span>
+              <p class="text-p">
+                <%= t("home.good_luck").html_safe %>
+              </p>
+            <% end %>
+          </div>
+          <div class="d-flex justify-content-center" style="margin-top: 20px; width: 100%">
+            <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA",style:"width:25%" %>
+          </div>
+          <div class="text-center mt-5">
+            <% if current_user.audition_applications.present? %>
+              <% if current_user.audition_applications.first.status == 'accepted' && current_user.audition_applications.first.status_published == true %>
+                <% if current_user.audition_applications.first.confirmed_attendance == false %>
+                  <%= link_to confirm_attendance_audition_application_path(current_user.audition_applications.first), method: :get, class: "button" do %>
+                    <span><%= t("home.btn.confirm_attendance") %></span>
+                  <% end %>
+                <% end %>
+                <%= link_to audition_application_path(current_user.audition_applications.first), class:"button" do%>
+                  <span><%= t("home.btn.application_check") %></span>
+                <% end %>
+              <% else %>
+                <%= link_to audition_application_path(current_user.audition_applications.first), class:"button" do%>
+                  <span><%= t("home.btn.application_check") %></span>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to new_audition_application_path, class:"button" do %>
+                <span><%= t("home.btn.apply_audition") %></span>
               <% end %>
             <% end %>
-          <% else %>
-            <%= link_to new_audition_application_path, class:"button" do %>
-              <span><%= t("home.btn.apply_audition") %></span>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    <% else %>
-      <div class="mt-5">
-        <div class="text-center mt-3 rounded-top-logedIn">
-          <img class="" src="https://www.dansesaveclaplume.com/wordpress/wp-content/gallery/soiree-jiri-kylian-ballet-de-lopera-de-lyon/b-bella-figura_1.jpg" alt="Ballet de l'Opera de Lyon Studio">
-        </div>
-        <div class="text-center mt-5">
-          <div class="d-flex justify-content-center" style=" width: 50%; margin: 10px auto">
-            <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA", class:"logo-home" %>
           </div>
-          <%= link_to audition_applications_path, class:"button mt-3" do %>
-            <span><%= t("home.btn.applications") %></span>
-          <% end %>
         </div>
+      <% else %>
+        <div class="mt-5">
+          <div class="text-center mt-3 rounded-top-logedIn">
+            <img class="" src="https://www.dansesaveclaplume.com/wordpress/wp-content/gallery/soiree-jiri-kylian-ballet-de-lopera-de-lyon/b-bella-figura_1.jpg" alt="Ballet de l'Opera de Lyon Studio">
+          </div>
+          <div class="text-center mt-5">
+            <div class="d-flex justify-content-center" style=" width: 50%; margin: 10px auto">
+              <%= image_tag "https://www.dancereflections-vancleefarpels.com/sites/default/files/styles/original_webp/public/2023-05/logo-opera-de-lyon.png?itok=FrOFCxxA", class:"logo-home" %>
+            </div>
+            <%= link_to audition_applications_path, class:"button mt-3" do %>
+              <span><%= t("home.btn.applications") %></span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <%else%>
+      <div class="rounded-top">
+        <img class="img-home" src="https://api.opera-lyon.com/assets/q80-w960/bfda6276/bloc_tournees_ballet.jpg">
+      </div>
+      <div class="title-holder">
+        <h1 class="text-h2"><%= t("home.main_title") %></h1>
+          <p class="body_p">Saison 2025 - 2026</p>
+          <p>
+            <%= link_to new_user_registration_path, class: "button" do %>
+              <span><%= t("sections.link2") %></span>
+            <% end %>
+            <%= link_to new_user_session_path, class:"button" do %>
+              <span><%= t("sections.link1") %></span>
+            <% end %>
+          </p>
       </div>
     <% end %>
-  <%else%>
-    <div class="rounded-top">
-      <img class="img-home" src="https://api.opera-lyon.com/assets/q80-w960/bfda6276/bloc_tournees_ballet.jpg">
-    </div>
-    <div class="title-holder">
-      <h1 class="text-h2"><%= t("home.main_title") %></h1>
-        <p class="body_p">Saison 2025 - 2026</p>
-        <p>
-          <%= link_to new_user_registration_path, class: "button" do %>
-            <span><%= t("sections.link2") %></span>
-          <% end %>
-          <%= link_to new_user_session_path, class:"button" do %>
-            <span><%= t("sections.link1") %></span>
-          <% end %>
-        </p>
-    </div>
-  <% end %>
+  </div>
 </div>

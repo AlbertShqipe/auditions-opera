@@ -1,110 +1,115 @@
-.show-container {
-  width: 80%;
-  margin: auto;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50%, -50%);
+.show-main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .show-container-center {
+    width: 80%;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
 
-  .text-h1-show {
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 1.1;
-  }
+    .text-h1-show {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
 
-  .show-content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    .show-info {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 20px;
+    .show-content {
+      display: flex;
+      justify-content: space-around;
       align-items: center;
-      margin-bottom: 40px;
-      margin-top: 40px;
 
-      @media (max-width:760px) {
-        display: flex;
-        flex-direction:column;
-        margin-top: 20px;
-        margin-bottom:20px;
-      }
-
-      .show-text {
-        display: flex;
-        justify-content: space-around;
-        font-size: large;
+      .show-info {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        align-items: center;
+        margin-bottom: 40px;
+        margin-top: 40px;
 
         @media (max-width:760px) {
-          // flex-direction:column;
-          align-items: center;
+          display: flex;
+          flex-direction:column;
+          margin-top: 20px;
+          margin-bottom:20px;
         }
 
+        .show-text {
+          display: flex;
+          justify-content: space-around;
+          font-size: large;
 
-        .show-image {
+          @media (max-width:760px) {
+            // flex-direction:column;
+            align-items: center;
+          }
 
-          img {
-            width: 200px;
-            border-radius:10px;
-            margin-right: 10px;
 
-            @media (max-width:760px) {
-              width: 150px;
-              margin-bottom: 20px;
+          .show-image {
+
+            img {
+              width: 200px;
+              border-radius:10px;
+              margin-right: 10px;
+
+              @media (max-width:760px) {
+                width: 150px;
+                margin-bottom: 20px;
+              }
+            }
+          }
+
+          .body_p_show {
+            // margin-bottom: 2.625rem;
+            font-size: 16px;
+            text-indent: calc(2.5rem,-.3168335901rem + 12.0184899846vw,7.375rem);
+
+            @media (max-width: 760px) {
+              font-size:12px;
+              // margin-top: 5px;
+              margin-bottom: 10px;
             }
           }
         }
+      }
 
-        .body_p_show {
-          // margin-bottom: 2.625rem;
-          font-size: 16px;
-          text-indent: calc(2.5rem,-.3168335901rem + 12.0184899846vw,7.375rem);
+      .show-video {
+        width: 100%;
 
-          @media (max-width: 760px) {
-            font-size:12px;
-            // margin-top: 5px;
-            margin-bottom: 10px;
-          }
+        iframe {
+          width: 100%;
+          height: 300px;
+          // height: 300px;
         }
       }
     }
 
-    .show-video {
+    .cv {
       width: 100%;
 
+      margin-bottom: 40px;
+      text-align: center;
       iframe {
         width: 100%;
         height: 300px;
-        // height: 300px;
       }
     }
-  }
 
-  .cv {
-    width: 100%;
+    @media (max-width:760px) {
+      width: 90%;
+      margin: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      // position: static;
+      // top: auto;
+      // left: auto;
+      // transform: none;
 
-    margin-bottom: 40px;
-    text-align: center;
-    iframe {
-      width: 100%;
-      height: 300px;
     }
-  }
-
-  @media (max-width:760px) {
-    width: 90%;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    // position: static;
-    // top: auto;
-    // left: auto;
-    // transform: none;
-
   }
 }

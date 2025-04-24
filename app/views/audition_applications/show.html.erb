@@ -1,133 +1,134 @@
-<div class="show-container">
-  <h1 class="text-h1-show"><%= @application.first_name %> <%= @application.last_name %></h1>
-  <div class="show-content">
-    <div class="show-info">
-      <div class="show-text">
-        <div class="show-image">
-          <% if @application.profile_image.attached? %>
-            <% if Rails.env.production? %>
-              <a href="<%= @application.profile_image.url %>" target="_blank">
-                <%= cl_image_tag @application.profile_image.key, width: 150 %>
-              </a>
-            <% else %>
-              <%= image_tag url_for(@application.profile_image), width: 150 %>
+<div class="show-main-container">
+  <div class="show-container-center">
+    <h1 class="text-h1-show"><%= @application.first_name %> <%= @application.last_name %></h1>
+    <div class="show-content">
+      <div class="show-info">
+        <div class="show-text">
+          <div class="show-image">
+            <% if @application.profile_image.attached? %>
+              <% if Rails.env.production? %>
+                <a href="<%= @application.profile_image.url %>" target="_blank">
+                  <%= cl_image_tag @application.profile_image.key, width: 150 %>
+                </a>
+              <% else %>
+                <%= image_tag url_for(@application.profile_image), width: 150 %>
+              <% end %>
             <% end %>
+          </div>
+          <div class="main-info">
+            <p class="body_p_show"><strong><%= t("show.main_info.birth_date") %>:</strong> <%= @application.date_of_birth.present? ? @application.date_of_birth : " " %></p>
+            <p class="body_p_show"><strong><%= t("show.main_info.nationality") %>:</strong> <%= @application.nationality.present? ? @application.nationality : " "  %></p>
+            <p class="body_p_show"><strong><%= t("show.main_info.address") %>:</strong> <%= @application.address.present? ? @application.address : " "  %></p>
+            <p class="body_p_show"><strong><%= t("show.main_info.height") %>:</strong> <%= @application.height.present? ? @application.height : " " %> m</p>
+            <p class="body_p_show"><strong><%= t("show.main_info.gender") %>:</strong> <%= @application.gender.present? ? @application.gender.humanize : " " %></p>
+            <% if current_user.candidate? %>
+              <% if @application.status_published? %>
+                <p class="body_p_show"><strong><%= t("show.main_info.status") %>:</strong> <%= @application.status.present? ? @application.status.humanize : " "  %></p>
+              <% else %>
+                <p class="body_p_show"><strong><%= t("show.main_info.status") %></strong>: <%= t("show.main_info.status_can") %></p>
+              <% end %>
+            <% else %>
+              <!-- Admins see the real status and controls -->
+              <p class="body_p_show"><strong><%= t("show.main_info.status") %></strong>: <%= @application.status.capitalize %></p>
+            <% end %>
+
+            <!-- Ethnicity section -->
+            <!--
+            <% if current_user.admin? || current_user.director? %>
+              <p class="body_p_show"><strong><%= t("show.main_info.ethnicity") %>:</strong> <%= @application.ethnicity ? @application.ethnicity.name : "Unset" %></p>
+            <% end %>
+            -->
+
+          </div>
+        </div>
+        <div  class="show-video">
+          <% if @application.video_link.present? %>
+            <iframe  src="<%= youtube_embed_url(@application.video_link) %>" frameborder="0" allowfullscreen></iframe>
           <% end %>
         </div>
-        <div class="main-info">
-          <p class="body_p_show"><strong><%= t("show.main_info.birth_date") %>:</strong> <%= @application.date_of_birth.present? ? @application.date_of_birth : " " %></p>
-          <p class="body_p_show"><strong><%= t("show.main_info.nationality") %>:</strong> <%= @application.nationality.present? ? @application.nationality : " "  %></p>
-          <p class="body_p_show"><strong><%= t("show.main_info.address") %>:</strong> <%= @application.address.present? ? @application.address : " "  %></p>
-          <p class="body_p_show"><strong><%= t("show.main_info.height") %>:</strong> <%= @application.height.present? ? @application.height : " " %> m</p>
-          <p class="body_p_show"><strong><%= t("show.main_info.gender") %>:</strong> <%= @application.gender.present? ? @application.gender.humanize : " " %></p>
-          <% if current_user.candidate? %>
-            <% if @application.status_published? %>
-              <p class="body_p_show"><strong><%= t("show.main_info.status") %>:</strong> <%= @application.status.present? ? @application.status.humanize : " "  %></p>
-            <% else %>
-              <p class="body_p_show"><strong><%= t("show.main_info.status") %></strong>: <%= t("show.main_info.status_can") %></p>
-            <% end %>
-          <% else %>
-            <!-- Admins see the real status and controls -->
-            <p class="body_p_show"><strong><%= t("show.main_info.status") %></strong>: <%= @application.status.capitalize %></p>
-          <% end %>
-
-          <!-- Ethnicity section -->
-          <!--
-          <% if current_user.admin? || current_user.director? %>
-            <p class="body_p_show"><strong><%= t("show.main_info.ethnicity") %>:</strong> <%= @application.ethnicity ? @application.ethnicity.name : "Unset" %></p>
-          <% end %>
-          -->
-
-        </div>
-      </div>
-      <div  class="show-video">
-        <% if @application.video_link.present? %>
-          <iframe  src="<%= youtube_embed_url(@application.video_link) %>" frameborder="0" allowfullscreen></iframe>
-        <% end %>
       </div>
     </div>
-  </div>
 
-  <div class="cv">
-    <% if @application.cv.attached? %>
+    <div class="cv">
       <% if @application.cv.attached? %>
-        <%= link_to rails_blob_path(@application.cv, disposition: "inline"), class:"button" do %>
-          <span><%= t("show.cv.cv_view_btn") %></span>
+        <% if @application.cv.attached? %>
+          <%= link_to rails_blob_path(@application.cv, disposition: "inline"), class:"button" do %>
+            <span><%= t("show.cv.cv_view_btn") %></span>
+          <% end %>
+        <% else %>
+          <p><%= t("show.cv.no_cv") %></p>
         <% end %>
-      <% else %>
-        <p><%= t("show.cv.no_cv") %></p>
+      <% end %>
+    </div>
+
+    <% user = current_user %>
+
+    <% if user.admin? || user.director? %>
+      <% if @application.status == 'pending' %>
+        <!-- Change Vote with Buttons -->
+        <div class="votes-show">
+          <% if user.director? %>
+            <%= form_with url: audition_application_votes_path(@application), method: :post do %>
+              <%= hidden_field_tag :value, "star" %>
+              <%= button_tag type: :submit, class: "btn-vote btn-star", title: "Star" do %>
+                <span class="material-symbols-outlined">star</span>
+              <% end %>
+            <% end %>
+          <% end %>
+
+          <% ["yes", "maybe", "no"].each do |vote| %>
+            <%= form_with url: audition_application_votes_path(@application), method: :post do %>
+              <%= hidden_field_tag :value, vote %>
+              <%= button_tag type: :submit, class: "btn-vote btn-#{vote}", title: vote.capitalize do %>
+                <%# Choose icon or fallback %>
+                <% icon = case vote
+                  when "yes" then "check"
+                  when "maybe" then "?"
+                  when "no" then "close"
+                end %>
+                <% if icon == "?" %>
+                  <span style="font-size: 1.5rem; font-weight: 300;">?</span>
+                <% else %>
+                  <span class="material-symbols-outlined"><%= icon %></span>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @application.ethnicity == "not-set" || @application.ethnicity.nil? %>
+        <!-- Ethnicity block remains commented as in your version -->
       <% end %>
     <% end %>
-  </div>
 
-  <% user = current_user %>
+    <% if user.admin? || user.director? || user.guest? %>
+      <div>
+        <%= link_to "Applications", audition_applications_path, class: "link" %>
+      </div>
+      <div>
+        <%= mail_to @application.user.email, t("show.btn.contact_user"), class: "link" %>
+      </div>
+    <% end %>
 
-<% if user.admin? || user.director? %>
-  <% if @application.status == 'pending' %>
-    <!-- Change Vote with Buttons -->
-    <div class="votes-show">
-      <% if user.director? %>
-        <%= form_with url: audition_application_votes_path(@application), method: :post do %>
-          <%= hidden_field_tag :value, "star" %>
-          <%= button_tag type: :submit, class: "btn-vote btn-star", title: "Star" do %>
-            <span class="material-symbols-outlined">star</span>
-          <% end %>
-        <% end %>
+    <% if user.candidate? %>
+      <% if @application.status_published == false || @application.status_published == nil %>
+      <% link_to t("show.btn.delete"), @application,
+            data: {
+              turbo_method: :delete,
+              controller: "turbo-confirm",
+              action: "click->turbo-confirm#confirm",
+              turbo_confirm_message_value: "Are you sure you want to delete this application?"
+            },
+            class: "link" %>
+        <div>
+          <%= link_to edit_audition_application_path(@application), class: "link" do %>
+            <span><%= t("show.btn.edit") %></span>
+          <% end %><br>
+        </div>
       <% end %>
+    <% end %>
 
-      <% ["yes", "maybe", "no"].each do |vote| %>
-        <%= form_with url: audition_application_votes_path(@application), method: :post do %>
-          <%= hidden_field_tag :value, vote %>
-          <%= button_tag type: :submit, class: "btn-vote btn-#{vote}", title: vote.capitalize do %>
-            <%# Choose icon or fallback %>
-            <% icon = case vote
-              when "yes" then "check"
-              when "maybe" then "?"
-              when "no" then "close"
-            end %>
-            <% if icon == "?" %>
-              <span style="font-size: 1.5rem; font-weight: 300;">?</span>
-            <% else %>
-              <span class="material-symbols-outlined"><%= icon %></span>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <% if @application.ethnicity == "not-set" || @application.ethnicity.nil? %>
-    <!-- Ethnicity block remains commented as in your version -->
-  <% end %>
-<% end %>
-
-<% if user.admin? || user.director? || user.guest? %>
-  <div>
-    <%= link_to "Applications", audition_applications_path, class: "link" %>
+    <%= link_to t("show.btn.home"), root_path, class: "link" %>
   </div>
-  <div>
-    <%= mail_to @application.user.email, t("show.btn.contact_user"), class: "link" %>
-  </div>
-<% end %>
-
-<% if user.candidate? %>
-  <%= link_to t("show.btn.delete"), @application,
-        data: {
-          turbo_method: :delete,
-          controller: "turbo-confirm",
-          action: "click->turbo-confirm#confirm",
-          turbo_confirm_message_value: "Are you sure you want to delete this application?"
-        },
-        class: "link" %>
-  <br>
-  <% if @application.status != "accepted" %>
-    <div>
-      <%= link_to edit_audition_application_path(@application), class: "link" do %>
-        <span><%= t("show.btn.edit") %></span>
-      <% end %><br>
-    </div>
-  <% end %>
-<% end %>
-
-<%= link_to t("show.btn.home"), root_path, class: "link" %>
 </div>

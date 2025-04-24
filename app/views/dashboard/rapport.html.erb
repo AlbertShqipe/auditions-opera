@@ -1,41 +1,41 @@
 <div class="main_container_rapport" data-controller="count-up-animation">
-  <h1 class="text-center">Audition Report</h2>
-  <p class="text-center">Audition report for the year <%= Date.today.year %></p>
+  <h1 class="text-center"><%= t("report.h2") %></h2>
+  <p class="text-center"><%= t("report.p1") %> <%= Date.today.year %></p>
   <div class="mt-3 d-flex justify-content-around">
     <%# <p class="numbers">Total users<br>
       <strong data-count-up-animation-target="number" data-target="<%= @total_users ">0</strong>
     </p> %>
-    <p class="numbers">Total applications<br>
+    <p class="numbers"><%= t("report.p2") %><br>
       <strong data-count-up-animation-target="number" data-target="<%= @total_applications %>">0</strong>
     </p>
   </div>
   <div class="mt-3 d-flex justify-content-around">
-    <p class="numbers">Youngest<br>
+    <p class="numbers"><%= t("report.p3") %><br>
       <strong data-count-up-animation-target="number" data-target="<%= @min_age %>">0</strong>
     </p>
-    <p class="numbers">Oldest<br>
+    <p class="numbers"><%= t("report.p4") %><br>
       <strong data-count-up-animation-target="number" data-target="<%= @max_age %>">0</strong>
     </p>
-    <p class="numbers">Average age<br>
+    <p class="numbers"><%= t("report.p5") %><br>
       <strong data-count-up-animation-target="number" data-target="<%= @avg_age %>">0</strong>
     </p>
   </div>
   <div class="mt-3 d-flex justify-content-around">
-    <p class="numbers">Shortest<br>
+    <p class="numbers"><%= t("report.p6") %><br>
       <strong
         data-count-up-animation-target="number"
         data-target="<%= @min_height %>"
         data-decimals="1">0</strong> m
     </p>
 
-    <p class="numbers">Tallest<br>
+    <p class="numbers"><%= t("report.p7") %><br>
       <strong
         data-count-up-animation-target="number"
         data-target="<%= @max_height %>"
         data-decimals="1">0</strong> m
     </p>
 
-    <p class="numbers">Average height<br>
+    <p class="numbers"><%= t("report.p8") %><br>
       <strong
         data-count-up-animation-target="number"
         data-target="<%= @avg_height %>"
@@ -43,13 +43,13 @@
     </p>
   </div>
   <div class="mt-3 d-flex justify-content-around">
-      <p class="numbers">Women<br><strong data-count-up-animation-target="number" data-target="<%= @gender_counts["female"] || 0 %>">0</strong></p>
-      <p class="numbers">Men<br><strong data-count-up-animation-target="number" data-target="<%= @gender_counts["male"] || 0 %>">0</strong></p>
-      <p class="numbers">Non Binary<br><strong data-count-up-animation-target="number" data-target="<%= @gender_counts["non_binary"] || 0 %>">0</strong></p>
-      <p class="numbers">Other<br><strong data-count-up-animation-target="number" data-target="<%= @gender_counts["other"] || 0 %>">0</strong></p>
+      <p class="numbers"><%= t("report.p9") %><br><strong data-count-up-animation-target="number" data-target="<%= @gender_counts["female"] || 0 %>">0</strong></p>
+      <p class="numbers"><%= t("report.p10") %><br><strong data-count-up-animation-target="number" data-target="<%= @gender_counts["male"] || 0 %>">0</strong></p>
+      <p class="numbers"><%= t("report.p11") %><br><strong data-count-up-animation-target="number" data-target="<%= @gender_counts["non_binary"] || 0 %>">0</strong></p>
+      <p class="numbers"><%= t("report.p12") %><br><strong data-count-up-animation-target="number" data-target="<%= @gender_counts["other"] || 0 %>">0</strong></p>
   </div>
   <div class="mt-3">
-    <p class="numbers">Nationalities<br><strong data-count-up-animation-target="number" data-target="<%= @nationalities.size %>">0</strong></p>
+    <p class="numbers"><%= t("report.p13") %><br><strong data-count-up-animation-target="number" data-target="<%= @nationalities.size %>">0</strong></p>
 
     <% @nationalities.sort.each_with_index do |nation, index| %>
       <span style="padding: 3px 6px; font-size: 0.9rem;">
@@ -58,10 +58,10 @@
     <% end %>
   </div>
   <div class="mt-3 d-flex justify-content-around">
-      <p class="numbers">Accepted<br><strong data-count-up-animation-target="number" data-target="<%= @accepted %>">0</strong></p>
-      <p class="numbers">Rejected<br><strong data-count-up-animation-target="number" data-target="<%= @rejected %>>">0</strong></p>
+      <p class="numbers"><%= t("report.p14") %><br><strong data-count-up-animation-target="number" data-target="<%= @accepted %>">0</strong></p>
+      <p class="numbers"><%= t("report.p15") %><br><strong data-count-up-animation-target="number" data-target="<%= @rejected %>>">0</strong></p>
   </div>
-  <%= link_to "📄 Download Rapport as PDF", download_rapport_path, class: "btn btn-primary", target: "_blank" %>
+  <%= link_to t("report.btn"), download_rapport_path, class: "btn btn-primary", target: "_blank" %>
   <div class="card-image">
     <img src="https://www.tanzimaugust.de/fileadmin/TiA/_processed_/f/3/csm_4_Ballet_de_l’Opéra_de_Lyon_Mycelium_c_Agathe_Poupeney_18f02ec2f6.jpg" alt="Audition Image">
   </div>
