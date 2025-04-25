@@ -1,7 +1,7 @@
 <div class="container mt-3" data-controller="toggle-filters">
   <h1 class="text-center"><%= t("audition_application_index.applications") %></h1>
       <div class="container d-flex justify-content-around align-items-center mb-3">
-        <%= form_with url: audition_applications_path, method: :get, data: { turbo_frame: "applications" }, class: "filter-form" do %>
+        <%= form_with url: audition_applications_path, method: :get, local: true, data: { turbo_frame: "applications" }, class: "filter-form" do %>
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
 
             <!-- Gender Filter -->
