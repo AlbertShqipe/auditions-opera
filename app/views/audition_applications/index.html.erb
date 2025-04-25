@@ -1,8 +1,8 @@
 <div class="container mt-3" data-controller="toggle-filters">
   <h1 class="text-center"><%= t("audition_application_index.applications") %></h1>
-      <div class="container d-flex justify-content-around align-items-center mb-3">
+      <div class="container d-flex justify-content-around align-items-center mb-3 m-auto" >
         <%= form_with url: audition_applications_path, method: :get, local: true, data: { turbo_frame: "applications" }, class: "filter-form" do %>
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
+          <div class="filter-show">
 
             <!-- Gender Filter -->
             <div class="filter-field">
@@ -43,6 +43,9 @@
 
   <!-- Applications List -->
   <turbo-frame id="applications">
+    <div class="text-center">
+      <p><%= @audition_applications.all.count %> / <%= AuditionApplication.all.count %></p>
+    </div>
     <%= render partial: "audition_applications/applications", locals: { audition_applications: @audition_applications } %>
   </turbo-frame>
 </div>

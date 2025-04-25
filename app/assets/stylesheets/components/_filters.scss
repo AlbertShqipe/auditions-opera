@@ -1,24 +1,11 @@
 
 .filter-show {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  .second {
-    margin:16px 32px;
-
-    @media (max-width: 760px) {
-      margin:0;
-    }
-  }
-  .first, .second, .third {
-    margin-top: 16px;
-  }
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 
 
-  @media (max-width: 760px) {
-    flex-direction: column;
-  }
 
 }
 
