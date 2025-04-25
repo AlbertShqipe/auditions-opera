@@ -122,6 +122,17 @@ class AuditionApplicationsController < ApplicationController
         inner_hash[admin.email] = votes_lookup[[application.id, admin.id]]&.vote_value || "not_set"
       end
     end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.replace(
+          'applications',
+          partial: 'audition_applications/applications',
+          locals: { audition_applications: @audition_applications }
+        )
+      }
+    end
   end
 
   def show

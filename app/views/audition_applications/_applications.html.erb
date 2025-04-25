@@ -1,0 +1,44 @@
+<section class="tiles my-4" data-controller="votes">
+  <% audition_applications.each do |application| %>
+    <article class="style1 tile" id="votes_<%= application.id %>">
+      <%= render "votes/vote_status", application: application %>
+
+      <span class="image">
+        <% if application.profile_image.present? %>
+          <%= image_tag(application.profile_image) %>
+        <% else %>
+          <%= cl_image_tag application.photo.key %>
+        <% end %>
+      </span>
+
+      <a href="<%= audition_application_path(application) %>">
+        <h3 id="text-tiles"><%= application.first_name %> <%= application.last_name %></h3>
+        <br>
+        <h5><%= application.nationality %></h5>
+        <div class="content">
+          <h5><%= application.height %>m</h5>
+        </div>
+      </a>
+
+      <% unless application.status != 'pending' %>
+        <% if current_user.admin? || current_user.director? %>
+          <div class="votes">
+            <% ['yes', 'maybe', 'no'].each do |vote| %>
+              <%= form_with url: audition_application_votes_path(application), method: :post do %>
+                <%= hidden_field_tag :value, vote %>
+                <%= submit_tag "", class: "btn-vote btn-#{vote}", title: vote.capitalize %>
+              <% end %>
+            <% end %>
+
+            <% if current_user.director? %>
+              <%= form_with url: audition_application_votes_path(application), method: :post do %>
+                <%= hidden_field_tag :value, 'star' %>
+                <%= submit_tag "", class: "btn-vote btn-star", title: "Star" %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </article>
+  <% end %>
+</section>
