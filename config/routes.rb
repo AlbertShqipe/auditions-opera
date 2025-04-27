@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'dashboard/data', to: 'dashboard#data', as: :dashboard_data
     get 'dashboard/rapport', to: 'dashboard#rapport', as: :dashboard_rapport
     get "dashboard/download_rapport", to: "dashboard#download_rapport", as: :download_rapport
+    get '/help', to: 'pages#help', as: :help
     resources :dashboard, only: [:index, :show]
     devise_for :users
     root to: "pages#home"

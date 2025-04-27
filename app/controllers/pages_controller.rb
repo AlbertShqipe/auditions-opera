@@ -13,6 +13,10 @@ class PagesController < ApplicationController
     @accepted_applications = AuditionApplication.where(status: "accepted")
   end
 
+  def help
+    @user_type = current_user.role.to_sym # Assumes roles like :admin, :director, :artist
+  end
+
   private
 
   def check_admin

@@ -151,7 +151,7 @@ fr:
     text2: "Si vous ne pouvez pas être présent, veuillez indiquer la raison.<br> Nous examinerons votre message et nous vous répondrons par e-mail pour discuter de la possibilité d’organiser une invitation privée."
     btn:
       confirm_attendance: "Confirmer présence"
-      message: "Envoyer un message"
+      message: "Je ne peux pas assister à l’audition"
     success: "Votre présence a été confirmée avec succès!"
     error: "Une erreur s'est produite lors de la confirmation de votre présence. Veuillez réessayer plus tard."
     form:

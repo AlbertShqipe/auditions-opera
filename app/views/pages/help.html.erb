@@ -1,0 +1,18 @@
+<div class="help-container my-5">
+  <% case @user_type %>
+    <% when :admin %>
+      <%# <p>Current user admin</p> %>
+      <%= render "pages/help/admin"  %>
+    <% when :director %>
+      <%# <p>Current user director</p> %>
+      <%= render "pages/help/director"  %>
+    <% when :artist, :candidate %>
+      <%# <p>Current user candidate</p> %>
+      <%= render "pages/help/candidate" %>
+    <% when :guest %>
+      <%# <p>Current user guest</p> %>
+      <%= render "pages/help/guest" %>
+    <% else %>
+      <p class="text-center text-muted">No guide available for your role.</p>
+  <% end %>
+</div>

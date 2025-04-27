@@ -12,7 +12,7 @@
 
               <% application = current_user.audition_applications.first %>
 
-              <% if application.status_published == false %>
+              <% if application.status_published == nil || application.status_published == false %>
                 <p class="text-p">
                   <%= t("home.status.pending") %>
                 </p>
@@ -20,7 +20,6 @@
                 <p class="text-p">
                   <%= t("home.status.accepted.confirmed_attendance") %>
                 </p>
-
               <% elsif application.status_published == true && application.status == "accepted" && application.confirmed_attendance == false %>
                 <p class="text-p">
                   <%= t("home.status.accepted.unconfirmed_attendance") %>

@@ -1,6 +1,7 @@
 <% if @application.status == "accepted" %>
   <div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; max-width: 1000px; margin: auto;">
     <h1 style="color: #333;">Mise à jour de la candidature à l’audition</h1>
+
     <p>Cher·e <%= @application.first_name %> <%= @application.last_name %>,</p>
 
     <p>Nous avons le plaisir de vous informer que votre candidature pour l’audition du Ballet de l’Opéra de Lyon a été acceptée ! Félicitations pour cette étape franchie.</p>
@@ -52,6 +53,8 @@
   </div>
 <% else %>
   <div style="background-color: #f0f0f0; padding: 20px; border-radius: 5px; max-width: 1000px; margin: auto;">
+    <h1 style="color: #333;">Mise à jour de la candidature à l’audition</h1>
+
     <p>Cher•e <%= @application.first_name %> <%= @application.last_name %>,</p>
 
     <p>Merci pour votre candidature à l’audition du Ballet de l’Opéra de Lyon. Nous vous remercions sincèrement pour le temps et les efforts consacrés à votre soumission.</p>
