@@ -6,9 +6,6 @@
     color:rgb(200, 200, 200);
   }
 
-
-
-
   .help-sign_up-container {
     width: 100%;
     height: auto;
@@ -92,6 +89,10 @@
         margin-bottom: 20px;
       }
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
 
   }
 }
