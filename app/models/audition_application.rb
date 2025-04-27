@@ -9,6 +9,7 @@ class AuditionApplication < ApplicationRecord
   before_create :set_default_ethnicity
   # after_update :send_status_update_email
   after_initialize :set_default_vote_result, if: :new_record?
+  after_create :initialize_votes
 
   enum gender: { female: "female", male: "male", non_binary: "non_binary", other: "other" }
   enum status: { pending: 0, accepted: 1, rejected: 2 }
@@ -51,6 +52,16 @@ class AuditionApplication < ApplicationRecord
   end
 
   private
+
+  def initialize_votes
+    # Find all admins and directors
+    admins_and_directors = User.where(role: [:admin, :director])
+
+    # Create a vote for each admin/director with default not_set
+    admins_and_directors.each do |user|
+      votes.create!(user: user, vote_value: :not_set)
+    end
+  end
 
   def evaluate_votes(yes_count, maybe_count, no_count, star_count)
     if star_count > 0

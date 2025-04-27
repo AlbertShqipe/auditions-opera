@@ -70,18 +70,11 @@ class AuditionApplicationsController < ApplicationController
       @applications = AuditionApplication.all
     end
 
-    # Status, gender, and vote filter params
-    # @statuses = AuditionApplication.statuses.keys
-    # @selected_status = params[:status]
     @selected_gender = params[:gender]
-    # @selected_age = params[:age]
     @selected_vote = params[:vote]
 
     # Initialize filtered applications based on search results or all applications if no search
     @audition_applications = @applications
-
-    # # Apply status filter if selected
-    # @audition_applications = @audition_applications.where(status: @selected_status) if @selected_status.present?
 
     # Apply gender filter if selected
     @audition_applications = @audition_applications.where(gender: @selected_gender) if @selected_gender.present?
@@ -92,19 +85,11 @@ class AuditionApplicationsController < ApplicationController
     # Filter by votes if selected
     if @selected_vote.present?
       if @selected_vote == "not_set"
-        # Find applications where no vote exists yet or is "not_set"
         @audition_applications = @audition_applications
-          .left_joins(:votes)
-          .where("votes.user_id IS NULL OR (votes.user_id = ? AND votes.vote_value = ?)", current_user.id, Vote.vote_values[:not_set])
+          .left_outer_joins(:votes)
+          .where("votes.id IS NULL OR (votes.user_id = ? AND votes.vote_value = ?)", current_user.id, Vote.vote_values[:not_set])
       else
-        vote_mapping = {
-          "yes" => 1,
-          "maybe" => 2,
-          "no" => 3,
-          "star" => 4
-        }
-        vote_value = vote_mapping[@selected_vote]
-
+        vote_value = Vote.vote_values[@selected_vote]
         @audition_applications = @audition_applications
           .joins(:votes)
           .where(votes: { user_id: current_user.id, vote_value: vote_value })
