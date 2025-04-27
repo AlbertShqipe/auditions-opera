@@ -91,7 +91,7 @@ class AuditionApplicationsController < ApplicationController
 
     # Filter by votes if selected
     if @selected_vote.present?
-      if @selected_vote == "not set"
+      if @selected_vote == "not_set"
         @audition_applications = @audition_applications
           .left_joins(:votes)
           .where("votes.user_id IS NULL OR (votes.user_id = ? AND votes.vote_value = ?)", current_user.id, 0)
