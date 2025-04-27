@@ -146,7 +146,7 @@ en:
     text2: "If you are unable to attend, please provide a reason.<br> We will review your message and get back to you by email to discuss whether a private invitation can be arranged."
     btn:
       confirm_attendance: "Confirm Attendance"
-      message: "Send Message"
+      message: "I can’t make it to the audition"
     success: "Your attendance has been confirmed successfully."
     error: "There was an error confirming your attendance. Please try again later."
     form:

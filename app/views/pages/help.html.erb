@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="help-container my-5">
   <% case @user_type %>
     <% when :admin %>
       <%# <p>Current user admin</p> %>
@@ -8,7 +8,7 @@
       <%= render "pages/help/director"  %>
     <% when :artist, :candidate %>
       <%# <p>Current user candidate</p> %>
-      <%= render "pages/help/artist" %>
+      <%= render "pages/help/candidate" %>
     <% when :guest %>
       <%# <p>Current user guest</p> %>
       <%= render "pages/help/guest" %>
