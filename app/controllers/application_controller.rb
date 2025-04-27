@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
       root_path # Redirect to the root page or a candidate's dashboard
-    end
   end
 
   def default_url_options
