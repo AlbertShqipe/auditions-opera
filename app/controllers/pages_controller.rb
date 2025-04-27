@@ -4,14 +4,6 @@ class PagesController < ApplicationController
   def home
   end
 
-  def index
-    # Your code here
-  end
-
-  def show
-    # Your code here
-  end
-
   def final_step
     # Your code here
     @applications = AuditionApplication.all
@@ -22,6 +14,10 @@ class PagesController < ApplicationController
     @accepted_applications = AuditionApplication.where(status: "accepted")
 
 
+  end
+
+  def help
+    @user_type = current_user.role.to_sym # Assumes roles like :admin, :director, :artist
   end
 
   private
