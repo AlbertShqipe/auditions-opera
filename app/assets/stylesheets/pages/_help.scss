@@ -64,6 +64,10 @@
     video {
       max-width: 500px;
       height: auto;
+
+      @media (max-width: 768px) {
+        max-width: 100%;
+      }
     }
   }
 
