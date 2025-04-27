@@ -22,7 +22,7 @@
             <div class="filter-field">
               <%= label_tag :vote, t("audition_application_index.filters.vote") %><br>
               <%= select_tag :vote, options_for_select(
-                [['All', ''], ['Not set', 'not set'], ['Yes', 'yes'], ['Maybe', 'maybe']] +
+                [['All', ''], ['Not set', 'not-set'], ['Yes', 'yes'], ['Maybe', 'maybe']] +
                 (current_user.director? ? [['Star', 'star'], ['No', 'no']] : [['No', 'no']]),
                 @selected_vote),
                 class: "form-control",
