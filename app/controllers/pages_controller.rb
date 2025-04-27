@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [ :home, :help ]
 
   def home
   end
@@ -14,7 +14,7 @@ class PagesController < ApplicationController
   end
 
   def help
-    @user_type = current_user.role.to_sym # Assumes roles like :admin, :director, :artist
+    @user_type = current_user&.role&.to_sym || :candidate
   end
 
   private

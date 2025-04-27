@@ -33,6 +33,8 @@ en:
     link2: "Applications"
     link3: "Dashboard"
     link4: "Final Step"
+    link5: "Report"
+    link6: "Guide"
 
   sections:
     link1: "Log in"
