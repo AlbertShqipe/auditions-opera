@@ -92,9 +92,10 @@ class AuditionApplicationsController < ApplicationController
     # Filter by votes if selected
     if @selected_vote.present?
       if @selected_vote == "not_set"
+        # Find applications where no vote exists yet or is "not_set"
         @audition_applications = @audition_applications
           .left_joins(:votes)
-          .where("votes.user_id IS NULL OR (votes.user_id = ? AND votes.vote_value = ?)", current_user.id, 0)
+          .where("votes.user_id IS NULL OR (votes.user_id = ? AND votes.vote_value = ?)", current_user.id, Vote.vote_values[:not_set])
       else
         vote_mapping = {
           "yes" => 1,
@@ -240,9 +241,9 @@ class AuditionApplicationsController < ApplicationController
 
   private
 
-  def set_application
-    @application = current_user.audition_applications.find(params[:id])
-  end
+  # def set_application
+  #   @application = current_user.audition_applications.find(params[:id])
+  # end
 
   def authorize_candidate
     unless current_user.candidate?
