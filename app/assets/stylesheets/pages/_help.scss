@@ -1,0 +1,99 @@
+.help-container {
+  width: 70%;
+  margin: auto;
+
+  p {
+    color:rgb(200, 200, 200);
+  }
+
+  .help-sign_up-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px auto;
+
+    img {
+      max-width: 500px;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .help-sign_up-images {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px auto;
+
+    img {
+      max-width: 500px;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+
+    }
+  }
+
+  .help-video-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px auto;
+
+    video {
+      max-width: 500px;
+      height: auto;
+    }
+  }
+
+  .help-edit-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px auto;
+
+    img {
+      max-width: 500px;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+
+  }
+}
