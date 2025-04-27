@@ -5,6 +5,12 @@
       <div class="show-info">
         <div class="show-text">
           <div class="show-image">
+            <% user = current_user %>
+              <% if user.admin? || user.director? || user.guest? %>
+                <div style="position:relative">
+                  <%= render "votes/vote_status", application: @application %>
+                </div>
+              <% end %>
             <% if @application.profile_image.attached? %>
               <% if Rails.env.production? %>
                 <a href="<%= @application.profile_image.url %>" target="_blank">
@@ -62,7 +68,6 @@
     </div>
 
     <% user = current_user %>
-
     <% if user.admin? || user.director? %>
       <% if @application.status == 'pending' %>
         <!-- Change Vote with Buttons -->

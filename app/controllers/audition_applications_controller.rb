@@ -137,6 +137,21 @@ class AuditionApplicationsController < ApplicationController
 
   def show
     @application = AuditionApplication.find_by(id: params[:id])
+    @admins = User.where(role: [:admin, :director, :guest])
+    @audition_applications = AuditionApplication.all
+
+    # Fetch votes related to the filtered applications and admins
+    votes = Vote.where(user_id: @admins.pluck(:id), audition_application_id: @audition_applications.pluck(:id))
+
+    # Create a lookup hash for votes: { [audition_application_id, user_id] => vote_value }
+    votes_lookup = votes.index_by { |v| [v.audition_application_id, v.user_id] }
+
+    # Structure the votes data: { audition_application_id => { admin_email => vote_value } }
+    @votes = @audition_applications.each_with_object({}) do |application, hash|
+      hash[application.id] = @admins.each_with_object({}) do |admin, inner_hash|
+        inner_hash[admin.email] = votes_lookup[[application.id, admin.id]]&.vote_value || "not_set"
+      end
+    end
 
     if @application
       @ethnicities = Ethnicity.all
