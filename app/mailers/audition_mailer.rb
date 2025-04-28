@@ -4,6 +4,7 @@ class AuditionMailer < ApplicationMailer
     @application = application
     mail(
       to: @application.user.email,
+      bcc: 'albert_nikolli@icloud.com',
       subject: 'Your audition application has been received'
     )
   end

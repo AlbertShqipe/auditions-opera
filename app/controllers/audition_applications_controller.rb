@@ -50,18 +50,6 @@ class AuditionApplicationsController < ApplicationController
     end
   end
 
-  # def update_status
-  #   # Log the status to make sure it is coming through
-  #   Rails.logger.debug "Received status: #{params[:status]}"
-
-  #   if @application.update(status: params[:status])
-  #     redirect_to @application, notice: t("controllers.audition_application.update_status.success", status: params[:status].humanize)
-  #     # AuditionMailer.status_update_email(@application).deliver_now
-  #   else
-  #     redirect_to @application, alert: t("controllers.audition_application.update_status.error")
-  #   end
-  # end
-
   def index
     # Search logic (if query is provided)
     if params[:query].present?
