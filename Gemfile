@@ -12,6 +12,9 @@ gem "prawn-table"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
+# Prevents vulnerability to possible DoS by memory exhaustion
+gem "net-imap", ">= 0.5.7"
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
@@ -87,3 +90,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "bundler-audit", "~> 0.9.2"
