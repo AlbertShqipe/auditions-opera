@@ -333,3 +333,28 @@ fr:
     p14: "Candidatures acceptées"
     p15: "Candidatures refusées"
     btn: "📄 Télécharger le rapport en PDF"
+
+  guide:
+    candidate:
+      h2: "Guide de l'utilisateur – Candidat"
+      p1: "Ce guide vous aidera à naviguer dans le processus de candidature à l'audition pour le Ballet de l'Opéra de Lyon. Suivez ces étapes pour garantir une expérience de candidature fluide."
+      p2: "Pour commencer, vous devez créer un compte en utilisant une adresse e-mail valide sur laquelle vous pouvez être facilement contacté. Choisissez un mot de passe sécurisé dont vous vous souviendrez.<br> Votre compte vous permettra d’enregistrer et de gérer votre candidature à l’audition."
+      h41: "Remplir le formulaire de candidature"
+      p3: "Après avoir créé votre compte, complétez le formulaire de candidature à l’audition. Veuillez fournir des informations précises et détaillées :"
+      ul1: |
+        <ul style="text-align: justify; color:rgb(200, 200, 200);">
+          <li>Vos informations personnelles</li>
+          <li>Un lien YouTube montrant votre performance. Veillez à suivre ce format : https://www.youtube.com/</li>
+          <li>Votre CV (Curriculum Vitae) ou résumé</li>
+          <li>Une photo de profil (portrait professionnel de préférence)</li>
+        </ul>
+      p4: "Une fois le formulaire rempli, vous pourrez revoir votre candidature. Vérifiez bien que toutes vos informations sont correctes."
+      h42: "Modifier votre candidature si nécessaire"
+      p5: "Si vous réalisez que vous avez fait une erreur après avoir soumis votre candidature, vous pouvez vous reconnecter à votre compte et modifier le formulaire.<br> Assurez-vous que toutes vos informations sont correctes avant la date limite de dépôt."
+      h43: "Attendre le résultat de la candidature"
+      p6: "Après la soumission, l’équipe administrative examinera toutes les candidatures. Vous recevrez un e-mail vous informant si vous êtes accepté(e) pour passer l’audition.<br> Merci de faire preuve de patience pendant ce processus de sélection."
+      h44: "Si vous êtes accepté(e)"
+      p7: "Si votre candidature est retenue, vous recevrez une invitation à confirmer votre présence à l’audition.<br> Veuillez suivre attentivement les instructions fournies pour confirmer votre participation."
+      p8: "Si vous ne pouvez pas vous présenter le jour de l’audition, vous pouvez nous le faire savoir en cliquant sur le bouton « Je ne peux pas assister à l’audition ».<br> Veuillez nous indiquer la raison de votre absence. Nous en tiendrons compte et verrons s’il est possible de reprogrammer votre audition."
+      h45: "Si vous n’êtes pas accepté(e)"
+      p9: "Si votre candidature n’est malheureusement pas retenue, vous en serez également informé(e) par e-mail.<br> Nous vous encourageons à continuer de travailler votre art et à postuler à nouveau lors de futures opportunités."

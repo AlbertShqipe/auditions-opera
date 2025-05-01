@@ -329,3 +329,28 @@ en:
     p14: "Accepted applications"
     p15: "Rejected applications"
     btn: "📄 Download Rapport as PDF"
+
+  guide:
+    candidate:
+      h2: "Candidate User Guide"
+      p1: "This guide will help you navigate the audition application process for the Ballet de l'Opéra de Lyon. Follow these steps to ensure a smooth application experience."
+      p2: "To begin, you must create an account using a valid email address where you can easily be contacted. Choose a secure password that you will remember.<br> Your account will allow you to save and manage your audition application."
+      h41: "Fill Out the Application Form"
+      p3: "After creating your account, complete the audition application form. Please provide accurate and detailed information:"
+      ul1: |
+        <ul style="text-align: justify; color:rgb(200, 200, 200);">
+          <li>Your personal information</li>
+          <li>A YouTube link showing your performance. Make sure to follow this format: https://www.youtube.com/</li>
+          <li>Your CV (Curriculum Vitae) or Resume (file upload)</li>
+          <li>A profile image (professional headshot preferred)</li>
+        </ul>
+      p4: "Once you have filled out the form, you can review your application. Double-check all your information for accuracy."
+      h42: "Edit Your Application if Needed"
+      p5: "If you realize you made a mistake after submitting your application, you can log back into your account and edit your form.<br> Make sure all your information is correct before the application deadline."
+      h43: "Wait for the Application Result"
+      p6: "After submitting, the administration team will review all applications. You will receive an email informing you whether you have been accepted to audition.<br> Please be patient during this review process."
+      h44: "If You Are Accepted"
+      p7: "If your application is successful, you will receive an invitation to confirm your attendance at the audition.<br> Please follow the instructions provided carefully to confirm your participation."
+      p8: "In case you do not make it the day of the audition, you can let us know by clicking the 'I can’t make it to the audition' button.<br> Please let us know the reason for your absence. We will take this into account and see if we can reschedule your audition."
+      h45: "If You Are Not Accepted"
+      p9: "If your application is unfortunately not selected, you will also be notified by email.<br> We encourage you to continue working on your craft and to reapply for future opportunities."
