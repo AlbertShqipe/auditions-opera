@@ -1,13 +1,13 @@
-<article <article
+<article
   id="votes_<%= application.id %>"
-  class="style1 tile <%= 'confirmed' if application.status_published && application.confirmed_attendance %><%= 'not-confirmed' if application.status_published && !application.confirmed_attendance %>">
+  class="style1 tile <% 'confirmed' if application.status_published && application.confirmed_attendance %><% 'not-confirmed' if application.status_published && !application.confirmed_attendance %>">
 
   <!-- Display vote result if status is published -->
-  <% unless application.status_published %>
+  <%# <% unless application.status_published %>
     <div class="text-center m-auto pb-3" style="background-color: #222; color: #fff;width:60%; padding: 5px;z-index: 1000 !important;">
       <%= application.vote_result %>
     </div>
-  <% end %>
+  <%# <% end %>
   <!-- Profile Image -->
   <span class="image">
     <% if application.profile_image.present? %>

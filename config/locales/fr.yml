@@ -38,8 +38,9 @@ fr:
     link2: "Candidatures"
     link3: "Tableau de bord"
     link4: "Étape finale"
-    link5: "Rapport"
-    link6: "Guide"
+    link5: "Candidats Invités"
+    link6: "Rapport"
+    link7: "Guide"
 
   sections:
     link1: "Connexion"
@@ -172,6 +173,7 @@ fr:
     other_view:
       filter_by_status: "Filtrer par statut"
       filter_by_vote_result: "Filtrer par résultat de vote"
+      filter_by_published_status: "Filtrer par statut publié"
     results_filter: "candidatures"
     status_change:
       accept: "Accepter"
@@ -420,6 +422,7 @@ fr:
             <li>Par statut (ex. : en attente, accepté, rejeté).</li>
             <li>Par résultat du vote.</li>
           </ul>
+          <li>Si un candidat a déjà été informé du résultat de sa candidature (via le button 'Envoyer les résultats aux candidats' dans l'Étape Finale), les boutons Accepter et Refuser ne seront plus visibles sur sa vignette.</li>
         </ul>
       h44: "Étape finale"
       p10: "Cette page fournit un aperçu final de toutes les candidatures et de leurs résultats actuels:"

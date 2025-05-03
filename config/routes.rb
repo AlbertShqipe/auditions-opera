@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'dashboard/rapport', to: 'dashboard#rapport', as: :dashboard_rapport
     get "dashboard/download_rapport", to: "dashboard#download_rapport", as: :download_rapport
     get '/help', to: 'pages#help', as: :help
+    get '/invited_candidates', to: 'pages#invited_candidates', as: :invited_candidates
     resources :dashboard, only: [:index, :show]
     devise_for :users
     root to: "pages#home"

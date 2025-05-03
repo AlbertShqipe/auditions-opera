@@ -33,8 +33,9 @@ en:
     link2: "Applications"
     link3: "Dashboard"
     link4: "Final Step"
-    link5: "Report"
-    link6: "Guide"
+    link5: "Invited Candidates"
+    link6: "Report"
+    link7: "Guide"
 
   sections:
     link1: "Log in"
@@ -167,6 +168,7 @@ en:
     other_view:
       filter_by_status: "Filter by Status"
       filter_by__vote_result: "Filter by vote Result"
+      filter_by_published_status: "Filter by Published Status"
     results_filter: "applications"
     status_change:
       accept: "Accept"
@@ -357,7 +359,7 @@ en:
       h45: "If You Are Not Accepted"
       p9: "If your application is unfortunately not selected, you will also be notified by email.<br> We encourage you to continue working on your craft and to reapply for future opportunities."
     admin:
-      h2: "Admin User Guide"
+      h2: "User Guide - Administrator"
       p1: "This guide is designed to help administrators effectively navigate and manage applications for the Ballet de l’Opéra de Lyon auditions."
       h41: "Application Index"
       p2: "To begin reviewing submissions:"
@@ -415,6 +417,7 @@ en:
             <li>By Status (e.g., pending, accepted, rejected).</li>
             <li>By Vote Result.</li>
           </ul>
+          <li>If a candidate has already been notified of the application result (via the 'Send Results to All Candidates' button in the Final Step), the Accept and Reject buttons will no longer be visible on their tile.</li>
         </ul>
       h44: "Final Step"
       p10: "This page provides a final overview of all candidate applications and their current outcomes:"

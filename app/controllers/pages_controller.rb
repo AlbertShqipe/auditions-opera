@@ -17,6 +17,11 @@ class PagesController < ApplicationController
     @user_type = current_user&.role&.to_sym || :candidate
   end
 
+  def invited_candidates
+    @audition_applications = AuditionApplication.where(status: 'accepted', status_published: true)
+
+  end
+
   private
 
   def check_admin

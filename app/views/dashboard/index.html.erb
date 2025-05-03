@@ -89,6 +89,19 @@
       <%= form_with url: dashboard_index_path, method: :get, local: true, data: { turbo_frame: "applications_list" }, class: "filter-form" do %>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end;">
 
+          <!-- Published Status Filter -->
+          <div class="filter-field">
+            <%= label_tag :status_published, t("dashboard.other_view.filter_by_published_status") %><br>
+            <%= select_tag :status_published,
+                  options_for_select([
+                    ["All", ""],
+                    ["Confirmed", "true"],
+                    ["Not Confirmed", "false"],
+                  ], params[:status_published]),
+                  class: "form-control",
+                  onchange: "this.form.requestSubmit();" %>
+          </div>
+
           <!-- Status Filter -->
           <div class="filter-field">
             <%= label_tag :status, t("dashboard.other_view.filter_by_status") %><br>
