@@ -7,9 +7,10 @@ class AuditionApplication < ApplicationRecord
   has_one_attached :profile_image
 
   before_create :set_default_ethnicity
-  # after_update :send_status_update_email
   after_initialize :set_default_vote_result, if: :new_record?
   after_create :initialize_votes
+  after_create :set_default_status_published
+  # after_update :send_status_update_email
 
   enum gender: { female: "female", male: "male", non_binary: "non_binary", other: "other" }
   enum status: { pending: 0, accepted: 1, rejected: 2 }
@@ -94,6 +95,10 @@ class AuditionApplication < ApplicationRecord
 
   def set_default_ethnicity
     self.ethnicity ||= Ethnicity.find_by(name: "Unknown")
+  end
+
+  def set_default_status_published
+    update_column(:status_published, false) if status_published.nil?
   end
 
   # def send_status_update_email

@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
   before_action :check_admin
 
   def index
+    Rails.logger.debug "🔍 status_published param: #{params[:status_published].inspect}"
     # Fetch all admins
     @admins = User.where(role: [:admin, :director, :guest])
     @audition_applications = AuditionApplication.all
@@ -24,13 +25,10 @@ class DashboardController < ApplicationController
     # ✅ Apply filters BEFORE group/order
     base_query = base_query.where(status: params[:status]) if params[:status].present?
     base_query = base_query.where(vote_result: params[:vote_result]) if params[:vote_result].present?
-    unless params[:status_published].nil? || params[:status_published] == ""
-      case params[:status_published]
-      when "true"
-        base_query = base_query.where(status_published: true)
-      when "false"
-        base_query = base_query.where(status_published: false)
-      end
+    if params[:status_published] == "true"
+      base_query = base_query.where(status_published: true)
+    elsif params[:status_published] == "false"
+      base_query = base_query.where(status_published: false)
     end
 
     # ✅ Apply select, group, and order after filters
