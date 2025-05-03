@@ -25,7 +25,8 @@ class DashboardController < ApplicationController
     base_query = base_query.where(status: params[:status]) if params[:status].present?
     base_query = base_query.where(vote_result: params[:vote_result]) if params[:vote_result].present?
     if params[:status_published].present?
-      base_query = base_query.where(status_published: ActiveModel::Type::Boolean.new.cast(params[:status_published]))
+      value = ActiveModel::Type::Boolean.new.cast(params[:status_published])
+      base_query = base_query.where(status_published: value)
     end
 
     # ✅ Apply select, group, and order after filters
