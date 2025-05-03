@@ -366,14 +366,14 @@ en:
           <li>Click on the “Applications” section in the homepage.</li>
           <li>You will see an index listing all audition applications received.</li>
           <li>You can filter the applications by the vote you give, by gender, and by name.</li>
-          <li>Each application in the list includes an integrated voting system (green, yellow, red, and blue), allowing you to cast your evaluation directly from the index view.
+          <li>Each application in the list includes an integrated voting system (green, yellow, red, and blue), allowing you to cast your evaluation directly from the index view:
             <ul>
-              <li>Green: yes ✅</li>
-              <li>Yellow: maybe 🟠</li>
-              <li>Red: no 🔴</li>
-              <li>Blue: star ⭐️</li>
+              <li>Green: yes 🟢.</li>
+              <li>Yellow: maybe 🟠.</li>
+              <li>Red: no 🔴.</li>
+              <li>Blue: star 🔵.</li>
             </ul>
-            The star ⭐️ option is possible only by the director, the candidate with the will have a vote result of YES ⭐️.
+            The 🔵 star option can only be selected by the director. A candidate with this option will have a <a href="#vote_result">vote result</a> of YES ⭐️.
           </li>
         </ul>
       h42: "View a Specific Application"
@@ -412,12 +412,12 @@ en:
           <li>You can accept or reject a candidate’s presence at the audition by clicking the Accept or Reject buttons directly on the tile.</li>
           <li>To simplify management, use the built-in filters to sort candidates:</li>
           <ul>
-            <li>By Status (e.g., pending, accepted, rejected)</li>
-            <li>By Vote Result </li>
+            <li>By Status (e.g., pending, accepted, rejected).</li>
+            <li>By Vote Result.</li>
           </ul>
         </ul>
       h44: "Final Step"
-      p10: "This page provides a final overview of all candidate applications and their current outcomes."
+      p10: "This page provides a final overview of all candidate applications and their current outcomes:"
       ul5: |
         <ul>
           <li>Total Applications – The total number of applications received.</li>
@@ -450,17 +450,17 @@ en:
           <li>Height Stats – Shortest and tallest candidate, plus average height.</li>
           <li>Gender Breakdown – Total number of candidates identifying as:
             <ul>
-              <li>Women</li>
-              <li>Men</li>
-              <li>Non-binary</li>
-              <li>Other</li>
+              <li>Women.</li>
+              <li>Men.</li>
+              <li>Non-binary.</li>
+              <li>Other.</li>
             </ul>
           </li>
           <li>Nationalities – Count and list of all represented nationalities.</li>
           <li>Application Outcome – Current count of:
             <ul>
-              <li>Accepted Applications</li>
-              <li>Rejected Applications</li>
+              <li>Accepted Applications.</li>
+              <li>Rejected Applications.</li>
             </ul>
           </li>
         </ul>
@@ -468,3 +468,15 @@ en:
       h55: "Exporting the Report"
       p17: "At the bottom of the page, click the “Download Report as PDF” button to generate a downloadable version of this summary. This report is useful for internal tracking, presentations, and archival purposes."
       p18: "⚠️ This page reflects real-time data. Ensure all application statuses are updated before downloading the final report."
+      h46: "Votes Result"
+      h56: "Understanding the Vote Result"
+      p19: "Each candidate is evaluated by the Director and the Ballet Masters, who can cast one of the following votes:"
+      ul8: |
+        <ul>
+          <li>🟢 YES.</li>
+          <li>🟡 MAYBE.</li>
+          <li>🔴 NO.</li>
+          <li>🔵 STAR (exclusive to the Director) — this indicates a strong recommendation, overriding the standard vote outcome logic.</li>
+        </ul>
+      h57: "How the Final Vote Result Is Determined"
+      p20: "The system automatically calculates a candidate’s vote result based on the combination of votes received. Below is a breakdown of how different combinations lead to specific outcomes:"

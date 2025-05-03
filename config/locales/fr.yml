@@ -371,14 +371,14 @@ fr:
           <li>Cliquez sur la section « Candidatures » depuis la page d'accueil.</li>
           <li>Vous verrez un index répertoriant toutes les candidatures reçues pour l' audition.</li>
           <li>Vous pouvez filtrer les candidatures par vote attribué, par genre, et par nom.</li>
-          <li>Chaque candidature dans la liste comprend un système de vote intégré (vert, jaune, rouge et bleu), vous permettant d’évaluer directement depuis la vue index.
+          <li>Chaque candidature dans la liste comprend un système de vote intégré (vert, jaune, rouge et bleu), vous permettant d’évaluer directement depuis la vue index:
             <ul>
-              <li>Vert : oui ✅</li>
-              <li>Jaune : peut-être 🟠</li>
-              <li>Rouge : non 🔴</li>
-              <li>Bleu : étoile ⭐️</li>
+              <li>Vert : oui 🟢.</li>
+              <li>Jaune : peut-être 🟠.</li>
+              <li>Rouge : non 🔴.</li>
+              <li>Bleu : étoile 🔵.</li>
             </ul>
-            L’option étoile ⭐️ est uniquement disponible pour le directeur; le candidat avec ce vote aura un résultat de vote OUI ⭐️.
+            L’option 🔵 étoile est uniquement disponible pour le directeur; le candidat avec ce vote aura un <a href="#vote_result">résultat de vote</a> OUI ⭐️.
           </li>
         </ul>
       h42: "Voir une candidature spécifique"
@@ -415,14 +415,14 @@ fr:
           <li>Chaque candidat apparaît sous forme de vignette avec un résumé de sa candidature.</li>
           <li>Le résultat des votes est affiché en évidence en haut de chaque vignette.</li>
           <li>Vous pouvez accepter ou refuser la présence d’un candidat à l’audition en cliquant directement sur les boutons Accepter ou Refuser dans la vignette.</li>
-          <li>Pour faciliter la gestion, utilisez les filtres intégrés pour trier les candidats :</li>
+          <li>Pour faciliter la gestion, utilisez les filtres intégrés pour trier les candidats:</li>
           <ul>
-            <li>Par statut (ex. : en attente, accepté, rejeté)</li>
-            <li>Par résultat du vote</li>
+            <li>Par statut (ex. : en attente, accepté, rejeté).</li>
+            <li>Par résultat du vote.</li>
           </ul>
         </ul>
       h44: "Étape finale"
-      p10: "Cette page fournit un aperçu final de toutes les candidatures et de leurs résultats actuels."
+      p10: "Cette page fournit un aperçu final de toutes les candidatures et de leurs résultats actuels:"
       ul5: |
         <ul>
           <li>Total des candidatures – Nombre total de candidatures reçues.</li>
@@ -455,17 +455,17 @@ fr:
           <li>Statistiques de taille – Le candidat le plus petit, le plus grand, et la taille moyenne.</li>
           <li>Répartition par genre – Nombre total de candidats s’identifiant comme :
             <ul>
-              <li>Femmes</li>
-              <li>Hommes</li>
-              <li>Non-binaire</li>
-              <li>Autre</li>
+              <li>Femmes.</li>
+              <li>Hommes.</li>
+              <li>Non-binaire.</li>
+              <li>Autre.</li>
             </ul>
           </li>
           <li>Nationalités – Nombre et liste de toutes les nationalités représentées.</li>
           <li>Résultat des candidatures – Nombre actuel de :
             <ul>
-              <li>Candidatures acceptées</li>
-              <li>Candidatures rejetées</li>
+              <li>Candidatures acceptées.</li>
+              <li>Candidatures rejetées.</li>
             </ul>
           </li>
         </ul>
@@ -473,3 +473,15 @@ fr:
       h55: "Exporter le rapport"
       p17: "En bas de la page, cliquez sur le bouton 'Télécharger le rapport en PDF' pour générer une version téléchargeable de ce résumé. Ce rapport est utile pour le suivi interne, les présentations et l’archivage."
       p18: "⚠️ Cette page reflète les données en temps réel. Assurez-vous que tous les statuts des candidatures sont à jour avant de télécharger le rapport final."
+      h46: "Résultat des votes"
+      h56: "Comprendre le résultat du vote"
+      p19: "Chaque candidat est évalué par le Directeur et les Maîtres de ballet, qui peuvent attribuer l’un des votes suivants:"
+      ul8: |
+        <ul>
+          <li>🟢 OUI.</li>
+          <li>🟡 PEUT-ÊTRE.</li>
+          <li>🔴 NON.</li>
+          <li>🔵 ÉTOILE (réservée au Directeur) — cela indique une forte recommandation, qui prévaut sur la logique habituelle des résultats de vote.</li>
+        </ul>
+      h57: "Comment le résultat final du vote est déterminé"
+      p20: "Le système calcule automatiquement le résultat du vote d’un candidat en fonction de la combinaison des votes reçus. Voici un aperçu des différentes combinaisons et de leurs résultats associés:"

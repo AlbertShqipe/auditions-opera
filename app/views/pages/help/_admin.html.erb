@@ -124,6 +124,72 @@
 <p>
   <%= t('guide.admin.p18') %>
 </p>
+
 <div class="help-images">
   <%= image_tag "report.png" %>
+</div>
+
+<h4 class="mt-5" id="vote_result"><%= t('guide.admin.h46') %></h4>
+<h5 class="mt-4 text-center"><%= t('guide.admin.h56') %></h5>
+
+<p><%= t('guide.admin.p19') %></p>
+
+<%= t('guide.admin.ul8').html_safe %>
+
+<h5 class="mt-4 text-center"><%= t('guide.admin.h56') %></h5>
+
+<p>
+  <%= t('guide.admin.p20') %>
+</p>
+<div class="description-help">
+  <table>
+    <thead>
+      <tr style="background-color: #222; color: #fff;">
+        <th style="border: 1px solid #444; padding: 5px;">Votes (star, yes, maybe, no)</th>
+        <th style="border: 1px solid #444; padding: 5px;">Output</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">yes, yes, yes</td>
+        <td style="border: 1px solid #444; padding: 5px;">YES ✅</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">star, no, no</td>
+        <td style="border: 1px solid #444; padding: 5px;">YES ⭐️ (because 'star' is present)</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">star, maybe, maybe</td>
+        <td style="border: 1px solid #444; padding: 5px;">YES ⭐️ (because 'star' is present)</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">yes, star, no</td>
+        <td style="border: 1px solid #444; padding: 5px;">YES ⭐️ (because 'star' is present)</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">yes, yes, maybe</td>
+        <td style="border: 1px solid #444; padding: 5px;">MAYBE+ 🟡</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">yes, maybe, maybe</td>
+        <td style="border: 1px solid #444; padding: 5px;">MAYBE+ 🟡</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">maybe, maybe, maybe</td>
+        <td style="border: 1px solid #444; padding: 5px;">MAYBE 🟠</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">maybe, maybe, no</td>
+        <td style="border: 1px solid #444; padding: 5px;">MAYBE 🟠</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">maybe, no, no</td>
+        <td style="border: 1px solid #444; padding: 5px;">NO 🔴</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #444; padding: 5px;">no, no, no</td>
+        <td style="border: 1px solid #444; padding: 5px;">NO 🔴</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
