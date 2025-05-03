@@ -168,6 +168,9 @@ en:
       filter_by_status: "Filter by Status"
       filter_by__vote_result: "Filter by vote Result"
     results_filter: "applications"
+    status_change:
+      accept: "Accept"
+      reject: "Reject"
 
   errors:
     messages:
@@ -293,7 +296,6 @@ en:
         not_found: "Application not found."
       check_admin: "Access denied!"
       confirm_attendance_message: "Your message has been sent! We will get back to you as soon as possible."
-
     votes:
       update:
         success: "Vote cast successfully."
@@ -338,7 +340,7 @@ en:
       h41: "Fill Out the Application Form"
       p3: "After creating your account, complete the audition application form. Please provide accurate and detailed information:"
       ul1: |
-        <ul style="text-align: justify; color:rgb(200, 200, 200);">
+        <ul>
           <li>Your personal information</li>
           <li>A YouTube link showing your performance. Make sure to follow this format: https://www.youtube.com/</li>
           <li>Your CV (Curriculum Vitae) or Resume (file upload)</li>
@@ -354,3 +356,115 @@ en:
       p8: "In case you do not make it the day of the audition, you can let us know by clicking the 'I can’t make it to the audition' button.<br> Please let us know the reason for your absence. We will take this into account and see if we can reschedule your audition."
       h45: "If You Are Not Accepted"
       p9: "If your application is unfortunately not selected, you will also be notified by email.<br> We encourage you to continue working on your craft and to reapply for future opportunities."
+    admin:
+      h2: "Admin User Guide"
+      p1: "This guide is designed to help administrators effectively navigate and manage applications for the Ballet de l’Opéra de Lyon auditions."
+      h41: "Application Index"
+      p2: "To begin reviewing submissions:"
+      ul1: |
+        <ul>
+          <li>Click on the “Applications” section in the homepage.</li>
+          <li>You will see an index listing all audition applications received.</li>
+          <li>You can filter the applications by the vote you give, by gender, and by name.</li>
+          <li>Each application in the list includes an integrated voting system (green, yellow, red, and blue), allowing you to cast your evaluation directly from the index view.
+            <ul>
+              <li>Green: yes ✅</li>
+              <li>Yellow: maybe 🟠</li>
+              <li>Red: no 🔴</li>
+              <li>Blue: star ⭐️</li>
+            </ul>
+            The star ⭐️ option is possible only by the director, the candidate with the will have a vote result of YES ⭐️.
+          </li>
+        </ul>
+      h42: "View a Specific Application"
+      p3: "To see detailed information for a particular candidate:"
+      ul2: |
+        <ul>
+          <li>Click on the application tile to open the full submission.</li>
+          <li>In the detailed view, you can:</li>
+          <ul>
+            <li>Review all submitted information (personal details, video, CV, image).</li>
+            <li>Use the voting feature to register your decision.</li>
+            <li>Contact the candidate directly by email if necessary (e.g., for clarifications or follow-up).</li>
+          </ul>
+        </ul>
+      h43: "Dashboard"
+      p4: "The dashboard provides an overview of all candidate applications and their current statuses. It includes tools to help you efficiently manage audition selections and communication."
+      h51: "Table View"
+      p5: "In the default dashboard view, you will see a table containing key information for each candidate."
+      p6: "Click 'Initiate dashboard' to load the table:"
+      ul3: |
+        <ul>
+          <li>Candidate Information – Name and basic details.</li>
+          <li>Votes – All votes cast by the ballet masters and the director.</li>
+          <li>Vote Result – The overall decision based on the votes.</li>
+          <li>Application Status – Shows whether the application is Pending, Accepted, or Rejected.</li>
+          <li>Confirmation Status – Indicates whether the candidate has confirmed their presence at the audition after being invited.</li>
+        </ul>
+      p7: "This view is ideal for quick status checks and data-driven decisions."
+      h52: "Toggle View: Tile Layout"
+      p8: "You can switch to an alternate view by clicking the “Toggle the View” button."
+      p9: "In this layout:"
+      ul4: |
+        <ul>
+          <li>Each candidate appears as a tile with a summary of their application.</li>
+          <li>The result of the votes is prominently displayed at the top of each tile.</li>
+          <li>You can accept or reject a candidate’s presence at the audition by clicking the Accept or Reject buttons directly on the tile.</li>
+          <li>To simplify management, use the built-in filters to sort candidates:</li>
+          <ul>
+            <li>By Status (e.g., pending, accepted, rejected)</li>
+            <li>By Vote Result </li>
+          </ul>
+        </ul>
+      h44: "Final Step"
+      p10: "This page provides a final overview of all candidate applications and their current outcomes."
+      ul5: |
+        <ul>
+          <li>Total Applications – The total number of applications received.</li>
+          <li>Accepted Applications – The number of candidates accepted for the audition.</li>
+          <li>Rejected Applications – The number of candidates rejected.</li>
+          <li>Pending Applications – The number of applications still under review.</li>
+        </ul>
+      p11: "This overview allows you to verify that all decisions have been made before communicating results."
+      h53: "Send Results to Candidates"
+      p12: "Once you have reviewed all applications:"
+      ul6: |
+        <ul>
+          <li>Click the “Send Results to All Candidates” button.</li>
+          <li>A confirmation prompt will appear. Confirm to proceed.</li>
+          <li>Upon confirmation:</li>
+          <ul>
+            <li>Accepted candidates will receive an email with all relevant details about the audition, including dates, times, and any required documents or preparation.</li>
+            <li>Rejected candidates will receive a polite notification informing them that their application was not selected this time.</li>
+          </ul>
+        </ul>
+      p13: "⚠️ Only candidates whose status is not pending will receive an email."
+      h45: "Audition Report Page"
+      p14: "The Report Page provides a clear and visually structured overview of all applications received for the Ballet de l’Opéra de Lyon audition season."
+      h54: "Overview Metrics"
+      p15: "The report includes key metrics such as:"
+      ul7: |
+        <ul>
+          <li>Total Applications – Total number of submissions received.</li>
+          <li>Age Stats – Youngest and oldest candidate, plus average age.</li>
+          <li>Height Stats – Shortest and tallest candidate, plus average height.</li>
+          <li>Gender Breakdown – Total number of candidates identifying as:
+            <ul>
+              <li>Women</li>
+              <li>Men</li>
+              <li>Non-binary</li>
+              <li>Other</li>
+            </ul>
+          </li>
+          <li>Nationalities – Count and list of all represented nationalities.</li>
+          <li>Application Outcome – Current count of:
+            <ul>
+              <li>Accepted Applications</li>
+              <li>Rejected Applications</li>
+            </ul>
+          </li>
+        </ul>
+      p16: "These metrics offer valuable demographic and diversity insights into the candidate pool."
+      h55: "Exporting the Report"
+      p17: "At the bottom of the page, click the “Download Report as PDF” button to generate a downloadable version of this summary. This report is useful for internal tracking, presentations, and archival purposes."
+      p18: "⚠️ This page reflects real-time data. Ensure all application statuses are updated before downloading the final report."

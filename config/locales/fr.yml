@@ -173,6 +173,9 @@ fr:
       filter_by_status: "Filtrer par statut"
       filter_by_vote_result: "Filtrer par résultat de vote"
     results_filter: "candidatures"
+    status_change:
+      accept: "Accepter"
+      reject: "Refuser"
 
   errors:
     messages:
@@ -358,3 +361,115 @@ fr:
       p8: "Si vous ne pouvez pas vous présenter le jour de l’audition, vous pouvez nous le faire savoir en cliquant sur le bouton « Je ne peux pas assister à l’audition ».<br> Veuillez nous indiquer la raison de votre absence. Nous en tiendrons compte et verrons s’il est possible de reprogrammer votre audition."
       h45: "Si vous n’êtes pas accepté(e)"
       p9: "Si votre candidature n’est malheureusement pas retenue, vous en serez également informé(e) par e-mail.<br> Nous vous encourageons à continuer de travailler votre art et à postuler à nouveau lors de futures opportunités."
+    admin:
+      h2: "Guide de l'utilisateur – Administrateur"
+      p1: "Ce guide est conçu pour aider les administrateurs à naviguer et gérer efficacement les candidatures aux auditions du Ballet de l’Opéra de Lyon."
+      h41: "Index des candidatures"
+      p2: "Pour commencer l'examen des candidatures :"
+      ul1: |
+        <ul>
+          <li>Cliquez sur la section « Candidatures » depuis la page d'accueil.</li>
+          <li>Vous verrez un index répertoriant toutes les candidatures reçues pour l' audition.</li>
+          <li>Vous pouvez filtrer les candidatures par vote attribué, par genre, et par nom.</li>
+          <li>Chaque candidature dans la liste comprend un système de vote intégré (vert, jaune, rouge et bleu), vous permettant d’évaluer directement depuis la vue index.
+            <ul>
+              <li>Vert : oui ✅</li>
+              <li>Jaune : peut-être 🟠</li>
+              <li>Rouge : non 🔴</li>
+              <li>Bleu : étoile ⭐️</li>
+            </ul>
+            L’option étoile ⭐️ est uniquement disponible pour le directeur; le candidat avec ce vote aura un résultat de vote OUI ⭐️.
+          </li>
+        </ul>
+      h42: "Voir une candidature spécifique"
+      p3: "Pour consulter les informations détaillées d’un candidat particulier :"
+      ul2: |
+        <ul>
+          <li>Cliquez sur la vignette de la candidature pour ouvrir la soumission complète.</li>
+          <li>Dans la vue détaillée, vous pouvez :</li>
+          <ul>
+            <li>Consulter toutes les informations soumises (détails personnels, vidéo, CV, image).</li>
+            <li>Utiliser la fonctionnalité de vote pour enregistrer votre décision.</li>
+            <li>Contacter directement le candidat par e-mail si nécessaire (par exemple, pour des précisions ou un suivi).</li>
+          </ul>
+        </ul>
+      h43: "Tableau de bord"
+      p4: "Le tableau de bord donne un aperçu de toutes les candidatures et de leur statut actuel. Il comprend des outils pour vous aider à gérer efficacement la sélection et la communication des auditions."
+      h51: "Vue en tableau"
+      p5: "Dans la vue par défaut du tableau de bord, vous verrez un tableau contenant les informations clés de chaque candidat."
+      p6: "Cliquez sur 'Démarrer le tableau de bord' pour charger le tableau :"
+      ul3: |
+        <ul>
+          <li>Informations du candidat – Nom et détails de base.</li>
+          <li>Votes – Tous les votes attribués par les maîtres de ballet et le directeur.</li>
+          <li>Résultat du vote – La décision globale basée sur les votes.</li>
+          <li>Statut de la candidature – Affiche si la candidature est En attente, Acceptée ou Rejetée.</li>
+          <li>Statut de confirmation – Indique si le candidat a confirmé sa présence à l’audition après avoir été invité.</li>
+        </ul>
+      p7: "Cette vue est idéale pour une vérification rapide des statuts et une prise de décision basée sur les données."
+      h52: "Changer de vue : disposition en vignettes"
+      p8: "Vous pouvez passer à une vue alternative en cliquant sur le bouton « Changer de vue »."
+      p9: "Dans cette disposition :"
+      ul4: |
+        <ul>
+          <li>Chaque candidat apparaît sous forme de vignette avec un résumé de sa candidature.</li>
+          <li>Le résultat des votes est affiché en évidence en haut de chaque vignette.</li>
+          <li>Vous pouvez accepter ou refuser la présence d’un candidat à l’audition en cliquant directement sur les boutons Accepter ou Refuser dans la vignette.</li>
+          <li>Pour faciliter la gestion, utilisez les filtres intégrés pour trier les candidats :</li>
+          <ul>
+            <li>Par statut (ex. : en attente, accepté, rejeté)</li>
+            <li>Par résultat du vote</li>
+          </ul>
+        </ul>
+      h44: "Étape finale"
+      p10: "Cette page fournit un aperçu final de toutes les candidatures et de leurs résultats actuels."
+      ul5: |
+        <ul>
+          <li>Total des candidatures – Nombre total de candidatures reçues.</li>
+          <li>Candidatures acceptées – Nombre de candidats acceptés à l’audition.</li>
+          <li>Candidatures rejetées – Nombre de candidats refusés.</li>
+          <li>Candidatures en attente – Nombre de candidatures encore en cours d’examen.</li>
+        </ul>
+      p11: "Cet aperçu vous permet de vérifier que toutes les décisions ont été prises avant de communiquer les résultats."
+      h53: "Envoyer les résultats aux candidats"
+      p12: "Une fois toutes les candidatures examinées :"
+      ul6: |
+        <ul>
+          <li>Cliquez sur le bouton 'Envoyer les résultats aux candidats'.</li>
+          <li>Une confirmation apparaîtra. Confirmez pour continuer.</li>
+          <li>Une fois confirmé :</li>
+          <ul>
+            <li>Les candidats acceptés recevront un e-mail contenant tous les détails relatifs à l’audition, y compris les dates, horaires, et documents ou préparations nécessaires.</li>
+            <li>Les candidats refusés recevront une notification polie les informant que leur candidature n’a pas été retenue cette fois-ci.</li>
+          </ul>
+        </ul>
+      p13: "⚠️ Seuls les candidats dont le statut n’est pas en attente recevront un e-mail."
+      h45: "Page du rapport d’audition"
+      p14: "La page de rapport fournit un aperçu clair et structuré visuellement de toutes les candidatures reçues pour la saison d’audition du Ballet de l’Opéra de Lyon."
+      h54: "Métriques globales"
+      p15: "Le rapport inclut des métriques clés telles que :"
+      ul7: |
+        <ul>
+          <li>Total des candidatures – Nombre total de soumissions reçues.</li>
+          <li>Statistiques d'âge – Le candidat le plus jeune, le plus âgé, et l’âge moyen.</li>
+          <li>Statistiques de taille – Le candidat le plus petit, le plus grand, et la taille moyenne.</li>
+          <li>Répartition par genre – Nombre total de candidats s’identifiant comme :
+            <ul>
+              <li>Femmes</li>
+              <li>Hommes</li>
+              <li>Non-binaire</li>
+              <li>Autre</li>
+            </ul>
+          </li>
+          <li>Nationalités – Nombre et liste de toutes les nationalités représentées.</li>
+          <li>Résultat des candidatures – Nombre actuel de :
+            <ul>
+              <li>Candidatures acceptées</li>
+              <li>Candidatures rejetées</li>
+            </ul>
+          </li>
+        </ul>
+      p16: "Ces métriques offrent des informations précieuses sur la démographie et la diversité du vivier de candidats."
+      h55: "Exporter le rapport"
+      p17: "En bas de la page, cliquez sur le bouton 'Télécharger le rapport en PDF' pour générer une version téléchargeable de ce résumé. Ce rapport est utile pour le suivi interne, les présentations et l’archivage."
+      p18: "⚠️ Cette page reflète les données en temps réel. Assurez-vous que tous les statuts des candidatures sont à jour avant de télécharger le rapport final."

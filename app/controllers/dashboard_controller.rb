@@ -191,7 +191,7 @@ class DashboardController < ApplicationController
     summary_paragraph = <<~TEXT
       This audition cycle received a total of #{@total_applications} applications from #{@nationality_count} different nationalities, reflecting a strong international interest. A total of #{@total_users} users participated in the process.
 
-      The age range of applicants spans from #{@min_age} to #{@max_age} years old, with an average age of #{@avg_age} years. In terms of height, the shortest applicant is #{@shortest&.full_name} at #{@min_height} cm, while the tallest is #{@tallest&.full_name} at #{@max_height} cm. The average height across all candidates is #{@avg_height} cm.
+      The age range of applicants spans from #{@min_age} to #{@max_age} years old, with an average age of #{@avg_age} years. In terms of height, the shortest applicant is #{@min_height} m, while the tallest is #{@max_height} m. The average height across all candidates is #{@avg_height} m.
 
       Gender representation among applicants includes:
       #{@gender_counts.map { |gender, count| "#{count} #{gender.pluralize(count)}" }.to_sentence}.

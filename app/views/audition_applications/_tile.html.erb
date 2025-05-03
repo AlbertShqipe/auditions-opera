@@ -34,7 +34,7 @@
           <%= form_with model: application, url: audition_application_path(application), method: :patch do |f| %>
             <%= hidden_field_tag :audition_application_status, status %>
             <%= f.button type: :submit, class: "button_status button_status--#{status} mx-1" do %>
-              <span><%= status == 'accepted' ? 'Accept' : 'Reject' %></span>
+              <span><%= status == 'accepted' ? t('dashboard.status_change.accept') : t('dashboard.status_change.reject') %></span>
             <% end %>
           <% end %>
         <% end %>
