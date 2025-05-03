@@ -25,7 +25,7 @@ class DashboardController < ApplicationController
     base_query = base_query.where(status: params[:status]) if params[:status].present?
     base_query = base_query.where(vote_result: params[:vote_result]) if params[:vote_result].present?
     if params[:status_published].present?
-      value = ActiveModel::Type::Boolean.new.cast(params[:status_published])
+      value = string_to_boolean(params[:status_published])
       base_query = base_query.where(status_published: value)
     end
 
@@ -273,6 +273,10 @@ class DashboardController < ApplicationController
   end
 
   private
+
+  def string_to_boolean(param)
+    param.to_s.strip.downcase == "true"
+  end
 
   def check_admin
     redirect_to root_path, alert: t("controllers.audition_application.check_admin") unless current_user&.admin? || current_user&.director? || current_user&.guest?
