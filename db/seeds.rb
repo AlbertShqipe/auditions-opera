@@ -10,50 +10,37 @@
 # Remove an existing admin safely
 
 # User Setup
+# === User Setup ===
 if Rails.env.development? || Rails.env.test?
   User.destroy_all
-else
-  puts "⚠️ Skipping User.destroy_all in #{Rails.env} environment."
+  puts "Users destroyed in #{Rails.env} environment."
 end
 
-unless User.where(role: :admin).exists?
-  admin_emails = [ 'marco@gmail.com', 'raul@gmail.com']
-
-  admin_emails.each do |email|
-    user = User.create!(
-      email: email,
-      password: 'testtest',
-      password_confirmation: 'testtest',
-      role: :admin
-    )
-    puts "Admin user created with email: #{user.email}"
+admin_emails = ['marco@gmail.com', 'raul@gmail.com']
+admin_emails.each do |email|
+  user = User.find_or_create_by!(email: email) do |u|
+    u.password = 'testtest'
+    u.password_confirmation = 'testtest'
+    u.role = :admin
   end
-  else
-  puts "Admin users already exist. Skipping creation."
+  puts "Ensured admin user: #{user.email}"
 end
 
-User.create!(
-  email: "cedric@gmail.com",
-  password: 'testtest',
-  password_confirmation: 'testtest',
-  role: :director
-)
+[
+  { email: 'cedric@gmail.com', role: :director },
+  { email: 'alex@gmail.com', role: :guest }
+].each do |attrs|
+  user = User.find_or_create_by!(email: attrs[:email]) do |u|
+    u.password = 'testtest'
+    u.password_confirmation = 'testtest'
+    u.role = attrs[:role]
+  end
+  puts "Ensured #{attrs[:role]} user: #{user.email}"
+end
 
-puts "Director user created."
-
-User.create!(
-  email: "alex@gmail.com",
-  password: 'testtest',
-  password_confirmation: 'testtest',
-  role: :guest
-)
-
-puts "Guest user created."
-
-# Ethnicity Setup
-Ethnicity.destroy_all
+# === Ethnicity Setup ===
+Ethnicity.destroy_all if Rails.env.development? || Rails.env.test?
 %w[Caucasian Asian Black Hispanic Middle Eastern Native American Mixed Other].each do |ethnicity|
-  Ethnicity.find_or_create_by(name: ethnicity)
+  Ethnicity.find_or_create_by!(name: ethnicity)
 end
-
 puts "Ethnicity choices created."
