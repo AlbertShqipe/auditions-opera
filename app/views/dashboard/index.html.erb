@@ -145,7 +145,7 @@
     <turbo-frame id="applications_list">
       <div>
         <div class="text-center">
-          <p><%= pluralize(@applications.size.count, t('dashboard.results_filter')) %> <%= params[:vote_result] if params[:vote_result].present? %> / <%= AuditionApplication.all.count %></p>
+          <p><%= @applications.count.size %> / <%= AuditionApplication.all.count %></p>
         </div>
         <section class="tiles-index my-4">
           <%= render partial: "audition_applications/tile", collection: @applications, as: :application %>
