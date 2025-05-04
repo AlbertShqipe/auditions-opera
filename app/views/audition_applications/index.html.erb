@@ -1,45 +1,44 @@
 <div class="container mt-3" data-controller="toggle-filters">
   <h1 class="text-center"><%= t("audition_application_index.applications") %></h1>
-      <div class="container d-flex justify-content-around align-items-center mb-3 m-auto" >
-        <%= form_with url: audition_applications_path, method: :get, local: true, data: { turbo_frame: "applications" }, class: "filter-form" do %>
-          <div class="filter-show">
+  <div class="container d-flex justify-content-around align-items-center mb-3 m-auto" >
+    <%= form_with url: audition_applications_path, method: :get, local: true, data: { turbo_frame: "applications" }, class: "filter-form" do %>
+      <div class="filter-show">
+        <!-- Gender Filter -->
+        <div class="filter-field">
+          <%= label_tag :gender, t("audition_application_index.filters.gender") %><br>
+          <%= select_tag :gender, options_for_select([
+            [t("audition_application_index.gender_select.all"), ''],
+            [t("audition_application_index.gender_select.male"), 'male'],
+            [t("audition_application_index.gender_select.female"), 'female'],
+            [t("audition_application_index.gender_select.non_binary"), 'non_binary'],
+            [t("audition_application_index.gender_select.other"), 'other']
+          ], @selected_gender),
+          class: "form-control",
+          onchange: "this.form.requestSubmit();" %>
+        </div>
 
-            <!-- Gender Filter -->
-            <div class="filter-field">
-              <%= label_tag :gender, t("audition_application_index.filters.gender") %><br>
-              <%= select_tag :gender, options_for_select([
-                [t("audition_application_index.gender_select.all"), ''],
-                [t("audition_application_index.gender_select.male"), 'male'],
-                [t("audition_application_index.gender_select.female"), 'female'],
-                [t("audition_application_index.gender_select.non_binary"), 'non_binary'],
-                [t("audition_application_index.gender_select.other"), 'other']
-              ], @selected_gender),
-              class: "form-control",
-              onchange: "this.form.requestSubmit();" %>
-            </div>
-
-            <!-- Vote Filter -->
-            <div class="filter-field">
-              <%= label_tag :vote, t("audition_application_index.filters.vote") %><br>
-              <%= select_tag :vote, options_for_select(
-                [['All', ''], ['Not set', 'not_set'], ['Yes', 'yes'], ['Maybe', 'maybe']] +
-                (current_user.director? ? [['Star', 'star'], ['No', 'no']] : [['No', 'no']]),
-                @selected_vote),
-                class: "form-control",
-                onchange: "this.form.requestSubmit();" %>
-            </div>
-            <!-- Search Field -->
-            <div class="filter-field">
-              <%= label_tag :query, t("audition_application_index.search.search_name") %><br>
-              <%= text_field_tag :query, params[:query], placeholder: t("audition_application_index.search.search_name"), onchange: "this.form.requestSubmit();", class: "form-control" %>
-            </div>
-          </div>
-          <!-- Optional Submit Button (in case JS is disabled) -->
-          <%# <div class="mt-3">
-            <%= submit_tag t("audition_application_index.filters.btn.filter"), class: "submit-button my-0"
-          </div> %>
-        <% end %>
+        <!-- Vote Filter -->
+        <div class="filter-field">
+          <%= label_tag :vote, t("audition_application_index.filters.vote") %><br>
+          <%= select_tag :vote, options_for_select(
+            [['All', ''], ['Not set', 'not_set'], ['Yes', 'yes'], ['Maybe', 'maybe']] +
+            (current_user.director? ? [['Star', 'star'], ['No', 'no']] : [['No', 'no']]),
+            @selected_vote),
+            class: "form-control",
+            onchange: "this.form.requestSubmit();" %>
+        </div>
+        <!-- Search Field -->
+        <div class="filter-field">
+          <%= label_tag :query, t("audition_application_index.search.search_name") %><br>
+          <%= text_field_tag :query, params[:query], placeholder: t("audition_application_index.search.search_name"), onchange: "this.form.requestSubmit();", class: "form-control" %>
+        </div>
       </div>
+      <!-- Optional Submit Button (in case JS is disabled) -->
+      <%# <div class="mt-3">
+        <%= submit_tag t("audition_application_index.filters.btn.filter"), class: "submit-button my-0"
+      </div> %>
+    <% end %>
+  </div>
 
   <!-- Applications List -->
   <turbo-frame id="applications">

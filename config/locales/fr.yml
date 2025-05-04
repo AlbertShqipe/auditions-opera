@@ -320,6 +320,10 @@ fr:
     pending_cand: "Candidatures en attente"
     notify_all_candidates: "ENVOYER LE RÉSULTAT AUX CANDIDATS"
 
+  invited_candidates:
+    h1: "Candidats invités"
+    filter_by_attendance: "Filtrer par présence"
+
   report:
     h2: "Rapport de l’audition"
     p1: "Rapport de l’audition pour le Ballet de l’Opéra de Lyon"
@@ -447,11 +451,37 @@ fr:
           </ul>
         </ul>
       p13: "⚠️ Seuls les candidats dont le statut n’est pas en attente recevront un e-mail."
-      h45: "Page du rapport d’audition"
-      p14: "La page de rapport fournit un aperçu clair et structuré visuellement de toutes les candidatures reçues pour la saison d’audition du Ballet de l’Opéra de Lyon."
-      h54: "Métriques globales"
-      p15: "Le rapport inclut des métriques clés telles que :"
+      h45: "Candidats invités"
+      p14: "La page des candidats invités répertorie tous les candidats acceptés pour participer à l’audition. Cette vue est conçue pour aider les administrateurs à suivre facilement les confirmations de présence."
+      h54: "Disposition en vignettes"
       ul7: |
+        <ul>
+          <li>Les candidats sont affichés sous forme de vignettes, similaires à celles utilisées dans l’index principal des candidats.</li>
+          <li>Chaque vignette affiche des informations clés sur le candidat.</li>
+          <li>En cliquant sur une vignette, vous accédez au profil du candidat, où vous pouvez voir :
+            <ul>
+              <li>Les détails complets de la candidature</li>
+            </ul>
+          </li>
+        </ul>
+      h55: "Indicateurs de statut de confirmation"
+      ul8: |
+        <ul>
+          <li>✅ Bordure verte – Le candidat a confirmé sa présence à l’audition.</li>
+          <li>❗️Bordure rouge – Le candidat n’a pas encore confirmé sa présence.</li>
+        </ul>
+      h56: "Options de filtrage"
+      p15: "Pour faciliter la gestion des présences, utilisez les filtres pour afficher :"
+      ul9: |
+        <ul>
+          <li>Uniquement les candidats ayant confirmé</li>
+          <li>Uniquement les candidats n’ayant pas confirmé</li>
+        </ul>
+      h46: "Page du rapport d’audition"
+      p16: "La page de rapport fournit un aperçu clair et structuré visuellement de toutes les candidatures reçues pour la saison d’audition du Ballet de l’Opéra de Lyon."
+      h57: "Métriques globales"
+      p17: "Le rapport inclut des métriques clés telles que :"
+      ul10: |
         <ul>
           <li>Total des candidatures – Nombre total de soumissions reçues.</li>
           <li>Statistiques d'âge – Le candidat le plus jeune, le plus âgé, et l’âge moyen.</li>
@@ -472,19 +502,19 @@ fr:
             </ul>
           </li>
         </ul>
-      p16: "Ces métriques offrent des informations précieuses sur la démographie et la diversité du vivier de candidats."
-      h55: "Exporter le rapport"
-      p17: "En bas de la page, cliquez sur le bouton 'Télécharger le rapport en PDF' pour générer une version téléchargeable de ce résumé. Ce rapport est utile pour le suivi interne, les présentations et l’archivage."
-      p18: "⚠️ Cette page reflète les données en temps réel. Assurez-vous que tous les statuts des candidatures sont à jour avant de télécharger le rapport final."
-      h46: "Résultat des votes"
-      h56: "Comprendre le résultat du vote"
-      p19: "Chaque candidat est évalué par le Directeur et les Maîtres de ballet, qui peuvent attribuer l’un des votes suivants:"
-      ul8: |
+      p18: "Ces métriques offrent des informations précieuses sur la démographie et la diversité du vivier de candidats."
+      h58: "Exporter le rapport"
+      p19: "En bas de la page, cliquez sur le bouton 'Télécharger le rapport en PDF' pour générer une version téléchargeable de ce résumé. Ce rapport est utile pour le suivi interne, les présentations et l’archivage."
+      p20: "⚠️ Cette page reflète les données en temps réel. Assurez-vous que tous les statuts des candidatures sont à jour avant de télécharger le rapport final."
+      h47: "Résultat des votes"
+      h59: "Comprendre le résultat du vote"
+      p21: "Chaque candidat est évalué par le Directeur et les Maîtres de ballet, qui peuvent attribuer l’un des votes suivants:"
+      ul11: |
         <ul>
           <li>🟢 OUI.</li>
           <li>🟡 PEUT-ÊTRE.</li>
           <li>🔴 NON.</li>
           <li>🔵 ÉTOILE (réservée au Directeur) — cela indique une forte recommandation, qui prévaut sur la logique habituelle des résultats de vote.</li>
         </ul>
-      h57: "Comment le résultat final du vote est déterminé"
-      p20: "Le système calcule automatiquement le résultat du vote d’un candidat en fonction de la combinaison des votes reçus. Voici un aperçu des différentes combinaisons et de leurs résultats associés:"
+      h510: "Comment le résultat final du vote est déterminé"
+      p22: "Le système calcule automatiquement le résultat du vote d’un candidat en fonction de la combinaison des votes reçus. Voici un aperçu des différentes combinaisons et de leurs résultats associés:"

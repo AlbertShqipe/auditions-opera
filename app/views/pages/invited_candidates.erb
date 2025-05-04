@@ -1,7 +1,26 @@
 <div class="container mt-3">
-  <h1 class="text-center">Invited Candidates</h1>
+  <h1 class="text-center"><%= t('invited_candidates.h1') %></h1>
+  <%= form_with url: invited_candidates_path, method: :get, local: true, data: { turbo_frame: "invited_list" }, class: "filter-form mb-3" do %>
+  <div class="filter-show">
+    <div class="filter-field">
+      <%= label_tag :confirmed_attendance, t('invited_candidates.filter_by_attendance') %>
+      <%= select_tag :confirmed_attendance,
+            options_for_select([
+              ["All", ""],
+              ["Confirmed", "true"],
+              ["Not Confirmed", "false"]
+            ], params[:confirmed_attendance]),
+            class: "form-control",
+            onchange: "this.form.requestSubmit();" %>
+    </div>
+  </div>
+  <% end %>
   <!-- Applications List -->
-    <section class="tiles-index my-4" data-controller="votes">
+  <turbo-frame id="invited_list">
+    <div class="text-center">
+        <p> <%= @audition_applications.count %>/<%= AuditionApplication.where(status:'accepted', status_published:true).count %></p>
+    </div>
+    <section class="tiles-index my-4">
       <% @audition_applications.each do |application| %>
         <article class="style1 tile <%= 'confirmed' if application.status_published && application.confirmed_attendance %> <%= 'not-confirmed' if application.status_published && !application.confirmed_attendance %>">
           <span class="image">
@@ -43,5 +62,5 @@
         </article>
       <% end %>
     </section>
-
+  </turbo-frame>
 </div>

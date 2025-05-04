@@ -20,6 +20,19 @@ class PagesController < ApplicationController
   def invited_candidates
     @audition_applications = AuditionApplication.where(status: 'accepted', status_published: true)
 
+    if params[:confirmed_attendance].present?
+      case params[:confirmed_attendance]
+      when "true"
+        @audition_applications = @audition_applications.where(confirmed_attendance: true)
+      when "false"
+        @audition_applications = @audition_applications.where(confirmed_attendance: false)
+      end
+    end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   private

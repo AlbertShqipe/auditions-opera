@@ -315,6 +315,10 @@ en:
     pending_cand: "Pending applications"
     notify_all_candidates: "SEND RESULTS TO ALL CANDIDATES"
 
+  invited_candidates:
+    h1: "Invited Candidates"
+    filter_by_attendance: "Filter by Attendance Confirmation"
+
   report:
     h2: "Audition Report"
     p1: "Audition report for the year"
@@ -442,11 +446,37 @@ en:
           </ul>
         </ul>
       p13: "⚠️ Only candidates whose status is not pending will receive an email."
-      h45: "Audition Report Page"
-      p14: "The Report Page provides a clear and visually structured overview of all applications received for the Ballet de l’Opéra de Lyon audition season."
-      h54: "Overview Metrics"
-      p15: "The report includes key metrics such as:"
+      h45: "Invited Candidates"
+      p14: "The Invited Candidates page lists all candidates who have been accepted to participate in the audition. This view is designed to help administrators easily track attendance confirmations."
+      h54: "Tile-Based Layout"
       ul7: |
+        <ul>
+          <li>Candidates are displayed in tiles, similar to those used in the main Candidates Index.</li>
+          <li>Each tile shows key information about the candidate.</li>
+          <li>Clicking on a tile takes you to the Candidate Profile, where you can view:
+            <ul>
+              <li>Full application details</li>
+            </ul>
+          </li>
+        </ul>
+      h55: "Confirmation Status Indicators"
+      ul8: |
+        <ul>
+          <li>✅ Green Border – The candidate has confirmed their attendance at the audition.</li>
+          <li>❗️Red Border – The candidate has not yet confirmed their attendance.</li>
+        </ul>
+      h56: "Filter Options"
+      p15: "To help manage attendance, use the filter controls to display:"
+      ul9: |
+        <ul>
+          <li>Only candidates who have confirmed</li>
+          <li>Only candidates who have not confirmed</li>
+        </ul>
+      h46: "Audition Report Page"
+      p16: "The Report Page provides a clear and visually structured overview of all applications received for the Ballet de l’Opéra de Lyon audition season."
+      h57: "Overview Metrics"
+      p17: "The report includes key metrics such as:"
+      ul10: |
         <ul>
           <li>Total Applications – Total number of submissions received.</li>
           <li>Age Stats – Youngest and oldest candidate, plus average age.</li>
@@ -467,19 +497,19 @@ en:
             </ul>
           </li>
         </ul>
-      p16: "These metrics offer valuable demographic and diversity insights into the candidate pool."
-      h55: "Exporting the Report"
-      p17: "At the bottom of the page, click the “Download Report as PDF” button to generate a downloadable version of this summary. This report is useful for internal tracking, presentations, and archival purposes."
-      p18: "⚠️ This page reflects real-time data. Ensure all application statuses are updated before downloading the final report."
-      h46: "Votes Result"
-      h56: "Understanding the Vote Result"
-      p19: "Each candidate is evaluated by the Director and the Ballet Masters, who can cast one of the following votes:"
-      ul8: |
+      p18: "These metrics offer valuable demographic and diversity insights into the candidate pool."
+      h58: "Exporting the Report"
+      p19: "At the bottom of the page, click the “Download Report as PDF” button to generate a downloadable version of this summary. This report is useful for internal tracking, presentations, and archival purposes."
+      p20: "⚠️ This page reflects real-time data. Ensure all application statuses are updated before downloading the final report."
+      h47: "Votes Result"
+      h59: "Understanding the Vote Result"
+      p21: "Each candidate is evaluated by the Director and the Ballet Masters, who can cast one of the following votes:"
+      ul11: |
         <ul>
           <li>🟢 YES.</li>
           <li>🟡 MAYBE.</li>
           <li>🔴 NO.</li>
           <li>🔵 STAR (exclusive to the Director) — this indicates a strong recommendation, overriding the standard vote outcome logic.</li>
         </ul>
-      h57: "How the Final Vote Result Is Determined"
-      p20: "The system automatically calculates a candidate’s vote result based on the combination of votes received. Below is a breakdown of how different combinations lead to specific outcomes:"
+      h510: "How the Final Vote Result Is Determined"
+      p22: "The system automatically calculates a candidate’s vote result based on the combination of votes received. Below is a breakdown of how different combinations lead to specific outcomes:"
