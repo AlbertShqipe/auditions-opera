@@ -19,7 +19,7 @@
             label: t("audition_form.form.gender"),
             required: true %>
     <span id="genderError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.gender') %></span>
-    <%= f.input :video_link, label: t("audition_form.form.video_link"), required: true %>
+    <%= f.input :video_link, label: t("audition_form.form.video_link"), required: true, input_html: { pattern: "https://(www\\.)?youtube\\.com/.+" } %>
     <p class="p-input-info"><%= t("audition_form.form.video_link_placeholder") %></p>
     <span id="videoError" class="error-message" style="margin:0;text-align:left;color: red;display:none"><%= t('audition_form.errors.video_link') %></span>
 
@@ -53,6 +53,3 @@
     <%= f.button :submit, f.object.persisted? ? t("audition_form.btn.modify") : t("audition_form.btn.submit"), class:"submit-button" %>
   <% end %>
 </div>
-<script>
-
-</script>

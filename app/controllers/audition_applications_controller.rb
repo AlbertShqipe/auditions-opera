@@ -1,8 +1,7 @@
 class AuditionApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin, only: [:index]
-  before_action :set_application, only: [:show, :update_status]
-  before_action :set_application, only: [:confirm_attendance, :update_attendance]
+  before_action :set_application, only: [:show, :confirm_attendance, :update_attendance]
   before_action :authorize_candidate, only: [:confirm_attendance]
 
   def send_results
@@ -30,13 +29,21 @@ class AuditionApplicationsController < ApplicationController
   end
 
   def confirm_attendance_message
-    # The candidate that is accepted has the chance to contact the admin in case of inability to attend the audition
-    name = params[:name]
-    email = params[:email]
-    message = params[:message]
+    name = params[:name].to_s.strip
+    email = params[:email].to_s.strip
+    message = params[:message].to_s.strip
+
+    if name.blank? || email.blank? || message.blank?
+      flash[:alert] = "All fields are required."
+      return redirect_to audition_application_path(params[:id])
+    end
+
+    unless URI::MailTo::EMAIL_REGEXP.match?(email)
+      flash[:alert] = "Invalid email format."
+      return redirect_to audition_application_path(params[:id])
+    end
 
     AuditionMailer.contact_message(name, email, message).deliver_now
-
     flash[:notice] = t("controllers.audition_application.confirm_attendance_message")
     redirect_to audition_application_path(params[:id])
   end

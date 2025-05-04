@@ -10,7 +10,11 @@
 # Remove an existing admin safely
 
 # User Setup
-User.destroy_all
+if Rails.env.development? || Rails.env.test?
+  User.destroy_all
+else
+  puts "⚠️ Skipping User.destroy_all in #{Rails.env} environment."
+end
 
 unless User.where(role: :admin).exists?
   admin_emails = [ 'marco@gmail.com', 'raul@gmail.com']

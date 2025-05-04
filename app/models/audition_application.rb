@@ -15,9 +15,14 @@ class AuditionApplication < ApplicationRecord
   enum gender: { female: "female", male: "male", non_binary: "non_binary", other: "other" }
   enum status: { pending: 0, accepted: 1, rejected: 2 }
 
+  before_validation :normalize_video_link
+
   validates :first_name, :last_name, :date_of_birth, :address, :nationality, :height, :gender, :video_link, :profile_image, :cv, presence: true
   validates :height, numericality: { greater_than: 0 }, allow_nil: true
-  validates :video_link, format: { with: /\Ahttps?:\/\/.+\z/, message: "must be a valid URL" }, allow_blank: true
+  validates :video_link, format: { with: %r{\Ahttps:\/\/(www\.)?(youtube\.com|youtu\.be)\/},
+  message: "must be a valid YouTube link starting with https://"}
+  validate :validate_cv_attachment
+  validate :validate_profile_image_attachment
 
   include PgSearch::Model
   pg_search_scope :search_by_first_name_and_last_name,
@@ -53,6 +58,26 @@ class AuditionApplication < ApplicationRecord
   end
 
   private
+
+  def validate_cv_attachment
+    return unless cv.attached?
+    unless cv.content_type.in?(%w(application/pdf))
+      errors.add(:cv, "must be a PDF file")
+    end
+    if cv.byte_size > 5.megabytes
+      errors.add(:cv, "should be less than 5MB")
+    end
+  end
+
+  def validate_profile_image_attachment
+    return unless profile_image.attached?
+    unless profile_image.content_type.in?(%w(image/jpeg image/png image/webp))
+      errors.add(:profile_image, "must be JPG, PNG, or WebP")
+    end
+    if profile_image.byte_size > 5.megabytes
+      errors.add(:profile_image, "should be less than 5MB")
+    end
+  end
 
   def initialize_votes
     # Find all admins and directors
@@ -99,6 +124,12 @@ class AuditionApplication < ApplicationRecord
 
   def set_default_status_published
     update_column(:status_published, false) if status_published.nil?
+  end
+
+  def normalize_video_link
+    if video_link.present? && !video_link.start_with?("https://")
+      self.video_link = "https://#{video_link}"
+    end
   end
 
   # def send_status_update_email

@@ -67,11 +67,15 @@ class DashboardController < ApplicationController
         "other" => "Other"
       }
 
+      # Restrict sensitive fields for non-admin users
+      is_admin = current_user.admin? || current_user.director? || current_user.guest?
+
+
       {
         id: app.id,
-        name: app.first_name + ' ' + app.last_name,
-        nationality: app.nationality,
-        gender: gender_labels[app.gender] || app.gender.capitalize,
+        name: is_admin ? app.first_name + ' ' + app.last_name : nil,
+        nationality: is_admin ? app.nationality : nil,
+        gender: is_admin ? gender_labels[app.gender] || app.gender.capitalize : nil,
         application_status: app.status,
         # ethnicity: app.ethnicity&.name || "N/A",
         votes_count: app.votes.map { |vote|
@@ -81,9 +85,9 @@ class DashboardController < ApplicationController
           }
         },
         result: app.vote_result,
-        email: app.user.email,
+        email: is_admin ? app.user.email : nil,
         video_link: app.video_link,
-        cv: app.cv.attached? ? url_for(app.cv) : nil,
+        cv: (is_admin && app.cv.attached?) ? rails_blob_url(app.cv, disposition: "attachment") : nil,
         confirmed_attendance: app.confirmed_attendance
       }
     end
