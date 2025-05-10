@@ -83,6 +83,7 @@ group :development do
   # gem "spring"
 
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+  gem "bundler-audit", "~> 0.9.2"
 end
 
 group :test do
@@ -90,5 +91,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "bundler-audit", "~> 0.9.2"
